@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+
+        <style>
+            article, h1{
+                width:100%;
+                font-family:Arial;
+            }
+
+            article>section{
+                border-top:solid #ddd 1px;
+                padding-top:20px;
+                float:left;
+                margin:20px 0;
+            }
+
+            article>section:first-child{
+                width:30%;
+            }
+
+            article>section:last-child{
+                width:70%;
+                background-color:black;
+                color:white;
+            }
+
+            code{
+                padding:15px;
+                display:block;
+            }
+
+            body>h1{
+                margin-top:50px;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <h1>SASS</h1>
+        <article>
+            <section>
+                Padri e figli
+            </section>
+            <section>
+                <code>
+                    <pre>
+
+$rosso : #FF0000;       <span style="color:gray;">/* Dichiarazione di variabile globale */</span>
+
+
+.bg-red{
+    background-color:$rosso;     <span style="color:gray;">/* Utilizzo la variabile $rosso */</span>
+}
+
+div{
+    color:red;          <span style="color:gray;">/* Stile del div */</span>
+    @extend .bg-red;    <span style="color:gray;">/* Importa lo stile della classe .bg-red */</span>
+
+    p{                  <span style="color:gray;">/* Tutti i figli p */</span>
+        color:blue;
+
+        &:hover{        <span style="color:gray;">/* Hover al p */</span>
+
+        }
+    }
+
+    >section{           <span style="color:gray;">/* Tutti i figli diretti section */</span>
+        color:orange;
+    }
+
+    &.classe{           <span style="color:gray;">/* Il div ma che possiede la classe .classe */</span>
+
+    }
+
+    &:hover{            <span style="color:gray;">/* Hover al div */</span>
+        p{
+            color:orange;
+        }
+    }
+
+    &, p{               <span style="color:gray;">/* Stile sia per il div che per il suo figlio p */</span>
+
+    }
+}
+                    </pre>
+                </code>
+            </section>
+        </article>
+
+
+
+
+
+
+
+        <h1>JQuery</h1>
+        <article>
+            <section>
+                Funzioni base di JQuery
+            </section>
+            <section>
+                <code>
+                    <pre>
+$(document).ready(function(){               <span style="color:gray;">/* Quando il documento si è completamente caricato */</span>
+
+    $('.prova').each(function(){            <span style="color:gray;">/* Foreach dei tag con classe .prova */</span>
+        $(this).css('color', 'red');        <span style="color:gray;">/* Imposta il css del singolo elemento iterato */</span>
+    });
+
+    $('.prova').click(function(){           <span style="color:gray;">/* Listener del click di un tag .prova */</span>
+        $(this).toggleClass('active');      <span style="color:gray;">/* Rimuove o aggiunge la classe .active */</span>
+    });
+
+});
+
+$('#prova').click(function(){
+    $('p').toggle(2000);                    <span style="color:gray;">/* Nasconde o mostra i tag p con un'animazione della durata di 2 secondi */</span>
+});
+                </pre>
+                </code>
+            </section>
+        </article>
+    </body>
+</html>
