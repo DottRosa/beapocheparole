@@ -21,13 +21,17 @@
 
             article>section:last-child{
                 width:70%;
-                background-color:black;
-                color:white;
             }
 
             code{
-                padding:15px;
                 display:block;
+
+                padding: 2px 4px;
+                font-size: 90%;
+                color: #c7254e;
+                background-color: #f9f2f4;
+                border-radius: 4px;
+                font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
             }
 
             body>h1{
@@ -119,6 +123,45 @@ $('#prova').click(function(){
     $('p').toggle(2000);                    <span style="color:gray;">/* Nasconde o mostra i tag p con un'animazione della durata di 2 secondi */</span>
 });
                 </pre>
+                </code>
+            </section>
+        </article>
+
+
+
+
+
+        <h1>LARAVEL</h1>
+        <article>
+            <section>
+                Creare un Controller
+            </section>
+            <section>
+                <code>
+                    php artisan make:controller NomeController
+                </code>
+            </section>
+        </article>
+
+
+        <article>
+            <section>
+                Creare un Model
+            </section>
+            <section>
+                <code>
+                    php artisan make:model NomeModel
+                </code>
+            </section>
+        </article>
+
+        <article>
+            <section>
+                Compilare automaticamente i file SASS
+            </section>
+            <section>
+                <code>
+                    gulp watch
                 </code>
             </section>
         </article>
