@@ -62,6 +62,9 @@
             <li>
                 <a href="#laravel">Laravel</a>
             </li>
+            <li>
+                <a href="http://192.168.0.108:8888/MAMP/index.php?page=phpmyadmin&language=English" target="_blank">PHPMYADMIN</a>
+            </li>
         </ul>
 
 
