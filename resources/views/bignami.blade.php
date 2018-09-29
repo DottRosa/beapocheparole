@@ -1,8 +1,13 @@
 <!doctype html>
-<html>
+<html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset="utf8" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <title>BIGNAMI</title>
+
+        <!-- Styles -->
         <style>
             article, h1{
                 width:100%;
@@ -38,11 +43,29 @@
                 margin-top:50px;
             }
 
-        </style>
+            #title{
+                font-size:45pt;
+                text-align:center;
+            }
 
+        </style>
     </head>
     <body>
-        <h1>SASS</h1>
+        <h1 id="title">THE BIGNAMI</h1>
+        <ul>
+            <li>
+                <a href="#sass">SASS</a>
+            </li>
+            <li>
+                <a href="#jquery">JQuery</a>
+            </li>
+            <li>
+                <a href="#laravel">Laravel</a>
+            </li>
+        </ul>
+
+
+        <h1 id="sass">SASS</h1>
         <article>
             <section>
                 Padri e figli
@@ -99,7 +122,7 @@ div{
 
 
 
-        <h1>JQuery</h1>
+        <h1 id="jquery">JQuery</h1>
         <article>
             <section>
                 Funzioni base di JQuery
@@ -131,7 +154,7 @@ $('#prova').click(function(){
 
 
 
-        <h1>LARAVEL</h1>
+        <h1 id="laravel">LARAVEL</h1>
         <article>
             <section>
                 Creare un Controller

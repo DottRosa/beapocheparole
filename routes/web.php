@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/* START Dev routing */
+
+Route::get('/bignami', function () {
+    return view('bignami');
+});
+
+/* END Dev routing */
