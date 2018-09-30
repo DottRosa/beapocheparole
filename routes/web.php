@@ -23,3 +23,10 @@ Route::get('/bignami', function () {
 });
 
 /* END Dev routing */
+
+
+/* ADMIN */
+
+//Dashboard
+Route::get('admin/', 'admin\Dashboard');
+Route::post('Login', 'admin\Login@login');
