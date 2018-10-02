@@ -12,7 +12,7 @@
       <div class="login_wrapper container">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST" action="{{ action('Login@login') }}">
+            <form method="POST" action="{{ action('AdminLogin@login') }}">
                 {{csrf_field()}}
                 <input type="hidden" value="{{ csrf_token() }}">
               <h1>Login</h1>

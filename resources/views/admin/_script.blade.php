@@ -1,4 +1,3 @@
 <!-- jQuery -->
-<script src="{{ url('/css/js/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ url('../node_modules/bootstrap/dist/css/bootstrap.min.js') }}"></script>
+<script src="{{ url('/js/admin/vendor.js') }}"></script>
+<script src="{{ url('/js/admin/bundle.js') }}"></script>
