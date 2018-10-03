@@ -28,7 +28,16 @@ Route::get('/bignami', function () {
 /* ADMIN */
 Route::group(['prefix' => 'admin'], function(){
 
-    Route::get('/', 'AdminDashboard');
+    //Login
     Route::post('/login', 'AdminLogin@login');
+    //Logout
     Route::get('/logout', 'AdminLogin@logout');
+
+    //Dashboard
+    Route::get('/', 'AdminDashboard');
+    //Immagini
+    Route::get('/images', 'AdminImages');
+    //Immagini
+    Route::get('/users', 'AdminUsers');
+
 });
