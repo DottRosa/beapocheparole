@@ -1,51 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     @include('admin._head')
+
+    <title>Dashboard</title>
+
+
   </head>
-
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
-
-      <div class="login_wrapper container">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form method="POST" action="{{ action('AdminLogin@login') }}">
-                {{csrf_field()}}
-                <input type="hidden" value="{{ csrf_token() }}">
-              <h1>Login</h1>
-
-              @if(isset($error) && $error)
-
-                <div class="alert alert-danger">
-                    Errore di autenticazione: username o password errate
-                </div>
-              @endif
-
-              <div>
-                <input type="text" class="form-control" placeholder="Nome utente" name="username" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" name="password" required="" />
-              </div>
-              <div>
-                <button type="submit" class="btn btn-default">Accedi</button>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <div>
-                  <h1><i class="fa fa-paw"></i> Bea Poche Parole</h1>
+  <body class="app">
+      <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("{{url('dist/images/admin/login_'.rand(1,7).'.jpg')}}")'>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+          <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
+          <form method="POST" action="{{ action('AdminLogin@login') }}">
+              {{csrf_field()}}
+            <div class="form-group">
+              <label class="text-normal text-dark">Username</label>
+              <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label class="text-normal text-dark">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <div class="peers ai-c jc-sb fxw-nw">
+                <div class="peer">
+                  <button class="btn btn-primary">Login</button>
                 </div>
               </div>
-            </form>
-          </section>
+            </div>
+          </form>
         </div>
       </div>
-    </div>
+
     @include('admin._script')
   </body>
 </html>

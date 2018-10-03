@@ -26,11 +26,9 @@ Route::get('/bignami', function () {
 
 
 /* ADMIN */
+Route::group(['prefix' => 'admin'], function(){
 
-//Dashboard
-
-Route::group(['prefix' => 'admin'], function()
-{
-    Route::get('/', 'admin\Dashboard');
+    Route::get('/', 'AdminDashboard');
     Route::post('/login', 'AdminLogin@login');
+    Route::get('/logout', 'AdminLogin@logout');
 });

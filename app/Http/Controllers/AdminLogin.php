@@ -20,6 +20,7 @@ class AdminLogin extends Controller{
         $user = $query->first();
         if($user !== NULL && Hash::check($password, $user->password)){
             Session::put('admin', $user);
+            //Cookie::queue("bpp_admin", json_encode(Session::get("admin")), 2592000);
             return redirect('admin/')->with('user',$user);
         }
         return view('login')->with('error', true);
