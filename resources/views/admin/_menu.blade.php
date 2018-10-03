@@ -30,7 +30,7 @@
     <!-- ### $Sidebar Menu ### -->
     <ul class="sidebar-menu scrollable pos-r">
       <li class="nav-item mT-30 active">
-        <a class="sidebar-link" href="index.html">
+        <a class="sidebar-link" href="{{url('admin/')}}">
           <span class="icon-holder">
             <i class="fas fa-home"></i>
           </span>
@@ -38,7 +38,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class='sidebar-link' href="email.html">
+        <a class='sidebar-link' href="{{url('admin/galleries')}}">
           <span class="icon-holder">
             <i class="fas fa-images"></i>
           </span>
@@ -46,7 +46,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class='sidebar-link' href="compose.html">
+        <a class='sidebar-link' href="{{url('admin/images')}}">
           <span class="icon-holder">
             <i class="far fa-image"></i>
           </span>
@@ -54,7 +54,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class='sidebar-link' href="calendar.html">
+        <a class='sidebar-link' href="{{url('admin/texts')}}">
           <span class="icon-holder">
             <i class="far fa-file-alt"></i>
           </span>
@@ -74,10 +74,10 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a href="google-maps.html">Utenti</a>
+            <a href="{{url('admin/users')}}">Utenti</a>
           </li>
           <li>
-            <a href="vector-maps.html">Logs</a>
+            <a href="{{url('admin/logs')}}">Logs</a>
           </li>
         </ul>
       </li>
@@ -94,7 +94,7 @@
 
 
       <li class="nav-item">
-        <a class='sidebar-link' href="home">
+        <a class='sidebar-link' href="{{url('home')}}">
           <span class="icon-holder">
             <i class="fas fa-external-link-alt"></i>
           </span>
@@ -104,7 +104,7 @@
 
 
       <li class="nav-item">
-        <a class='sidebar-link' href="admin/logout">
+        <a class='sidebar-link' href="{{url('admin/logout')}}">
           <span class="icon-holder">
             <i class="fas fa-sign-out-alt"></i>
           </span>
