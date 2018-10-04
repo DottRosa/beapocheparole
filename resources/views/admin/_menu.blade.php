@@ -45,23 +45,49 @@
           <span class="title">Gallerie</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class='sidebar-link' href="{{url('admin/images')}}">
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
           <span class="icon-holder">
-            <i class="far fa-image"></i>
-          </span>
+              <i class="far fa-image"></i>
+            </span>
           <span class="title">Immagini</span>
+          <span class="arrow">
+              <i class="fas fa-caret-right"></i>
+            </span>
         </a>
-      </li>
-      <li class="nav-item">
-        <a class='sidebar-link' href="{{url('admin/texts')}}">
-          <span class="icon-holder">
-            <i class="far fa-file-alt"></i>
-          </span>
-          <span class="title">Testi</span>
-        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="{{url('admin/images/categories')}}">Categorie immagini</a>
+          </li>
+          <li>
+            <a href="{{url('admin/images/list')}}">Lista immagini</a>
+          </li>
+        </ul>
       </li>
 
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+          <span class="icon-holder">
+              <i class="far fa-file-alt"></i>
+            </span>
+          <span class="title">Testi</span>
+          <span class="arrow">
+              <i class="fas fa-caret-right"></i>
+            </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="{{url('admin/documents/categories')}}">Categorie testi</a>
+          </li>
+          <li>
+            <a href="{{url('admin/documents/list')}}">Lista testi</a>
+          </li>
+        </ul>
+      </li>
+
+      @if(Session::get('admin')->permission == 'ADMIN')
       <li class="nav-item dropdown">
         <a class="dropdown-toggle" href="javascript:void(0);">
           <span class="icon-holder">
@@ -81,6 +107,7 @@
           </li>
         </ul>
       </li>
+      @endif
 
 
       <li class="nav-item">

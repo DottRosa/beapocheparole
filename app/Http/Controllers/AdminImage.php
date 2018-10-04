@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Users;
+use App\Images;
 
-class AdminUser extends Controller{
+class AdminImage extends Controller{
 
-    const ITEMS_PATH = 'admin/users';
-    const ITEMS_VIEW = 'admin.users';
-    const ITEM_VIEW = 'admin.user';
+    const ITEMS_PATH = 'admin/images/list';
+    const ITEMS_VIEW = 'admin.images_list';
+    const ITEM_VIEW = 'admin.image';
 
     public function __invoke(){
         return view(self::ITEM_VIEW);
     }
 
+
     public function get($id){
         if($id !== NULL){
-            $item = Users::find($id);
+            $item = Images::find($id);
             return view(self::ITEM_VIEW)->with('item',$item);
         }
         return view(self::ITEM_VIEW);
@@ -31,7 +32,7 @@ class AdminUser extends Controller{
 
             if(count($errs) == 0){
                 $params['password'] = Hash::make($params['password']);
-                Users::forceCreate($params);
+                Images::forceCreate($params);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
             }
@@ -54,15 +55,15 @@ class AdminUser extends Controller{
                 $params['password'] = Hash::make($params['password']);
             }
 
-            Users::whereId($id)->update($params);
+            Images::whereId($id)->update($params);
             return view(self::ITEMS_VIEW);
         }
         return redirect(self::ITEMS_PATH);
     }
 
     public function delete(Request $request, $id){
-        Users::whereId($id)->delete();
-        return redirect('admin/users');
+        Images::whereId($id)->delete();
+        return redirect(self::ITEMS_PATH);
     }
 
 

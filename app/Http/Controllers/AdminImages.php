@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Images;
 
 class AdminImages extends Controller{
 
+    const ITEMS_PATH = 'admin/images/list';
+    const ITEMS_VIEW = 'admin.images_list';
+
     public function __invoke(){
-        return view('admin.images', ['user' => '']);
+        $items = Images::simplePaginate(20);
+        return view(self::ITEMS_VIEW)->with('items', $items);
     }
 }

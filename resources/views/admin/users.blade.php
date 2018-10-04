@@ -1,8 +1,9 @@
-<!--@section('page_name', 'Conduttori')
-@section('page_name_small', 'Lista dei conduttori')
--->
 @extends('layouts.admin_table')
-@section('page_title', 'Utenti')
+@section('title', 'Utenti')
+
+@section('buttons')
+<a href="{{url('admin/users/add')}}" class="btn btn-success"><i class="fas fa-plus"></i> Aggiungi utente</a>
+@endsection
 
 @section('cols')
     <th>

@@ -12,27 +12,19 @@
                 @show
                 </div>
             </div>
-          <table class="table">
-            <thead>
-              <tr>
-                @section('cols')
+        </div>
+
+        <div class="bgc-white bd bdrs-3 p-20 mB-20 container-fluid">
+            <div class="row">
+                @section('images')
                 @show
-              </tr>
-            </thead>
-            <tbody>
-                @section('rows')
-                @show
-            </tbody>
-          </table>
+            </div>
+
         </div>
         <div class="pull-right">
             {{$items->links()}}
         </div>
-
       </div>
-
-
-
     </div>
 </div>
 @endsection
