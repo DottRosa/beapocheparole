@@ -37,7 +37,13 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/', 'AdminDashboard');
     //Immagini
     Route::get('/images', 'AdminImages');
-    //Immagini
+    //Utenti
     Route::get('/users', 'AdminUsers');
+
+    Route::get('/users/add', 'AdminUser');
+    Route::post('/users/add', 'AdminUser@create');
+    Route::get('/users/edit/{id}', 'AdminUser@get');
+    Route::post('/users/edit/{id}', 'AdminUser@update');
+    Route::get('/users/delete/{id}', 'AdminUser@delete');
 
 });

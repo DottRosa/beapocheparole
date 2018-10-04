@@ -37,8 +37,8 @@
             @endif
         </td>
         <td class="text-right">
-            <a class="btn btn-primary" href="{{url('admin/users/'.$item->id)}}"><i class="fas fa-pencil-alt"></i> Modifica</a>
-            <a class="btn btn-danger" href=""><i class="fas fa-trash-alt"></i> Elimina</a>
+            <a class="btn btn-primary" href="{{url('admin/users/edit/'.$item->id)}}"><i class="fas fa-pencil-alt"></i> Modifica</a>
+            <a class="btn btn-danger" href="{{url('admin/users/delete/'.$item->id)}}"><i class="fas fa-trash-alt"></i> Elimina</a>
         </td>
     </tr>
 
