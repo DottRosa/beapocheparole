@@ -51,6 +51,7 @@ CREATE TABLE R_MEDIA(
 
 CREATE TABLE IMAGES(
     id SERIAL,
+    category_id BIGINT(20) UNSIGNED NOT NULL,
     asset VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     creation_date DATETIME NOT NULL,
@@ -58,7 +59,25 @@ CREATE TABLE IMAGES(
     delete_data DATETIME DEFAULT NULL,
 
     PRIMARY KEY(id),
-    KEY title (title)
+    KEY title (title),
+    KEY category_id (category_id),
+
+    CONSTRAINT IMAGES_category_id FOREIGN KEY (category_id) REFERENCES IMAGES_CATEGORIES (id) ON UPDATE CASCADE ON DELETE RESTRICT
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE IMAGES_CATEGORIES(
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    creation_date DATETIME NOT NULL,
+    update_date DATETIME DEFAULT NULL,
+    delete_data DATETIME DEFAULT NULL,
+
+    PRIMARY KEY(id),
+    KEY name (name)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,6 +88,7 @@ CREATE TABLE IMAGES(
 
 CREATE TABLE DOCUMENTS(
     id SERIAL,
+    category_id BIGINT(20) UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     creation_date DATETIME NOT NULL,
@@ -76,9 +96,26 @@ CREATE TABLE DOCUMENTS(
     delete_data DATETIME DEFAULT NULL,
 
     PRIMARY KEY(id),
-    KEY title (title)
+    KEY title (title),
+    KEY category_id (category_id),
+
+    CONSTRAINT DOCUMENTS_category_id FOREIGN KEY (category_id) REFERENCES DOCUMENTS_CATEGORIES (id) ON UPDATE CASCADE ON DELETE RESTRICT
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE DOCUMENTS_CATEGORIES(
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    creation_date DATETIME NOT NULL,
+    update_date DATETIME DEFAULT NULL,
+    delete_data DATETIME DEFAULT NULL,
+
+    PRIMARY KEY(id),
+    KEY name (name)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 
