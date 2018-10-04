@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Documents;
+use App\Utils\Logs;
 
 class AdminDocument extends Controller{
 
@@ -33,6 +34,7 @@ class AdminDocument extends Controller{
             if(count($errs) == 0){
                 $params['password'] = Hash::make($params['password']);
                 Documents::forceCreate($params);
+                Logs::save(Logs::ACTION_CREATE, "Creazione di un testo", Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
             }
@@ -56,6 +58,7 @@ class AdminDocument extends Controller{
             }
 
             Documents::whereId($id)->update($params);
+            Logs::save(Logs::ACTION_UPDATE, "Modifica del testo con id: ".$id, Session::get('admin')->id);
             return view(self::ITEMS_VIEW);
         }
         return redirect(self::ITEMS_PATH);
@@ -63,6 +66,7 @@ class AdminDocument extends Controller{
 
     public function delete(Request $request, $id){
         Documents::whereId($id)->delete();
+        Logs::save(Logs::ACTION_DELETE, "Eliminazione del testo con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
 

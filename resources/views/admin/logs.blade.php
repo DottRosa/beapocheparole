@@ -28,7 +28,23 @@
     @foreach($items as $item)
     <tr>
         <td>{{$item->id}}</td>
-        <td>{{$item->action}}</td>
+        <td>
+            <span class="badge
+            @if($item->action == 'LOGIN')
+                badge-default
+            @elseif($item->action == 'LOGOUT')
+                badge-default
+            @elseif($item->action == 'CREATE')
+                badge-success
+            @elseif($item->action == 'UPDATE')
+                badge-primary
+            @elseif($item->action == 'DELETE')
+                badge-danger
+            @endif
+            ">
+            {{$item->action}}
+            </span>
+        </td>
         <td>{{$item->description}}</td>
         <td>{{$item->username}}</td>
         <td class="text-right">{{$item->creation_date}}</td>

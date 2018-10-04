@@ -2,7 +2,7 @@
 @section('title', 'Immagini')
 
 @section('buttons')
-<a href="{{url('admin/images/add')}}" class="btn btn-success"><i class="fas fa-plus"></i> Aggiungi immagine</a>
+<a href="{{url('admin/images/list/add')}}" class="btn btn-success"><i class="fas fa-plus"></i> Aggiungi immagine</a>
 @endsection
 
 @section('images')

@@ -66,6 +66,8 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get('/edit/{id}', 'AdminImagesCategory@get');
             Route::post('/edit/{id}', 'AdminImagesCategory@update');
             Route::get('/delete/{id}', 'AdminImagesCategory@delete');
+
+            Route::get('/find', 'AdminImagesCategories@find');
         });
     });
 

@@ -14,4 +14,8 @@ class AdminImagesCategories extends Controller{
         $items = ImagesCategories::simplePaginate(20);
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
+
+    public function find(Request $request){
+        return ImagesCategories::where('name', 'LIKE', '%'.$request->q.'%')->get();
+    }
 }

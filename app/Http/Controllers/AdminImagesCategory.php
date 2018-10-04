@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\ImagesCategories;
 
 class AdminImagesCategory extends Controller{
@@ -32,6 +32,7 @@ class AdminImagesCategory extends Controller{
 
             if(count($errs) == 0){
                 ImagesCategories::forceCreate($params);
+                Logs::save(Logs::ACTION_CREATE, "Creazione della categoria ".$params['name'], Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
             }
@@ -47,6 +48,7 @@ class AdminImagesCategory extends Controller{
 
             if(count($errs) == 0){
                 ImagesCategories::whereId($id)->update($params);
+                Logs::save(Logs::ACTION_UPDATE, "Modifica della categoria con id: ".$id, Session::get('admin')->id);
             } else {
                 return view(self::ITEM_VIEW)->width('errs', $errs);
             }
@@ -56,6 +58,7 @@ class AdminImagesCategory extends Controller{
 
     public function delete(Request $request, $id){
         ImagesCategories::whereId($id)->delete();
+        Logs::save(Logs::ACTION_DELETE, "Eliminazione della categoria con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
 

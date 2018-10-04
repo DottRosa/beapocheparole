@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\DocumentsCategories;
+use App\Utils\Logs;
 
 class AdmindocumentsCategory extends Controller{
 
@@ -32,6 +33,7 @@ class AdmindocumentsCategory extends Controller{
 
             if(count($errs) == 0){
                 DocumentsCategories::forceCreate($params);
+                Logs::save(Logs::ACTION_CREATE, "Creazione della categoria ".$params['name'], Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
             }
@@ -47,6 +49,7 @@ class AdmindocumentsCategory extends Controller{
 
             if(count($errors) == 0){
                 DocumentsCategories::whereId($id)->update($params);
+                Logs::save(Logs::ACTION_UPDATE, "Modifica della categoria con id: ".$id, Session::get('admin')->id);
             } else {
                 return view(self::ITEM_VIEW)->width('errors', $errors);
             }
@@ -56,6 +59,7 @@ class AdmindocumentsCategory extends Controller{
 
     public function delete(Request $request, $id){
         DocumentsCategories::whereId($id)->delete();
+        Logs::save(Logs::ACTION_DELETE, "Eliminazione della categoria con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
 

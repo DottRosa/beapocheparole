@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Images;
+use App\ImagesCategories;
+use App\Utils\Logs;
 
 class AdminImage extends Controller{
 
     const ITEMS_PATH = 'admin/images/list';
-    const ITEMS_VIEW = 'admin.images_list';
+    const ITEMS_VIEW = 'admin.images';
     const ITEM_VIEW = 'admin.image';
 
     public function __invoke(){
-        return view(self::ITEM_VIEW);
+        $categories = ImagesCategories::orderBy('name','ASC')->get();
+        return view(self::ITEM_VIEW)->with('categories', $categories);
     }
-
 
     public function get($id){
         if($id !== NULL){
@@ -33,6 +35,7 @@ class AdminImage extends Controller{
             if(count($errs) == 0){
                 $params['password'] = Hash::make($params['password']);
                 Images::forceCreate($params);
+                Logs::save(Logs::ACTION_CREATE, "Creazione di un'immagine", Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
             }
@@ -56,6 +59,7 @@ class AdminImage extends Controller{
             }
 
             Images::whereId($id)->update($params);
+            Logs::save(Logs::ACTION_UPDATE, "Modifica dell'immagine con id: ".$id, Session::get('admin')->id);
             return view(self::ITEMS_VIEW);
         }
         return redirect(self::ITEMS_PATH);
@@ -63,6 +67,7 @@ class AdminImage extends Controller{
 
     public function delete(Request $request, $id){
         Images::whereId($id)->delete();
+        Logs::save(Logs::ACTION_DELETE, "Eliminazione dell'immagine con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
 

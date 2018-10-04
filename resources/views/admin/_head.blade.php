@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<!-- autocomplete css-->
+<link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/autocomplete/autocomplete.min.css') }}" />
+
 <!-- main css-->
 <link rel="stylesheet" type="text/css" href="{{ url('/css/admin/style.css') }}" />
+
 
 <!-- Font awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
