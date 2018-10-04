@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Users;
+use App\Utils\Logs;
 
 class AdminLogin extends Controller{
 
@@ -20,13 +22,15 @@ class AdminLogin extends Controller{
         $user = $query->first();
         if($user !== NULL && Hash::check($password, $user->password)){
             Session::put('admin', $user);
-            //Cookie::queue("bpp_admin", json_encode(Session::get("admin")), 2592000);
+            Logs::save(Logs::ACTION_LOGIN, "L'utente ha effettuato il login", $user->id);
             return redirect('admin/')->with('user',$user);
         }
         return view('login')->with('error', true);
     }
 
     public function logout(){
+        $user = Session::get('admin');
+        Logs::save(Logs::ACTION_LOGOUT, "L'utente ha effettuato il logout", $user->id);
         Session::forget('admin');
         return view('admin.login');
     }
