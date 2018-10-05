@@ -10,7 +10,7 @@
                 method="POST"
                 autocomplete="off"
                 enctype="multipart/form-data"
-                action="@if(isset($item)){{ action('AdminUser@update', ['id' => $item->id]) }}@else{{ action('AdminUser@create') }}@endif">
+                action="@if(isset($item)){{ action('AdminImage@update', ['id' => $item->id]) }}@else{{ action('AdminImage@create') }}@endif">
                 {{ csrf_field() }}
 
             <div class="form-group row">
@@ -33,7 +33,6 @@
                      placeholder="Carica un'immagine">
             </div>
           </div>
-
 
           <div class="form-group row">
             <label for="input-password" class="col-sm-2 col-form-label">Categoria</label>

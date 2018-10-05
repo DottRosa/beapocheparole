@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use App\Images;
 use App\ImagesCategories;
 use App\Utils\Logs;
@@ -33,7 +35,17 @@ class AdminImage extends Controller{
             $errs = self::verify($params);
 
             if(count($errs) == 0){
-                $params['password'] = Hash::make($params['password']);
+                $path   = $request->file('image');
+                $resize = Image::make($path)
+                                ->resize(1500, null, function ($constraint) {
+                                    $constraint->aspectRatio();
+                                })
+                                ->encode('jpg');
+
+                $image_name = md5($resize->__toString())."_".time();
+                Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
+                $params['asset'] = 'public/assets/images/'.$image_name.'.jpg';
+
                 Images::forceCreate($params);
                 Logs::save(Logs::ACTION_CREATE, "Creazione di un'immagine", Session::get('admin')->id);
             } else {
@@ -75,9 +87,9 @@ class AdminImage extends Controller{
 
     private function getParams(Request $request){
         $params = array(
-            'username' => $request['username'],
-            'password' => $request['password'],
-            'permission' => $request['permission'],
+            'title' => $request['name'],
+            'asset' => $request['image'],
+            'category_id' => $request['category_id'],
         );
 
         return $params;
@@ -86,11 +98,14 @@ class AdminImage extends Controller{
     private function verify($params){
         $errs = array();
 
-        if($params['username'] == NULL || trim($params['username']) == ''){
-            $errs['username'] = 'Devi inserire lo username';
+        if($params['title'] == NULL || trim($params['title']) == ''){
+            $errs['title'] = 'Devi inserire il nome';
         }
-        if($params['password'] == NULL || trim($params['password']) == ''){
-            $errs['password'] = 'Devi inserire una password';
+        if($params['asset'] == NULL || trim($params['asset']) == ''){
+            $errs['asset'] = 'Devi inserire un\'immagine';
+        }
+        if($params['category_id'] == NULL || trim($params['category_id']) == ''){
+            $errs['category_id'] = 'Devi inserire una categoria';
         }
 
         return $errs;

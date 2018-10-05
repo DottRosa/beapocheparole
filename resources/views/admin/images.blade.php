@@ -8,6 +8,11 @@
 @section('images')
 
 
+    @foreach($items as $item)
+    {{$item}}<br /><br />
+    @endforeach
+
+
     <div class='col-md-3'>
       <div class="layers bd bgc-white p-20">
         <div class="layer w-100 mB-10">
