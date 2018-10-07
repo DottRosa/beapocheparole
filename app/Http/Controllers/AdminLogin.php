@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cookie;
 use App\Users;
 use App\Utils\Logs;
 
 class AdminLogin extends Controller{
 
     public function __invoke(){
+        if(Cookie::get('bpp_admin') !== NULL){
+            Session::put('admin', json_decode(Cookie::get('bpp_admin')));
+            return redirect('admin/dashboard');
+        }
         return view('admin.login');
     }
 
@@ -26,6 +31,7 @@ class AdminLogin extends Controller{
         $user = $query->first();
         if($user !== NULL && Hash::check($password, $user->password)){
             Session::put('admin', $user);
+            Cookie::queue('bpp_admin', json_encode($user), 43200);   //30 giorni
             Logs::save(Logs::ACTION_LOGIN, "L'utente ha effettuato il login", $user->id);
             return redirect('admin/dashboard')->with('user',$user);
         }
@@ -36,6 +42,7 @@ class AdminLogin extends Controller{
         $user = Session::get('admin');
         Logs::save(Logs::ACTION_LOGOUT, "L'utente ha effettuato il logout", $user->id);
         Session::forget('admin');
-        return view('admin.login');
+        Cookie::queue('bpp_admin', null, -1);
+        return redirect('admin/');
     }
 }

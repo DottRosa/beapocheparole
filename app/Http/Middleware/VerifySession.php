@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cookie;
 
 class VerifySession
 {
@@ -16,10 +17,12 @@ class VerifySession
      */
     public function handle($request, Closure $next){
         if(Session::get('admin') === NULL){
-            return redirect()->route('login');
-        } else {
-            return $next($request);
+            if(Cookie::get('bpp_admin') === NULL){
+                return redirect()->route('login');
+            } else {
+                Session::put('admin', json_decode(Cookie::get('bpp_admin')));
+            }
         }
-
+        return $next($request);
     }
 }
