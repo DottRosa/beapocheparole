@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use App\Images;
-use App\ImagesCategories;
+use App\Media;
+use App\MediaTags;
 use App\Utils\Logs;
 
 class AdminImage extends Controller{
@@ -17,13 +17,13 @@ class AdminImage extends Controller{
     const ITEM_VIEW = 'admin.image';
 
     public function __invoke(){
-        $categories = ImagesCategories::orderBy('name','ASC')->get();
-        return view(self::ITEM_VIEW)->with('categories', $categories);
+        $tags = MediaTags::orderBy('name','ASC')->get();
+        return view(self::ITEM_VIEW)->with('tags', $tags);
     }
 
     public function get($id){
         if($id !== NULL){
-            $item = Images::find($id);
+            $item = Media::find($id);
             return view(self::ITEM_VIEW)->with('item',$item);
         }
         return view(self::ITEM_VIEW);
@@ -35,6 +35,8 @@ class AdminImage extends Controller{
             $errs = self::verify($params);
 
             if(count($errs) == 0){
+                $params['type'] = 'IMG';
+
                 $path   = $request->file('image');
                 $resize = Image::make($path)
                                 ->resize(1500, null, function ($constraint) {
@@ -46,7 +48,7 @@ class AdminImage extends Controller{
                 Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
                 $params['asset'] = 'public/assets/images/'.$image_name.'.jpg';
 
-                Images::forceCreate($params);
+                Media::forceCreate($params);
                 Logs::save(Logs::ACTION_CREATE, "Creazione di un'immagine", Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
@@ -60,17 +62,7 @@ class AdminImage extends Controller{
         if($request->isMethod('post')){
             $params = self::getParams($request);
 
-            if($params['username'] == NULL || trim($params['username']) == ''){
-                unset($params['username']);
-            }
-
-            if($params['password'] == NULL || trim($params['password']) == ''){
-                unset($params['password']);
-            } else {
-                $params['password'] = Hash::make($params['password']);
-            }
-
-            Images::whereId($id)->update($params);
+            Media::whereId($id)->update($params);
             Logs::save(Logs::ACTION_UPDATE, "Modifica dell'immagine con id: ".$id, Session::get('admin')->id);
             return view(self::ITEMS_VIEW);
         }
@@ -78,7 +70,7 @@ class AdminImage extends Controller{
     }
 
     public function delete(Request $request, $id){
-        Images::whereId($id)->delete();
+        Media::whereId($id)->delete();
         Logs::save(Logs::ACTION_DELETE, "Eliminazione dell'immagine con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
@@ -88,8 +80,7 @@ class AdminImage extends Controller{
     private function getParams(Request $request){
         $params = array(
             'title' => $request['name'],
-            'asset' => $request['image'],
-            'category_id' => $request['category_id'],
+            'asset' => $request['image']
         );
 
         return $params;
@@ -101,11 +92,8 @@ class AdminImage extends Controller{
         if($params['title'] == NULL || trim($params['title']) == ''){
             $errs['title'] = 'Devi inserire il nome';
         }
-        if($params['asset'] == NULL || trim($params['asset']) == ''){
-            $errs['asset'] = 'Devi inserire un\'immagine';
-        }
-        if($params['category_id'] == NULL || trim($params['category_id']) == ''){
-            $errs['category_id'] = 'Devi inserire una categoria';
+        if($params['content'] == NULL || trim($params['content']) == ''){
+            $errs['content'] = 'Devi inserire un\'immagine';
         }
 
         return $errs;

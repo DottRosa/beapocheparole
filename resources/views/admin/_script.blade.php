@@ -5,5 +5,8 @@
 <!-- jQuery -->
 <script src="{{ url('../node_modules/jquery/dist/jquery.min.js')}}"></script>
 
+<!-- Bootstrap -->
+<script src="{{ url('../node_modules/bootstrao/dist/js/bootstrap.min.js')}}"></script>
 
-<script src="{{ url('js/plugins/autocomplete/autocomplete.min.js')}}"></script>
+<!-- jQueryUI -->
+<script src="{{ url('js/plugins/select/bootstrap-select.min.js')}}"></script>

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Documents;
+use App\Media;
 
 class AdminDocuments extends Controller{
 
     const ITEMS_PATH = 'admin/documents/list';
-    const ITEMS_VIEW = 'admin.documents_list';
+    const ITEMS_VIEW = 'admin.documents';
 
     public function __invoke(){
-        $items = Documents::simplePaginate(20);
+        $items = Media::where('type', 'TXT')->simplePaginate(20);
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
 }

@@ -34,13 +34,11 @@ CREATE TABLE R_MEDIA(
     name VARCHAR(255) NOT NULL,
     gallery_id BIGINT(20) UNSIGNED NOT NULL,
     media_id BIGINT(20) UNSIGNED NOT NULL,
-    type ENUM('IMG', 'TXT') NOT NULL,
     position INT(11) NOT NULL DEFAULT 1,
 
-    PRIMARY KEY(gallery_id, media_id, type), /* Teniamola con le briglie amore (cit. Ele) */
+    PRIMARY KEY(gallery_id, media_id), /* Teniamola con le briglie amore (cit. Ele) */
     KEY gallery_id (gallery_id),
     KEY media_id (media_id),
-    KEY type (type),
     KEY position (position),
 
     CONSTRAINT R_MEDIA_gallery_id FOREIGN KEY (gallery_id) REFERENCES GALLERY (id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -48,31 +46,10 @@ CREATE TABLE R_MEDIA(
 
 
 
-
-CREATE TABLE IMAGES(
-    id SERIAL,
-    category_id BIGINT(20) UNSIGNED NOT NULL,
-    asset VARCHAR(255) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    creation_date DATETIME NOT NULL,
-    update_date DATETIME DEFAULT NULL,
-    delete_data DATETIME DEFAULT NULL,
-
-    PRIMARY KEY(id),
-    KEY title (title),
-    KEY category_id (category_id),
-
-    CONSTRAINT IMAGES_category_id FOREIGN KEY (category_id) REFERENCES IMAGES_CATEGORIES (id) ON UPDATE CASCADE ON DELETE RESTRICT
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-
-CREATE TABLE IMAGES_CATEGORIES(
+CREATE TABLE MEDIA_TAGS(
     id SERIAL,
     name VARCHAR(255) NOT NULL,
-    creation_date DATETIME NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT NULL,
     delete_data DATETIME DEFAULT NULL,
 
@@ -81,41 +58,33 @@ CREATE TABLE IMAGES_CATEGORIES(
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
-
-
-
-CREATE TABLE DOCUMENTS(
+CREATE TABLE MEDIA(
     id SERIAL,
-    category_id BIGINT(20) UNSIGNED NOT NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    creation_date DATETIME NOT NULL,
+    type ENUM('IMG', 'TXT') NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT NULL,
     delete_data DATETIME DEFAULT NULL,
 
     PRIMARY KEY(id),
     KEY title (title),
-    KEY category_id (category_id),
-
-    CONSTRAINT DOCUMENTS_category_id FOREIGN KEY (category_id) REFERENCES DOCUMENTS_CATEGORIES (id) ON UPDATE CASCADE ON DELETE RESTRICT
+    KEY type (type)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE R_MEDIA_TAGS(
+    media_id BIGINT(20) UNSIGNED NOT NULL,
+    tag_id BIGINT(20) UNSIGNED NOT NULL,
 
-CREATE TABLE DOCUMENTS_CATEGORIES(
-    id SERIAL,
-    name VARCHAR(255) NOT NULL,
-    creation_date DATETIME NOT NULL,
-    update_date DATETIME DEFAULT NULL,
-    delete_data DATETIME DEFAULT NULL,
+    PRIMARY KEY(media_id, tag_id),
+    KEY media_id (media_id),
+    KEY tag_id (tag_id),
 
-    PRIMARY KEY(id),
-    KEY name (name)
+    CONSTRAINT R_MEDIA_TAGS_media_id FOREIGN KEY (media_id) REFERENCES MEDIA (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT R_MEDIA_TAGS_tag_id FOREIGN KEY (tag_id) REFERENCES MEDIA_TAGS (id) ON UPDATE CASCADE ON DELETE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 

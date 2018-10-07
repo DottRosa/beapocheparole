@@ -51,38 +51,20 @@
           <span class="icon-holder">
               <i class="far fa-image"></i>
             </span>
-          <span class="title">Immagini</span>
+          <span class="title">Contenuti</span>
           <span class="arrow">
               <i class="fas fa-caret-right"></i>
             </span>
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{url('admin/images/categories')}}">Categorie immagini</a>
+            <a href="{{url('admin/images/list')}}">Immagini</a>
           </li>
           <li>
-            <a href="{{url('admin/images/list')}}">Lista immagini</a>
-          </li>
-        </ul>
-      </li>
-
-
-      <li class="nav-item dropdown">
-        <a class="dropdown-toggle" href="javascript:void(0);">
-          <span class="icon-holder">
-              <i class="far fa-file-alt"></i>
-            </span>
-          <span class="title">Testi</span>
-          <span class="arrow">
-              <i class="fas fa-caret-right"></i>
-            </span>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="{{url('admin/documents/categories')}}">Categorie testi</a>
+            <a href="{{url('admin/documents/list')}}">Testi</a>
           </li>
           <li>
-            <a href="{{url('admin/documents/list')}}">Lista testi</a>
+            <a href="{{url('admin/tags')}}">Tag</a>
           </li>
         </ul>
       </li>
