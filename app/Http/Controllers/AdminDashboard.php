@@ -16,9 +16,6 @@ class AdminDashboard extends Controller
      * @return Response
      */
     public function __invoke(){
-        if(Session::get('admin') === NULL){
-            return view('admin.login');
-        }
         return view('admin.dashboard');
     }
 }

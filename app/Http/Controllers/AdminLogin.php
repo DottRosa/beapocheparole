@@ -13,6 +13,10 @@ use App\Utils\Logs;
 
 class AdminLogin extends Controller{
 
+    public function __invoke(){
+        return view('admin.login');
+    }
+
     public function login(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
@@ -23,7 +27,7 @@ class AdminLogin extends Controller{
         if($user !== NULL && Hash::check($password, $user->password)){
             Session::put('admin', $user);
             Logs::save(Logs::ACTION_LOGIN, "L'utente ha effettuato il login", $user->id);
-            return redirect('admin/')->with('user',$user);
+            return redirect('admin/dashboard')->with('user',$user);
         }
         return view('login')->with('error', true);
     }
