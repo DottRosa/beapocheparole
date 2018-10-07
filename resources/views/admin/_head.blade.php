@@ -6,7 +6,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- autocomplete css-->
-<link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/autocomplete/autocomplete.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/select/bootstrap-select.min.css') }}" />
 
 <!-- main css-->
 <link rel="stylesheet" type="text/css" href="{{ url('/css/admin/style.css') }}" />

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
   <div class="masonry-item col-md-12">
     <div class="bgc-white p-20 bd">
       <h4 class="c-grey-900">Aggiungi immagine</h4>
@@ -34,18 +36,22 @@
             </div>
           </div>
 
+
           <div class="form-group row">
-            <label for="input-password" class="col-sm-2 col-form-label">Categoria</label>
+            <label for="input-image" class="col-sm-2 col-form-label">Tags</label>
             <div class="col-sm-10">
-              <select class="form-control" name="category_id">
-                  @foreach($categories as $category)
-                  <option value="{{$category->id}}">
-                      {{$category->name}}
-                  </option>
-                  @endforeach
-              </select>
+                <select class="selectpicker multiselect" multiple>
+                    @foreach($tags as $tag)
+                    <option value="{{$tag->id}}">
+                        {{$tag->name}}
+                    </option>
+                    @endforeach
+                </select>
+
             </div>
           </div>
+
+
 
 
 
@@ -68,6 +74,7 @@
 @endsection
 
 @section('javascript')
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(function(){
     getMessage();
@@ -75,12 +82,16 @@ $(function(){
    function getMessage(){
       $.ajax({
          type:'GET',
-         url:"{{url('admin/images/categories/find')}}",
+         url:"{{url('admin/tags/find')}}",
          data:'_token = <?php echo csrf_token() ?>',
          success:function(data){
             console.log(data);
          }
       });
    }
+
+   $(function(){
+       $('.multiselect').multiselect();
+   });
 </script>
 @endsection
