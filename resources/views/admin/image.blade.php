@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 @section('content')
 
+<style>
+.bs-placeholder{
+
+}
+</style>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <div class="masonry-item col-md-12">
@@ -40,7 +46,7 @@
           <div class="form-group row">
             <label for="input-image" class="col-sm-2 col-form-label">Tags</label>
             <div class="col-sm-10">
-                <select class="selectpicker multiselect" multiple>
+                <select class="selectpicker multiselect" multiple data-live-search="true" placeholder="PRova">
                     @foreach($tags as $tag)
                     <option value="{{$tag->id}}">
                         {{$tag->name}}
@@ -74,24 +80,15 @@
 @endsection
 
 @section('javascript')
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="{{ url('js/plugins/select/bootstrap-select.min.js')}}"></script>
+
 <script>
-$(function(){
-    getMessage();
-})
-   function getMessage(){
-      $.ajax({
-         type:'GET',
-         url:"{{url('admin/tags/find')}}",
-         data:'_token = <?php echo csrf_token() ?>',
-         success:function(data){
-            console.log(data);
-         }
-      });
-   }
 
    $(function(){
-       $('.multiselect').multiselect();
+       $('.selectpicker').selectpicker({
+
+       });
    });
 </script>
 @endsection

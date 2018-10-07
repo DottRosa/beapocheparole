@@ -13,7 +13,6 @@ class AdminUsers extends Controller{
 
     public function __invoke(){
         $items = Users::simplePaginate(20);
-        var_dump('entra');
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
 }

@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<!-- autocomplete css-->
+<!-- bootstap-->
+<link rel="stylesheet" type="text/css" href="{{ url('../node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+<!-- bootstap select css-->
 <link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/select/bootstrap-select.min.css') }}" />
 
 <!-- main css-->

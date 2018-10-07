@@ -15,6 +15,7 @@
         <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("{{url('dist/images/admin/login_'.rand(1,7).'.jpg')}}")'>
         </div>
         <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
+            <h2 class="lh-1 mB-0 logo-text"><span style="color:OrangeRed ;">Bea</span>ckend</h2>
           <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
           <form method="POST" action="{{ action('AdminLogin@login') }}">
               {{csrf_field()}}
