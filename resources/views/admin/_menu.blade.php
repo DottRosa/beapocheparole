@@ -4,13 +4,13 @@
     <div class="sidebar-logo">
       <div class="peers ai-c fxw-nw">
         <div class="peer peer-greed">
-          <a class="sidebar-link td-n" href="index.html">
+          <a class="sidebar-link td-n" href="{{url('admin/dashboard')}}">
             <div class="peers ai-c fxw-nw">
               <div class="peer">
                 <div class="logo"></div>
               </div>
               <div class="peer peer-greed">
-                <h5 class="lh-1 mB-0 logo-text"><span style="color:OrangeRed ;">Bea</span>ckend</h5>
+                <h5 class="lh-1 mB-0 logo-text"><span style="color:#2196f3 ;">Bea</span>ckend</h5>
               </div>
             </div>
           </a>
@@ -101,7 +101,7 @@
 
 
       <li class="nav-item">
-        <a class='sidebar-link' href="{{url('home')}}">
+        <a class='sidebar-link' href="{{url('/')}}" target="_blank">
           <span class="icon-holder">
             <i class="fas fa-external-link-alt"></i>
           </span>

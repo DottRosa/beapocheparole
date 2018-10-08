@@ -25,6 +25,10 @@ Route::get('/bignami', function () {
 /* END Dev routing */
 
 
+Route::get('storage/{filename}', function ($filename){
+    return Image::make(storage_path('public/' . $filename))->response();
+});
+
 
 //Login
 Route::get('admin/', 'AdminLogin')->name('login');

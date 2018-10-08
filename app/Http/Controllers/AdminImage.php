@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Media;
 use App\MediaTags;
+use App\RMediaTags;
 use App\Utils\Logs;
 
 class AdminImage extends Controller{
@@ -24,9 +26,25 @@ class AdminImage extends Controller{
     public function get($id){
         if($id !== NULL){
             $item = Media::find($id);
-            return view(self::ITEM_VIEW)->with('item',$item);
+            $tags = DB::select(
+                      DB::raw("SELECT MEDIA_TAGS.id
+                               FROM MEDIA_TAGS
+                               INNER JOIN R_MEDIA_TAGS ON (R_MEDIA_TAGS.tag_id = MEDIA_TAGS.id)
+                               WHERE R_MEDIA_TAGS.media_id = :item_id"), array('item_id' => $item->id));
+
+            $tags_ids = [];
+            foreach($tags as $tag){
+                $tags_ids[] .= $tag->id;
+            }
+            $item['tags'] = $tags_ids;
+
+            return view(self::ITEM_VIEW)->with('item',$item)->with('tags', self::getTags());
         }
         return view(self::ITEM_VIEW);
+    }
+
+    public function getTags(){
+        return MediaTags::orderBy('name','ASC')->get();
     }
 
     public function create(Request $request){
@@ -37,18 +55,27 @@ class AdminImage extends Controller{
             if(count($errs) == 0){
                 $params['type'] = 'IMG';
 
-                $path   = $request->file('image');
+                $path   = $request->file('content');
                 $resize = Image::make($path)
                                 ->resize(1500, null, function ($constraint) {
                                     $constraint->aspectRatio();
                                 })
                                 ->encode('jpg');
 
-                $image_name = md5($resize->__toString())."_".time();
+                $image_name = md5($resize->__toString()."".time());
                 Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
-                $params['asset'] = 'public/assets/images/'.$image_name.'.jpg';
+                $params['content'] = 'public/assets/images/'.$image_name.'.jpg';
 
-                Media::forceCreate($params);
+                $data = Media::forceCreate($params);
+                $media_id = $data->id;
+
+                foreach($request['tags'] as $tag){
+                    RMediaTags::create([
+                        'media_id' => $media_id,
+                        'tag_id' => $tag
+                    ]);
+                }
+
                 Logs::save(Logs::ACTION_CREATE, "Creazione di un'immagine", Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
@@ -62,9 +89,32 @@ class AdminImage extends Controller{
         if($request->isMethod('post')){
             $params = self::getParams($request);
 
+            if($params['content'] === NULL || $params['content'] === ''){
+                unset($params['content']);
+            } else {
+                $path   = $request->file('content');
+                $resize = Image::make($path)
+                                ->resize(1500, null, function ($constraint) {
+                                    $constraint->aspectRatio();
+                                })
+                                ->encode('jpg');
+
+                $image_name = md5($resize->__toString()."".time());
+                Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
+                $params['content'] = 'public/assets/images/'.$image_name.'.jpg';
+            }
+
             Media::whereId($id)->update($params);
+
+            RMediaTags::where('media_id', $id)->delete();
+            foreach($request['tags'] as $tag){
+                RMediaTags::create([
+                    'media_id' => $id,
+                    'tag_id' => $tag
+                ]);
+            }
+
             Logs::save(Logs::ACTION_UPDATE, "Modifica dell'immagine con id: ".$id, Session::get('admin')->id);
-            return view(self::ITEMS_VIEW);
         }
         return redirect(self::ITEMS_PATH);
     }
@@ -79,8 +129,8 @@ class AdminImage extends Controller{
 
     private function getParams(Request $request){
         $params = array(
-            'title' => $request['name'],
-            'asset' => $request['image']
+            'title' => $request['title'],
+            'content' => $request['content']
         );
 
         return $params;

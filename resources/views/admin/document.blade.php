@@ -11,7 +11,7 @@
 
   <div class="masonry-item col-md-12">
     <div class="bgc-white p-20 bd">
-      <h4 class="c-grey-900">Aggiungi immagine</h4>
+      <h4 class="c-grey-900">Aggiungi testo</h4>
       <div class="mT-30">
 
           <form class="form-horizontal form-label-left"
@@ -32,17 +32,20 @@
                        @if(isset($item))value="{{$item->title}}"@endif>
                 </div>
             </div>
+
+
           <div class="form-group row">
-            <label for="input-image" class="col-sm-2 col-form-label">Immagine</label>
+            <label for="input-image" class="col-sm-2 col-form-label">Tags</label>
             <div class="col-sm-10">
-              <input type="file"
-                     class="form-control"
-                     id="input-image"
-                     name="content"
-                     placeholder="Carica un'immagine"
-                     @if(isset($item))value="{{url('../storage/app/'.$item->content)}}"@endif>
+                <div id="toolbar-container"></div>
+
+                <!-- This container will become the editable. -->
+                <div id="editor">
+                    <p>This is the initial editor content.</p>
+                </div>
             </div>
           </div>
+
 
           <div class="form-group row">
             <label for="input-image" class="col-sm-2 col-form-label">Tags</label>

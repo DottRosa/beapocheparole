@@ -47,7 +47,7 @@
         </td>
         <td>{{$item->description}}</td>
         <td>{{$item->username}}</td>
-        <td class="text-right">{{$item->creation_date}}</td>
+        <td class="text-right"><code>{{$item->creation_date}}</code></td>
     </tr>
 
     @endforeach
