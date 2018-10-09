@@ -86,4 +86,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['verify.session']], function
         Route::post('/edit/{id}', 'AdminMediaTag@update');
         Route::get('/delete/{id}', 'AdminMediaTag@delete');
     });
+
+    Route::group(['prefix' => 'galleries'], function(){
+        Route::group(['prefix' => 'list'], function(){
+            //Immagini
+            Route::get('/', 'AdminGalleries');
+            Route::get('/add', 'AdminGallery');
+            Route::post('/add', 'AdminGallery@create');
+            Route::get('/edit/{id}', 'AdminGallery@get');
+            Route::post('/edit/{id}', 'AdminGallery@update');
+            Route::get('/delete/{id}', 'AdminGallery@delete');
+        });
+    });
 });

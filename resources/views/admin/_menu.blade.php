@@ -36,7 +36,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class='sidebar-link' href="{{url('admin/galleries')}}">
+        <a class='sidebar-link' href="{{url('admin/galleries/list')}}">
           <span class="icon-holder">
             <i class="fas fa-images"></i>
           </span>
