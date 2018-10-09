@@ -12,23 +12,14 @@
 <script src="{{ url('js/plugins/select/bootstrap-select.min.js')}}"></script>
 
 
-<!-- jQueryUI -->
-<script src="{{ url('../node_modules/@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor.js')}}"></script>
+<!-- CKEditor -->
+<script src="{{ url('js/plugins/ckeditor/ckeditor.js')}}"></script>
 
 
 <script>
 
     $(function(){
-        DecoupledEditor
-            .create( document.querySelector( '#editor' ) )
-            .then( editor => {
-                const toolbarContainer = document.querySelector( '#toolbar-container' );
-
-                toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-            })
-            .catch( error => {
-            console.error( error );
-        });
+        CKEDITOR.replace('ckeditor');
     });
 
 

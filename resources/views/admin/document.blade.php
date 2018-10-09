@@ -18,7 +18,7 @@
                 method="POST"
                 autocomplete="off"
                 enctype="multipart/form-data"
-                action="@if(isset($item)){{ action('AdminImage@update', ['id' => $item->id]) }}@else{{ action('AdminImage@create') }}@endif">
+                action="@if(isset($item)){{ action('AdminDocument@update', ['id' => $item->id]) }}@else{{ action('AdminDocument@create') }}@endif">
                 {{ csrf_field() }}
 
             <div class="form-group row">
@@ -35,14 +35,9 @@
 
 
           <div class="form-group row">
-            <label for="input-image" class="col-sm-2 col-form-label">Tags</label>
+            <label for="ckeditor" class="col-sm-2 col-form-label">Testo</label>
             <div class="col-sm-10">
-                <div id="toolbar-container"></div>
-
-                <!-- This container will become the editable. -->
-                <div id="editor">
-                    <p>This is the initial editor content.</p>
-                </div>
+                <textarea name="content" id="ckeditor" rows="10" cols="80">@if(isset($item)){{$item->content}}@endif</textarea>
             </div>
           </div>
 
