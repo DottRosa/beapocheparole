@@ -1,0 +1,1 @@
+{"version":3,"sources":["gallery.scss"],"names":[],"mappings":"AAAA;EACI,iCAA+B;CAClC","file":"admin.css","sourcesContent":["#media-modal{\n    background-color:red !important;\n}\n"]}
