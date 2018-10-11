@@ -10,10 +10,10 @@
         #
     </th>
     <th>
-        Username
+        Nome
     </th>
     <th class="text-center">
-        Permesso
+        Stato
     </th>
     <th class="text-right">
         Azioni
@@ -28,13 +28,13 @@
     @endif
     @foreach($items as $item)
     <tr>
-        <td>{{$item->id}}</td>
-        <td>{{$item->username}}</td>
+        <td>{{$item->position}}</td>
+        <td>{{$item->name}}</td>
         <td class="text-center">
-            @if($item->permission == 'ADMIN')
-                <i class="fas fa-rocket fa-2x"></i>
+            @if($item->status == 'PUBLIC')
+                <span class="badge badge-success">Pubblicato</span>
             @else
-                <i class="fas fas-3x fa-user fa-2x"></i>
+                <span class="badge badge-danger">Non pubblicato</span>
             @endif
         </td>
         <td class="text-right">

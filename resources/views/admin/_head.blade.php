@@ -10,8 +10,10 @@
 <!-- bootstap select css-->
 <link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/select/bootstrap-select.min.css') }}" />
 
-<!-- main css-->
+<!-- style css-->
 <link rel="stylesheet" type="text/css" href="{{ url('/css/admin/style.css') }}" />
+<!-- main css-->
+<link rel="stylesheet" type="text/css" href="{{ url('/css/admin/admin.css') }}" />
 
 
 <!-- Font awesome -->

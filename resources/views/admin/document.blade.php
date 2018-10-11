@@ -78,6 +78,8 @@
 <script>
 
    $(function(){
+       CKEDITOR.replace('ckeditor');
+
        $('.selectpicker').selectpicker({
 
        });

@@ -36,6 +36,8 @@ Route::post('admin/', 'AdminLogin@login');
 //Logout
 Route::get('admin/logout', 'AdminLogin@logout');
 
+Route::get('admin/media/search{q?}{offset?}{limit?}{type?}', 'AdminMedia@search');
+
 
 /* ADMIN */
 Route::group(['prefix' => 'admin', 'middleware' => ['verify.session']], function(){
@@ -62,6 +64,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['verify.session']], function
             Route::get('/edit/{id}', 'AdminImage@get');
             Route::post('/edit/{id}', 'AdminImage@update');
             Route::get('/delete/{id}', 'AdminImage@delete');
+
         });
     });
 

@@ -14,13 +14,3 @@
 
 <!-- CKEditor -->
 <script src="{{ url('js/plugins/ckeditor/ckeditor.js')}}"></script>
-
-
-<script>
-
-    $(function(){
-        CKEDITOR.replace('ckeditor');
-    });
-
-
-</script>
