@@ -159,15 +159,19 @@
                       </div>
                   </div>
                   <div class="col-md-4 form-group">
-                      <button type="button" onclick="showTab('IMG');">Immagini</button>
-                      <button type="button" onclick="showTab('TXT');">Testi</button>
+                      <button type="button" onclick="changeTab('IMG');">Immagini</button>
+                      <button type="button" onclick="changeTab('TXT');">Testi</button>
                   </div>
               </div>
-              <div class="results">
+              <div class="results col-md-12">
                   <h5 id="results-title">Immagini</h5>
                   <article id="results-list" class="row">
 
                   </article>
+                  <div>
+                      <button id="pagination-prev" onclick="prevPage();">Indietro</button>
+                      <button id="pagination-next" onclick="nextPage();">Avanti</button>
+                  </div>
               </div>
           </div>
           <div class="col-sm-12">
@@ -209,7 +213,8 @@
     /* Delay per la ricerca in ajax, evita troppe chiamate al db */
     var ajaxDelay       = 1000;
     /* Limite per la ricerca in ajax */
-    var limit           = 10;
+    var limit           = 2;
+    var offset          = 0;
     /* Contenitore dei media selezionati nella modale */
     var selectedMedia   = $( "#selected-media" );
     /* Contenitore dei media selezionati */
@@ -224,6 +229,8 @@
     /* La tipologia di default per ajax */
     var currentType = 'IMG';
 
+    var paginationTotalItems = 0;
+
 
 
     $( function() {
@@ -233,7 +240,7 @@
         $(confirmedMedia).sortable();
         $(confirmedMedia).disableSelection();
 
-        ajaxCall('', 0, currentType);   //Prende tutti i media con currentType
+        ajaxCall();   //Prende tutti i media con currentType
     });
 
 
@@ -253,7 +260,7 @@
             clearTimeout(ajaxTimer);
         }
         ajaxTimer = setTimeout(function(){
-            ajaxCall($('#input-search').val(), 0, currentType);
+            ajaxCall();
             //getMedia($('#input-search').val());
         }, ajaxDelay);
     });
@@ -266,12 +273,12 @@
     @param offset l'offset per la paginazione
     @param type la tipologia di media
     */
-    function ajaxCall(q, offset, type){
+    function ajaxCall(){
         var data = {
-            q : q,
+            q       : $('#input-search').val(),
             offset  : offset,
             limit   : limit,
-            type    : type,
+            type    : currentType,
             _token  : '{{csrf_token()}}'
         };
 
@@ -283,6 +290,52 @@
                 fillSearchResults(JSON.parse(data));
             }
         });
+    }
+
+    /*
+    Riempie la modal di tutti i contenuti trovati tramite ricerca
+    @params items tutti gli elementi della ricerca in ajax
+    */
+    function fillSearchResults(result){
+        var rl = $('#results-list');
+        $(rl).empty();
+
+        paginationTotalItems = result.total;
+
+        $(result.items).each(function(){
+            var item = this;
+
+            var typeClass = item.type.toLowerCase();
+
+            elem =  "<section class='result col-md-2 "+typeClass+"' onclick='addMedia("+item.id+", \""+item.title+"\", \""+item.type+"\");'>";
+
+            if(item.type == 'IMG'){
+                elem += "   <div style='background-image:url({{url('../storage/app')}}/"+item.content+")'></div>";
+            } else if(item.type == 'TXT'){
+                elem += "   <div>"+item.content.replace(/(<([^>]+)>)/ig,"").substring(1, 250)+"</div>";
+            }
+            elem +=     "<p class='medium-title'>"+item.title+"</p>";
+            elem += "</section>";
+            $(rl).append(elem);
+        });
+    }
+
+    function prevPage(){
+        if(offset >= limit){
+            offset -= limit;
+            //console.log('prev', offset, paginationTotalItems);
+            ajaxCall();
+        } else {
+            offset = 0;
+        }
+    }
+
+    function nextPage(){
+        if(offset <= paginationTotalItems && (offset + limit) < paginationTotalItems){
+            offset += limit;
+            //console.log('next', offset, paginationTotalItems);
+            ajaxCall();
+        }
     }
 
 
@@ -325,34 +378,7 @@
         $(selectedMedia).append(elem);
     }
 
-    /*
-    Riempie la modal di tutti i contenuti trovati tramite ricerca
-    @params items tutti gli elementi della ricerca in ajax
-    */
-    function fillSearchResults(items){
-        var rl = $('#results-list');
-        $(rl).empty();
 
-        $(items).each(function(){
-            var item = this;
-
-            var typeClass = item.type.toLowerCase();
-
-            elem =  "<section class='result col-md-2 "+typeClass+"' onclick='addMedia("+item.id+", \""+item.title+"\", \""+item.type+"\");'>";
-
-            if(item.type == 'IMG'){
-                elem += "   <div style='background-image:url({{url('../storage/app')}}/"+item.content+")'></div>";
-            } else if(item.type == 'TXT'){
-                elem += "   <div>"+item.content.replace(/(<([^>]+)>)/ig,"").substring(1, 250)+"</div>";
-            }
-
-            elem +=     item.title;
-            elem += "</section>";
-            $(rl).append(elem);
-
-
-        });
-    }
 
     /*
     Aggiorna i campi di input per il singolo contenuto aggiunto
@@ -395,7 +421,7 @@
     Permette di passare da una tipologia di media all'altro e applica il filtro.
     @param type la tipologia da filtrare e da mostrare
     */
-    function showTab(type){
+    function changeTab(type){
         if(type != currentType){    //Inutile fare ajax per niente
             currentType = type;
             if(currentType == 'IMG'){
@@ -403,8 +429,9 @@
             } else if(currentType == 'TXT'){
                 $('#results-title').text('Testi');
             }
-            ajaxCall($('#input-search').val(), 0, currentType);
-        }    
+            offset = 0;
+            ajaxCall();
+        }
     }
 
 

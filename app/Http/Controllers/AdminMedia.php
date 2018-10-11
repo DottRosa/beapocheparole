@@ -21,12 +21,23 @@ class AdminMedia extends Controller{
         $items = Media::where([
                     ['title', 'like', '%'.$q.'%'],
                     ['type', '=', $type]
-                ])
+                 ])
                   ->offset($offset)
                   ->limit($limit)
                   ->get();
 
-        return json_encode($items);
+        $total = Media::where([
+                      ['title', 'like', '%'.$q.'%'],
+                      ['type', '=', $type]
+                 ])
+                 ->count();
+
+        $result = array(
+            'total' => $total,
+            'items' => $items
+        );
+
+        return json_encode($result);
 
     }
 }
