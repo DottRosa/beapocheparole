@@ -171,6 +171,7 @@
                   <div>
                       <button id="pagination-prev" onclick="prevPage();">Indietro</button>
                       <button id="pagination-next" onclick="nextPage();">Avanti</button>
+                      <span id="pagination-total"></span>
                   </div>
               </div>
           </div>
@@ -221,15 +222,15 @@
     var confirmedMedia  = $( "#confirmed-media" );
 
     @if(isset($item))
-    var counterForId = {{count($item->media)}};
+    var counterForId    = {{count($item->media)}};
     @else
-    var counterForId = 0;
+    var counterForId    = 0;
     @endif
 
     /* La tipologia di default per ajax */
-    var currentType = 'IMG';
-
-    var paginationTotalItems = 0;
+    var currentType     = 'IMG';
+    /* Il totale dei media che sarebbero stati trovati senza limit */
+    var paginationTotal = 0;
 
 
 
@@ -269,9 +270,6 @@
     /*
     Esegue una chiamata ajax per prelevare i media in base alla ricerca, ai tag e
     alla tipologia.
-    @param q la stringa di ricerca
-    @param offset l'offset per la paginazione
-    @param type la tipologia di media
     */
     function ajaxCall(){
         var data = {
@@ -300,7 +298,9 @@
         var rl = $('#results-list');
         $(rl).empty();
 
-        paginationTotalItems = result.total;
+        paginationTotal = result.total;
+
+        pagination();
 
         $(result.items).each(function(){
             var item = this;
@@ -320,20 +320,48 @@
         });
     }
 
+    function pagination(){
+        var totalString = '';
+        if(paginationTotal > 1 || paginationTotal == 0){
+            totalString = ' elementi trovati';
+        } else {
+            totalString = ' elemento trovato';
+        }
+        $('#pagination-total').text(paginationTotal+totalString);
+
+        if(offset > 0){
+            $('#pagination-prev').prop('disabled', false);
+        } else {
+            $('#pagination-prev').prop('disabled', true);
+        }
+
+        if(paginationTotal > offset + limit){
+            $('#pagination-next').prop('disabled', false);
+        } else {
+            $('#pagination-next').prop('disabled', true);
+        }
+    }
+
+    /*
+    Paginazione per tornare nella pagina precedente
+    */
     function prevPage(){
         if(offset >= limit){
             offset -= limit;
-            //console.log('prev', offset, paginationTotalItems);
+            //console.log('prev', offset, paginationTotal);
             ajaxCall();
         } else {
             offset = 0;
         }
     }
 
+    /*
+    Paginazione per andare nella pagina successiva
+    */
     function nextPage(){
-        if(offset <= paginationTotalItems && (offset + limit) < paginationTotalItems){
+        if(offset <= paginationTotal && (offset + limit) < paginationTotal){
             offset += limit;
-            //console.log('next', offset, paginationTotalItems);
+            //console.log('next', offset, paginationTotal);
             ajaxCall();
         }
     }
