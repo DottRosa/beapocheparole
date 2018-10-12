@@ -1,0 +1,11 @@
+Fare un plugin in jquery che permette di creare tag secondo i vari parametri:
+
+Un tag può essere composto da:
+
+  - tipologia (section, p, a, article...)
+  - id
+  - classi
+  - data
+  - attributi generali
+  - contenuto
+  - tag figli (stessa struttura ricorsiva)
