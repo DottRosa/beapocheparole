@@ -1,0 +1,57 @@
+Fare un plugin in jquery che permette di creare tag secondo i vari parametri:
+
+Un tag può essere composto da:
+
+  - tipologia (section, p, a, article...)
+  - id
+  - classi
+  - data
+  - attributi generali
+  - contenuto
+  - tag figli (stessa struttura ricorsiva)
+  
+  Un esempio:
+  
+  var tag = {
+    type: 'section',
+    classes: ['classe1', 'classe2'],
+    data: {
+        media: 'val',
+        lightbox: 'val2'
+    },
+    attributes: {
+        aria-label: 'val',
+        attr-la: 'val2'
+    },
+    content: 'Testo di prova',
+    children: {
+        {
+            type: 'button',
+            classes: [],
+            data: {},
+            attributes: {},
+            content: 'Pulsante',
+            children: {}
+        },
+        {
+            type: 'a',
+            classes: [],
+            data: {},
+            attributes: {
+                href: 'link....'
+            },
+            content: 'Clicca qui',
+            children: {}
+        }
+    }
+  }
+  
+Deve generare:
+
+<section class="classe1 classe2" data-media="val" data-lightbox="val2" aria-label="val" attr-la="val2">
+    Testo di prova
+    <button>Pulsante</button>
+    <a href="link.....">Clicca qui</a>
+</section>
+
+Da prevedere anche eventi (onclick ecc)
