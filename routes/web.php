@@ -22,4 +22,8 @@ Route::get('/bignami', function () {
     return view('bignami');
 });
 
+Route::get('/findme', function () {
+    return view('youfoundme');
+});
+
 /* END Dev routing */
