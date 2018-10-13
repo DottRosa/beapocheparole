@@ -30,7 +30,7 @@
           @include('admin._header')
 
           <!-- ### $App Screen Content ### -->
-          <main class='main-content bgc-grey-100'>
+          <main class='main-content bgc-grey-100' id="@yield('page-id')">
             <div id='mainContent'>
                   @section('content')
                   @show

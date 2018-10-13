@@ -2,14 +2,14 @@
 <div class="header navbar">
   <div class="header-container">
     <ul class="nav-left">
-    <!--
+    
       <li>
         <a id='sidebar-toggle' class="sidebar-toggle" href="javascript:void(0);">
             <i class="fas fa-bars"></i>
         </a>
       </li>
-  -->
-  
+
+
     </ul>
     <ul class="nav-right">
 

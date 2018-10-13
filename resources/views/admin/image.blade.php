@@ -41,7 +41,13 @@
                      name="content"
                      placeholder="Carica un'immagine"
                      @if(isset($item))value="{{url('../storage/app/'.$item->content)}}"@endif>
+
+                     @if(isset($item) && isset($item->content))
+                     <img src="{{url('../storage/app/'.$item->content)}}" width="100%;"/>
+                     @endif
             </div>
+
+
           </div>
 
           <div class="form-group row">
@@ -59,8 +65,8 @@
 
           <div class="form-group row">
             <div class="col-sm-10">
-                @if(isset($item))
                 <a href="{{url('admin/users')}}" class="btn btn-default">Annulla</a>
+                @if(isset($item))
                 <button type="submit" class="btn btn-primary">Modifica</button>
                 @else
                 <button type="submit" class="btn btn-success">Aggiungi</button>

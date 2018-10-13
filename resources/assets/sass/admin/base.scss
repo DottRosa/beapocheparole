@@ -1,0 +1,8 @@
+.btn-default{
+    border:solid #DDD 1px !important;
+}
+
+button:disabled,
+button[disabled]{
+    cursor:no-drop;
+}

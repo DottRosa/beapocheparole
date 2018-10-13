@@ -57,8 +57,8 @@
 
           <div class="form-group row">
             <div class="col-sm-10">
-                @if(isset($item))
                 <a href="{{url('admin/users')}}" class="btn btn-default">Annulla</a>
+                @if(isset($item))
                 <button type="submit" class="btn btn-primary">Modifica</button>
                 @else
                 <button type="submit" class="btn btn-success">Aggiungi</button>

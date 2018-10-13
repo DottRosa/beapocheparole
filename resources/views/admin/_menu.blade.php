@@ -27,7 +27,7 @@
 
     <!-- ### $Sidebar Menu ### -->
     <ul class="sidebar-menu scrollable pos-r">
-      <li class="nav-item mT-30 active">
+      <li class="nav-item mT-30 @if(ends_with(Request::path(), 'admin') || ends_with(Request::path(), 'dashboard')) active @endif">
         <a class="sidebar-link" href="{{url('admin/')}}">
           <span class="icon-holder">
             <i class="fas fa-home"></i>
@@ -35,7 +35,7 @@
           <span class="title">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item @if(ends_with(Request::path(), 'admin/galleries/list')) active @endif">
         <a class='sidebar-link' href="{{url('admin/galleries/list')}}">
           <span class="icon-holder">
             <i class="fas fa-images"></i>
@@ -44,7 +44,7 @@
         </a>
       </li>
 
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown @if(ends_with(Request::path(), 'admin/images/list') || ends_with(Request::path(), 'admin/documents/list') || ends_with(Request::path(), 'admin/tags')) open @endif">
         <a class="dropdown-toggle" href="javascript:void(0);">
           <span class="icon-holder">
               <i class="far fa-image"></i>
@@ -55,20 +55,20 @@
             </span>
         </a>
         <ul class="dropdown-menu">
-          <li>
+          <li class="@if(ends_with(Request::path(), 'admin/images/list')) active @endif">
             <a href="{{url('admin/images/list')}}">Immagini</a>
           </li>
-          <li>
+          <li class="@if(ends_with(Request::path(), 'admin/documents/list')) active @endif">
             <a href="{{url('admin/documents/list')}}">Testi</a>
           </li>
-          <li>
+          <li class="@if(ends_with(Request::path(), 'admin/tags')) active @endif">
             <a href="{{url('admin/tags')}}">Tag</a>
           </li>
         </ul>
       </li>
 
       @if(Session::get('admin')->permission == 'ADMIN')
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown @if(ends_with(Request::path(), 'admin/users') || ends_with(Request::path(), 'admin/logs')) open @endif">
         <a class="dropdown-toggle" href="javascript:void(0);">
           <span class="icon-holder">
               <i class="fas fa-cogs"></i>
@@ -79,10 +79,10 @@
             </span>
         </a>
         <ul class="dropdown-menu">
-          <li>
+          <li class="@if(ends_with(Request::path(), 'admin/users')) active @endif">
             <a href="{{url('admin/users')}}">Utenti</a>
           </li>
-          <li>
+          <li class="@if(ends_with(Request::path(), 'admin/logs')) active @endif">
             <a href="{{url('admin/logs')}}">Logs</a>
           </li>
         </ul>

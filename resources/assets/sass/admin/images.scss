@@ -1,0 +1,26 @@
+#images{
+    .image{
+        margin-bottom:40px;
+
+        .layers{
+            background-size:cover;
+            height:150px !important;
+            border:solid #AAA 1px;
+        }
+
+        h6{
+            margin-top:5px;
+        }
+
+        .tags{
+            height:70px;
+        }
+
+        >div{
+            border-left:solid #AAA 1px;
+            border-right:solid #AAA 1px;
+            border-bottom:solid #AAA 1px;
+            padding:5px;
+        }
+    }
+}

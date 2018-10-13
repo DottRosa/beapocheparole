@@ -5,7 +5,16 @@
 
   <div class="masonry-item col-md-12">
     <div class="bgc-white p-20 bd">
-      <h4 class="c-grey-900">Creazione della gallery <span id="entity-name">"Senza nome"</span></h4>
+      <h4 class="c-grey-900">Creazione della gallery
+          <span id="entity-name">
+              @if(isset($item))
+                "{{$item->name}}"
+              @else
+                "Senza nome"
+              @endif
+
+          </span>
+      </h4>
       <div class="mT-30">
 
           <form class="form-horizontal form-label-left"
@@ -115,8 +124,8 @@
 
           <div class="form-group row">
             <div class="col-sm-10">
+                <a href="{{url('admin/galleries/list')}}" class="btn btn-default">Annulla</a>
                 @if(isset($item))
-                <a href="{{url('admin/users')}}" class="btn btn-default">Annulla</a>
                 <button type="submit" class="btn btn-primary">Modifica</button>
                 @else
                 <button type="submit" class="btn btn-success">Aggiungi</button>
@@ -168,9 +177,9 @@
                   <article id="results-list" class="row">
 
                   </article>
-                  <div>
-                      <button id="pagination-prev" onclick="prevPage();">Indietro</button>
-                      <button id="pagination-next" onclick="nextPage();">Avanti</button>
+                  <div class="pull-right pagination">
+                      <button id="pagination-prev" class="btn btn-default" onclick="prevPage();">Indietro</button>
+                      <button id="pagination-next" class="btn btn-default" onclick="nextPage();">Avanti</button>
                       <span id="pagination-total"></span>
                   </div>
               </div>
@@ -192,7 +201,7 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmMedia();">Conferma</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="loadMediaCache();">Annulla</button>
       </div>
     </div>
   </div>
@@ -207,14 +216,26 @@
 
 <script>
 
+    /* FLUSSO DI AGGIUNTA MEDIA ALLA GALLERY */
+
+    /* Definisco tabella A quella che si vede nella pagina e tabella B quella della
+    modale. Quando si vuole aggiungere un nuovo media, al click sul pulsante la tabella
+    A viene svuotata e il suo contenuto viene salvato in una cache e trasportato nella
+    tabella B. Qui l'utente può aggiungere, togliere o spostare elementi. Al click su
+    "Conferma" il contenuto della tabella B viene rimosso e spostato nella tabella A.
+    Se invece l'utente preme "Annulla" il contenuto della tabella B viene svuotato
+    e la tabella A viene riempita con il contenuto della cache salvata precedentemente.
+    Nella tabella A è possibile spostare ed eliminare elementi. Le modifiche si rifletteranno
+    sulla tabella B quando verrà aperta, in quando c'è sempre il passaggio di contenuti da
+    una tabella all'altra.*/
 
 
     /* Inizializzazione del timeout per la ricerca */
     var ajaxTimer       = 0;
     /* Delay per la ricerca in ajax, evita troppe chiamate al db */
     var ajaxDelay       = 1000;
-    /* Limite per la ricerca in ajax */
-    var limit           = 2;
+    /* Limite e offset per la ricerca in ajax */
+    var limit           = 6;
     var offset          = 0;
     /* Contenitore dei media selezionati nella modale */
     var selectedMedia   = $( "#selected-media" );
@@ -231,6 +252,8 @@
     var currentType     = 'IMG';
     /* Il totale dei media che sarebbero stati trovati senza limit */
     var paginationTotal = 0;
+
+    var mediaCache      = null;
 
 
 
@@ -307,12 +330,12 @@
 
             var typeClass = item.type.toLowerCase();
 
-            elem =  "<section class='result col-md-2 "+typeClass+"' onclick='addMedia("+item.id+", \""+item.title+"\", \""+item.type+"\");'>";
+            elem =  "<section class='result col-md-2 "+typeClass+"' onclick='addMedia("+item.id+", \""+item.title+"\", \""+item.type+"\");' data-id='"+item.id+"' data-type='"+item.type+"'>";
 
             if(item.type == 'IMG'){
                 elem += "   <div style='background-image:url({{url('../storage/app')}}/"+item.content+")'></div>";
             } else if(item.type == 'TXT'){
-                elem += "   <div>"+item.content.replace(/(<([^>]+)>)/ig,"").substring(1, 250)+"</div>";
+                elem += "   <div>"+item.content.replace(/(<([^>]+)>)/ig,"").substring(0, 250)+"</div>";
             }
             elem +=     "<p class='medium-title'>"+item.title+"</p>";
             elem += "</section>";
@@ -402,8 +425,20 @@
     */
     function openModal(){
         var elem = $(confirmedMedia).html();
+        setTimeout(function(){
+            $(confirmedMedia).empty();
+        }, 500);
+
         $(selectedMedia).empty();
         $(selectedMedia).append(elem);
+
+        mediaCache = elem;
+    }
+
+    function loadMediaCache(){
+        $(selectedMedia).empty();
+        $(confirmedMedia).empty();
+        $(confirmedMedia).append(mediaCache);
     }
 
 
@@ -432,6 +467,8 @@
         elem    += "</tr>";
 
         $(selectedMedia).append(elem);
+
+        //$($(selectedMedia).find('.result[data-id='+id+'][data-type='+type+']')[0]).addClass('added');
     }
 
     /*

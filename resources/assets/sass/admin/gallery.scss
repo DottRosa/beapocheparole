@@ -22,6 +22,21 @@
                 }
             }
 
+            &.added{
+                >div{
+                    position:relative;
+                    
+                    &:before{
+                        content:'Aggiunto';
+                        position:absolute;
+                        width:100%;
+                        height:100%;
+                        background-color:rgba(0,0,0,.8);
+                        color:white;
+                    }
+                }
+            }
+
             &:hover{
                 cursor:pointer;
                 box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -42,6 +57,14 @@
     .filters{
         input, select{
             width:100% !important;
+        }
+    }
+
+    .pagination{
+        margin:15px 0;
+
+        button{
+            margin-right:15px;
         }
     }
 }

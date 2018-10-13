@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Gallery;
 use App\Media;
 use App\MediaTags;
 use App\RMedia;
+use App\Utils\Logs;
 
 class AdminGallery extends Controller{
 
@@ -70,6 +72,7 @@ class AdminGallery extends Controller{
                         'position' => $params['position'][$i]
                     ]);
                 }
+                Logs::save(Logs::ACTION_CREATE, "Creazione di una galleria", Session::get('admin')->id);
             } else {
                 dd($errs);
                 return view(self::ITEM_VIEW)->with('errs', $errs);
@@ -111,12 +114,14 @@ class AdminGallery extends Controller{
                     'position' => $params['position'][$i]
                 ]);
             }
+            Logs::save(Logs::ACTION_UPDATE, "Modifica della galleria con id: ".$id, Session::get('admin')->id);
         }
         return redirect(self::ITEMS_PATH);
     }
 
     public function delete(Request $request, $id){
         Gallery::whereId($id)->delete();
+        Logs::save(Logs::ACTION_DELETE, "Eliminazione della galleria con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }
 
