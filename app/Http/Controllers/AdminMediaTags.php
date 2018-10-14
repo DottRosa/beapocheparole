@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MediaTags;
+use App\Tags;
 
 class AdminMediaTags extends Controller{
 
@@ -11,11 +11,11 @@ class AdminMediaTags extends Controller{
     const ITEMS_VIEW = 'admin.tags';
 
     public function __invoke(){
-        $items = MediaTags::simplePaginate(20);
+        $items = Tags::simplePaginate(20);
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
 
     public function find(Request $request){
-        return MediaTags::where('name', 'LIKE', '%'.$request->q.'%')->get();
+        return Tags::where('name', 'LIKE', '%'.$request->q.'%')->get();
     }
 }

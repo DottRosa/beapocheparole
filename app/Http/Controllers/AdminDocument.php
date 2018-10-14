@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Media;
-use App\MediaTags;
-use App\RMediaTags;
+use App\Tags;
+use App\RTags;
 use App\Utils\Logs;
 
 class AdminDocument extends Controller{
@@ -17,7 +17,7 @@ class AdminDocument extends Controller{
     const ITEM_VIEW = 'admin.document';
 
     public function __invoke(){
-        $tags = MediaTags::orderBy('name','ASC')->get();
+        $tags = Tags::orderBy('name','ASC')->get();
         return view(self::ITEM_VIEW)->with('tags', $tags);
     }
 
@@ -42,7 +42,7 @@ class AdminDocument extends Controller{
     }
 
     public function getTags(){
-        return MediaTags::orderBy('name','ASC')->get();
+        return Tags::orderBy('name','ASC')->get();
     }
 
     public function create(Request $request){
@@ -55,7 +55,7 @@ class AdminDocument extends Controller{
                 $media_id = $data->id;
 
                 foreach($request['tags'] as $tag){
-                    RMediaTags::create([
+                    RTags::create([
                         'media_id' => $media_id,
                         'tag_id' => $tag
                     ]);
@@ -76,9 +76,9 @@ class AdminDocument extends Controller{
 
             Media::whereId($id)->update($params);
 
-            RMediaTags::where('media_id', $id)->delete();
+            RTags::where('media_id', $id)->delete();
             foreach($request['tags'] as $tag){
-                RMediaTags::create([
+                RTags::create([
                     'media_id' => $id,
                     'tag_id' => $tag
                 ]);

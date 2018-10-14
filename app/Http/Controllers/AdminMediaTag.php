@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\MediaTags;
+use App\Tags;
 use App\Utils\Logs;
 
 class AdminMediaTag extends Controller{
@@ -20,7 +20,7 @@ class AdminMediaTag extends Controller{
 
     public function get($id){
         if($id !== NULL){
-            $item = MediaTags::find($id);
+            $item = Tags::find($id);
             return view(self::ITEM_VIEW)->with('item',$item);
         }
         return view(self::ITEM_VIEW);
@@ -32,7 +32,7 @@ class AdminMediaTag extends Controller{
             $errs = self::verify($params);
 
             if(count($errs) == 0){
-                MediaTags::forceCreate($params);
+                Tags::forceCreate($params);
                 Logs::save(Logs::ACTION_CREATE, "Creazione di un tag ".$params['name'], Session::get('admin')->id);
             } else {
                 return view(self::ITEMS_VIEW)->with('errs', $errs);
@@ -48,7 +48,7 @@ class AdminMediaTag extends Controller{
             $errs = self::verify($params);
 
             if(count($errs) == 0){
-                MediaTags::whereId($id)->update($params);
+                Tags::whereId($id)->update($params);
                 Logs::save(Logs::ACTION_UPDATE, "Modifica di un tag con id: ".$id, Session::get('admin')->id);
             } else {
                 return view(self::ITEM_VIEW)->width('errs', $errs);
@@ -58,7 +58,7 @@ class AdminMediaTag extends Controller{
     }
 
     public function delete(Request $request, $id){
-        MediaTags::whereId($id)->delete();
+        Tags::whereId($id)->delete();
         Logs::save(Logs::ACTION_DELETE, "Eliminazione di un tag con id: ".$id, Session::get('admin')->id);
         return redirect(self::ITEMS_PATH);
     }

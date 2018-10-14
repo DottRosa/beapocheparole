@@ -1,4 +1,4 @@
-@extends('layouts.admin_images')
+@extends('admin.layouts.admin_images')
 @section('title', 'Immagini')
 @section('content')
     prova2

@@ -1,4 +1,4 @@
-@extends('layouts.admin_table')
+@extends('admin.layouts.admin_table')
 @section('title', 'Logs')
 
 @section('cols')

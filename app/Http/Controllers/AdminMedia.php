@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Media;
-use App\MediaTags;
-use App\RMediaTags;
+use App\Tags;
+use App\RTags;
 
 class AdminMedia extends Controller{
 
