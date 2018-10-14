@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Media;
-use App\MediaTags;
-use App\RMediaTags;
+use App\Tags;
+use App\RTags;
 use App\Utils\Logs;
 
 class AdminImage extends Controller{
@@ -19,7 +19,7 @@ class AdminImage extends Controller{
     const ITEM_VIEW = 'admin.image';
 
     public function __invoke(){
-        $tags = MediaTags::orderBy('name','ASC')->get();
+        $tags = Tags::orderBy('name','ASC')->get();
         return view(self::ITEM_VIEW)->with('tags', $tags);
     }
 
@@ -44,7 +44,7 @@ class AdminImage extends Controller{
     }
 
     public function getTags(){
-        return MediaTags::orderBy('name','ASC')->get();
+        return Tags::orderBy('name','ASC')->get();
     }
 
     public function create(Request $request){
@@ -70,7 +70,7 @@ class AdminImage extends Controller{
                 $media_id = $data->id;
 
                 foreach($request['tags'] as $tag){
-                    RMediaTags::create([
+                    RTags::create([
                         'media_id' => $media_id,
                         'tag_id' => $tag
                     ]);
@@ -106,9 +106,9 @@ class AdminImage extends Controller{
 
             Media::whereId($id)->update($params);
 
-            RMediaTags::where('media_id', $id)->delete();
+            RTags::where('media_id', $id)->delete();
             foreach($request['tags'] as $tag){
-                RMediaTags::create([
+                RTags::create([
                     'media_id' => $id,
                     'tag_id' => $tag
                 ]);

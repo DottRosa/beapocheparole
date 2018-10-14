@@ -1,3 +1,21 @@
+@extends('layouts.layout_base')
+@section('title', 'Home')
+@section('page-id', 'home')
+
+@section('content')
+
+<h1>
+    <span id="beatrice">BEATRICE</span>
+    <span id="basaldella">BASALDELLA</span>
+</h1>
+
+
+
+@endsection
+
+
+
+<!--
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -7,12 +25,10 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}" />
 
-        <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
@@ -80,4 +96,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> -->

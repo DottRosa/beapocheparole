@@ -2,7 +2,10 @@
 // Fonts
 
 // Variables
-@import 'variables';
+@import '_variables';
+@import '_base';
+
+@import '_home';
 
 // Bootstrap
 //@import '~bootstrap/scss/bootstrap';

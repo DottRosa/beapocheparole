@@ -8,8 +8,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Gallery;
 use App\Media;
-use App\MediaTags;
-use App\RMedia;
+use App\Tags;
+use App\RMediaGallery;
 use App\Utils\Logs;
 
 class AdminGallery extends Controller{
@@ -19,18 +19,18 @@ class AdminGallery extends Controller{
     const ITEM_VIEW = 'admin.gallery';
 
     public function __invoke(){
-        $tags = MediaTags::orderBy('name','ASC')->get();
+        $tags = Tags::orderBy('name','ASC')->get();
         return view(self::ITEM_VIEW)->with('tags', $tags);
     }
 
     public function get($id){
-        $tags = MediaTags::orderBy('name','ASC')->get();
+        $tags = Tags::orderBy('name','ASC')->get();
         if($id !== NULL){
             $item = Gallery::find($id);
 
-            $item['media'] = Media::join('R_MEDIA', 'R_MEDIA.media_id', '=', 'MEDIA.id')
-                                  ->where('R_MEDIA.gallery_id', '=', $id)
-                                  ->orderBy('R_MEDIA.position', 'ASC')
+            $item['media'] = Media::join('R_MEDIA_GALLERY', 'R_MEDIA_GALLERY.media_id', '=', 'MEDIA.id')
+                                  ->where('R_MEDIA_GALLERY.gallery_id', '=', $id)
+                                  ->orderBy('R_MEDIA_GALLERY.position', 'ASC')
                                   ->get();
 
             return view(self::ITEM_VIEW)->with('item',$item)->with('tags', $tags);
@@ -65,7 +65,7 @@ class AdminGallery extends Controller{
                 ]);
 
                 for($i=0; $i<count($params['id']); $i++){
-                    RMedia::insert([
+                    RMediaGallery::insert([
                         'name' => 'prova',
                         'gallery_id' => $gallery_id,
                         'media_id' => $params['id'][$i],
@@ -104,10 +104,10 @@ class AdminGallery extends Controller{
                 'status' => $params['status']
             ]);
 
-            RMedia::where('gallery_id', $id)->delete();
+            RMediaGallery::where('gallery_id', $id)->delete();
 
             for($i=0; $i<count($params['id']); $i++){
-                RMedia::insert([
+                RMediaGallery::insert([
                     'name' => 'prova',
                     'gallery_id' => $id,
                     'media_id' => $params['id'][$i],

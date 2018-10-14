@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 @section('content')
 
 <style>
@@ -57,7 +57,7 @@
 
           <div class="form-group row">
             <div class="col-sm-10">
-                <a href="{{url('admin/users')}}" class="btn btn-default">Annulla</a>
+                <a href="{{url('admin/documents/list')}}" class="btn btn-default">Annulla</a>
                 @if(isset($item))
                 <button type="submit" class="btn btn-primary">Modifica</button>
                 @else
