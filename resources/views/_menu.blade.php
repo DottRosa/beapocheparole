@@ -1,19 +1,34 @@
-<nav>
+<nav id="menu">
     <ul>
-        <li>
-            <a href="">Home</a>
+        <li class="hover-red @if(ends_with(Request::path(), '/')) active @endif">
+            <a href="{{url('/')}}">
+                <i class="fas fa-home"></i>
+            </a>
+            <span class="link-name">Homepage</span>
         </li>
-        <li>
-            <a href="">Immagini</a>
+        <li class="hover-blue @if(ends_with(Request::path(), 'immagini')) active @endif">
+            <a href="{{url('/immagini')}}">
+                <i class="far fa-image"></i>
+            </a>
+            <span class="link-name">Immagini</span>
         </li>
-        <li>
-            <a href="">Scritti</a>
+        <li class="hover-green @if(ends_with(Request::path(), 'testi')) active @endif">
+            <a href="{{url('/testi')}}">
+                <i class="fas fa-pen"></i>
+            </a>
+            <span class="link-name">Testi</span>
         </li>
-        <li>
-            <a href="">Gallerie</a>
+        <li class="hover-magenta @if(ends_with(Request::path(), 'gallerie')) active @endif">
+            <a href="{{url('/gallerie')}}">
+                <i class="far fa-clone"></i>
+            </a>
+            <span class="link-name">Gallerie</span>
         </li>
-        <li>
-            <a href="">About me</a>
+        <li class="hover-red @if(ends_with(Request::path(), 'chi-sono')) active @endif">
+            <a href="{{url('/')}}">
+                <i class="far fa-user"></i>
+            </a>
+            <span class="link-name">Chi sono</span>
         </li>
     </ul>
 </nav>

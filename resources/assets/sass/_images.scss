@@ -1,0 +1,114 @@
+#images{
+
+    .portait{
+        padding:20px;
+
+        .frame{
+
+            background-color:#DDC;
+            border-bottom-color:#fff;
+            border-left-color:#eee;
+            border-radius:2px;
+            border-right-color:#eee;
+            border-top-color:#ddd;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            padding:20px;
+            position:relative;
+            transition:ease all .3s;
+
+            &:hover{
+                box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.5);
+            }
+
+
+            div{
+                height:200px;
+                width:100%;
+                background-position:center;
+                background-size:cover;
+                border:solid 2px;
+                border-bottom-color:#ffe;
+                border-left-color:#eed;
+                border-right-color:#eed;
+                border-top-color:#ccb;
+                border:solid 2vmin #eee;
+            }
+
+            &:before {
+              border-radius:2px;
+              bottom:5px;
+              box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+              content:"";
+              left:5px;
+              position:absolute;
+              right:5px;
+              top:5px;
+            }
+
+            &:after {
+              border-radius:2px;
+              bottom:10px;
+              box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+              content:"";
+              left:10px;
+              position:absolute;
+              right:10px;
+              top:10px;
+            }
+        }
+
+
+    }
+
+    div {
+        // border:solid 2px;
+        // border-bottom-color:#ffe;
+        // border-left-color:#eed;
+        // border-right-color:#eed;
+        // border-top-color:#ccb;
+        // width:100%;
+        // height:100px;
+        // background-position:center;
+        // background-size:cover;
+        // margin:8vmin;
+    }
+
+
+    .prova {
+      background-color:#ddc;
+      //border:solid 5vmin #eee;
+      border-bottom-color:#fff;
+      border-left-color:#eee;
+      border-radius:2px;
+      border-right-color:#eee;
+      border-top-color:#ddd;
+      box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+      //height:200px;
+      //display:inline-block;
+      //margin:10vh 10vw;
+
+      position:relative;
+      text-align:center;
+      // &:before {
+      //   border-radius:2px;
+      //   bottom:-2vmin;
+      //   box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+      //   content:"";
+      //   left:-2vmin;
+      //   position:absolute;
+      //   right:-2vmin;
+      //   top:-2vmin;
+      // }
+      // &:after {
+      //   border-radius:2px;
+      //   bottom:-2.5vmin;
+      //   box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+      //   content:"";
+      //   left:-2.5vmin;
+      //   position:absolute;
+      //   right:-2.5vmin;
+      //   top:-2.5vmin;
+      // }
+  }
+}

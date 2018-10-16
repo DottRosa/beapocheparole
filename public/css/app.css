@@ -13,14 +13,236 @@
   src: url(../fonts/Comfortaa/Comfortaa-Light.ttf);
 }
 
-* {
-  font-family: primaryFontBold;
+@font-face {
+  font-family: BPPRegular;
+  src: url(../fonts/Merienda/Merienda-Regular.ttf);
 }
 
-#home #beatrice, #home #basaldella {
+@font-face {
+  font-family: BPPBold;
+  src: url(../fonts/Merienda/Merienda-Bold.ttf);
+}
+
+.transition, #menu, #home .home-title {
+  transition: ease all 0.3s;
+}
+
+.bpp-regular, header h4, #home h1, #home h4 {
+  font-family: BPPRegular, arial;
+}
+
+.bpp-bold {
+  font-family: BPPBold, arial;
+}
+
+header {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  margin-left: 40px;
+}
+
+.spacer {
+  height: 60px;
+}
+
+#menu {
+  position: fixed;
+  margin-top: calc(50% - 416px/2);
+  z-index: 3;
+}
+
+#menu li {
+  font-size: 35px;
+  margin-bottom: 25px;
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+}
+
+#menu li .link-name {
+  font-size: 20px;
+  position: absolute;
+  left: 50px;
+  width: auto;
+  text-align: left;
+  top: 5px;
+  display: none;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 5px;
+  white-space: nowrap;
+}
+
+#menu li a {
+  color: black;
+}
+
+#menu li:hover .link-name {
+  display: inline;
+}
+
+#menu li:hover.hover-red a, #menu li.active.hover-red a {
+  color: red;
+}
+
+#menu li:hover.hover-green a, #menu li.active.hover-green a {
+  color: green;
+}
+
+#menu li:hover.hover-blue a, #menu li.active.hover-blue a {
+  color: blue;
+}
+
+#menu li:hover.hover-magenta a, #menu li.active.hover-magenta a {
+  color: magenta;
+}
+
+#home .word {
   font-size: 50pt;
   text-align: center;
   display: block;
+  position: relative;
+  font-size: 100pt;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#home .word .letter {
+  letter-spacing: -45px;
+  opacity: 0;
+}
+
+#home .home-title {
+  position: fixed;
+  margin: auto;
+  display: block;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 100px;
+}
+
+#home #home-title-2 {
+  margin: auto;
+  display: block;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 100px;
+  z-index: 6;
+  position: absolute;
+}
+
+#home #home-title-3 {
+  display: none;
+  z-index: 2;
+}
+
+#home #home-title-3 h1 {
+  font-size: 100px;
+}
+
+#home #home-title-3 h1:first-child {
+  color: #323232;
+}
+
+#home #home-title-1 {
+  z-index: 4;
+}
+
+#home .full {
+  height: 100vh;
+  display: block;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+#home #box-1 {
+  background-image: url("../dist/images/box-1.jpg");
+  z-index: 3;
+}
+
+#home #box-2 {
+  background-image: url("../dist/images/box-2.jpg");
+  z-index: 5;
+}
+
+#home #box-3 {
+  background-image: url("../dist/images/box-3.jpg");
+}
+
+#images .portait {
+  padding: 20px;
+}
+
+#images .portait .frame {
+  background-color: #DDC;
+  border-bottom-color: #fff;
+  border-left-color: #eee;
+  border-radius: 2px;
+  border-right-color: #eee;
+  border-top-color: #ddd;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 20px;
+  position: relative;
+  transition: ease all .3s;
+}
+
+#images .portait .frame:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+#images .portait .frame div {
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  border: solid 2px;
+  border-bottom-color: #ffe;
+  border-left-color: #eed;
+  border-right-color: #eed;
+  border-top-color: #ccb;
+  border: solid 2vmin #eee;
+}
+
+#images .portait .frame:before {
+  border-radius: 2px;
+  bottom: 5px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
+  content: "";
+  left: 5px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+#images .portait .frame:after {
+  border-radius: 2px;
+  bottom: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  content: "";
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#images .prova {
+  background-color: #ddc;
+  border-bottom-color: #fff;
+  border-left-color: #eee;
+  border-radius: 2px;
+  border-right-color: #eee;
+  border-top-color: #ddd;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25) inset, 0 5px 10px 5px rgba(0, 0, 0, 0.25);
+  position: relative;
+  text-align: center;
 }
 
 /*# sourceMappingURL=app.css.map */

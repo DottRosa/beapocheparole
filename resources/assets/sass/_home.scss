@@ -1,8 +1,85 @@
 #home{
-
-    #beatrice, #basaldella{
+    .word{
         font-size:50pt;
         text-align:center;
         display:block;
+        position:relative;
+        font-size:100pt;
+        color: rgba(0,0,0,.8);
+
+
+        .letter{
+            letter-spacing:-45px;
+            opacity:0;
+        }
+    }
+
+    .home-title{
+        @extend .transition;
+        position:fixed;
+        margin:auto;
+        display:block;
+        left:0;
+        right:0;
+        text-align:center;
+        color:white;
+        font-size:100px;
+    }
+
+    #home-title-2{
+        margin:auto;
+        display:block;
+        left:0;
+        right:0;
+        text-align:center;
+        color:white;
+        font-size:100px;
+
+        z-index:6;
+        position:absolute;
+    }
+
+    #home-title-3{
+        display:none;
+
+        h1{
+            font-size:100px;
+        }
+        z-index:2;
+
+        h1:first-child{
+            color:#323232;
+        }
+    }
+
+    #home-title-1{
+        z-index:4;
+    }
+
+    h1, h4{
+        @extend .bpp-regular;
+    }
+
+    .full{
+        height:100vh;
+        display:block;
+        background-position:center;
+        background-size:cover;
+        background-attachment:fixed;
+        position:relative;
+    }
+
+    #box-1{
+        background-image:url('../dist/images/box-1.jpg');
+        z-index:3;
+    }
+
+    #box-2{
+        background-image:url('../dist/images/box-2.jpg');
+        z-index:5;
+    }
+
+    #box-3{
+        background-image:url('../dist/images/box-3.jpg');
     }
 }

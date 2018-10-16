@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+//Immagini
+Route::get('/immagini', 'Images');
+Route::get('/testi', 'Documents');
+Route::get('/testi/{id}', 'Document');
+Route::get('/gallerie', 'Galleries');
+Route::get('/gallery/{id}', 'Gallery');
+
 
 /* START Dev routing */
 
@@ -40,7 +47,7 @@ Route::post('admin/', 'AdminLogin@login');
 //Logout
 Route::get('admin/logout', 'AdminLogin@logout');
 
-Route::get('admin/media/search{q?}{offset?}{limit?}{type?}', 'AdminMedia@search');
+Route::get('admin/media/search{q?}{offset?}{limit?}{type?}{tags?}', 'AdminMedia@search');
 
 
 /* ADMIN */

@@ -157,7 +157,7 @@
                       <div class="form-group row">
                         <label for="input-image" class="col-sm-2 col-form-label">Tags</label>
                         <div class="col-sm-10">
-                            <select class="selectpicker multiselect" multiple data-live-search="true" name="tags[]">
+                            <select class="selectpicker multiselect" id="input-tags" multiple data-live-search="true" name="tags[]">
                                 @foreach($tags as $tag)
                                 <option value="{{$tag->id}}">
                                     {{$tag->name}}
@@ -171,6 +171,8 @@
                       <button type="button" onclick="changeTab('IMG');">Immagini</button>
                       <button type="button" onclick="changeTab('TXT');">Testi</button>
                   </div>
+
+                  <button onclick="ajaxCall()">Cerca</button>
               </div>
               <div class="results col-md-12">
                   <h5 id="results-title">Immagini</h5>
@@ -237,6 +239,8 @@
     /* Limite e offset per la ricerca in ajax */
     var limit           = 6;
     var offset          = 0;
+
+    var tags            = [];
     /* Contenitore dei media selezionati nella modale */
     var selectedMedia   = $( "#selected-media" );
     /* Contenitore dei media selezionati */
@@ -279,16 +283,15 @@
     una chiamata ajax per trovare i contenuti. C'è un delay per evitare di effettuare
     troppe richieste al secondo.
     */
-    $('#input-search').keydown(function(){
-        if (ajaxTimer) {
-            clearTimeout(ajaxTimer);
-        }
-        ajaxTimer = setTimeout(function(){
-            ajaxCall();
-            //getMedia($('#input-search').val());
-        }, ajaxDelay);
-    });
-
+    // $('#input-search').keydown(function(){
+    //     if (ajaxTimer) {
+    //         clearTimeout(ajaxTimer);
+    //     }
+    //     ajaxTimer = setTimeout(function(){
+    //         ajaxCall();
+    //         //getMedia($('#input-search').val());
+    //     }, ajaxDelay);
+    // });
 
     /*
     Esegue una chiamata ajax per prelevare i media in base alla ricerca, ai tag e
@@ -300,6 +303,7 @@
             offset  : offset,
             limit   : limit,
             type    : currentType,
+            tags    : $('#input-tags').val(),
             _token  : '{{csrf_token()}}'
         };
 

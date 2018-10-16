@@ -4,96 +4,70 @@
 
 @section('content')
 
-<h1>
-    <span id="beatrice">BEATRICE</span>
-    <span id="basaldella">BASALDELLA</span>
+
+<h1 class="home-title" id="home-title-1">
+    Prova
 </h1>
+
+<div class="home-title" id="home-title-3">
+    <h1>
+        Prova
+    </h1>
+    <h1>
+        Delle Prove
+    </h1>
+    <h4 class="text-center">Pittrice, fotografa, scrittrice</h4>
+</div>
+
+
+<div id="box-1" class="full">
+
+</div>
+
+<div id="box-2" class="full">
+    <h1 class="home-title" id="home-title-2">
+        Delle Prove
+    </h1>
+</div>
+
+<div id="box-3" class="full">
+
+</div>
 
 
 
 @endsection
 
 
+@section('javascript')
+<script>
+    //Tempo di attesa prima dell'inizio dell'animazione
+    const TIMEOUT_ANIMATION     = 1000;
+    //Durata dell'animazione
+    const ANIMATION_DURATION    = 7000;
 
-<!--
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    $(document).ready(function(){
 
-        <title>Laravel</title>
+        setTimeout(function(){
+            //Animazione automatica scroll verso il basso
+            $('html, body').animate({
+                scrollTop: $("#box-3").offset().top
+            }, ANIMATION_DURATION, function(){
+                //Al termine dell'animazione rimuvo i primi due box, rendendoli irraggiungibili
+                $('#box-1').remove();
+                $('#box-2').remove();
+            });
+        }, TIMEOUT_ANIMATION);
+    });
 
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    //In base allo scroll mostro/nascondo scritte
+    $(document).scroll(function(){
+        if(!isInViewport($('#box-1'))){
+            $('#home-title-1').remove();    //Rimuovo beatrice
+            $('#home-title-3').show();      //Mostro nome e cognome
+            center($('#home-title-3'));     //Centro nome e cognome
+        }
+    });
 
-        <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}" />
-
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Beapocheparole
-                </div>
-
-                <div class="links">
-                    <a href="{{url('admin/')}}">Login</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html> -->
+</script>
+@endsection

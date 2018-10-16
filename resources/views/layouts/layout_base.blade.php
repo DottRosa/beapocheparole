@@ -5,11 +5,11 @@
     </head>
 
     <body>
-        <div class="col-sm-1">
-            @include('_menu')
-        </div>
+        @include('_header')
 
-        <main id="@yield('page-id')" class="col-md-11">
+        @include('_menu')
+
+        <main id="@yield('page-id')" class="@if(!ends_with(Request::path(), '/')) container spacer @endif">
             @section('content')
             @show
         </main>

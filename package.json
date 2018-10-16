@@ -24,6 +24,7 @@
     "@ckeditor/ckeditor5-build-decoupled-document": "^11.0.1",
     "autocomplete.js": "^0.31.0",
     "gulp": "^3.9.1",
+    "lightbox2": "^2.10.0",
     "popper.js": "^1.14.4"
   }
 }
