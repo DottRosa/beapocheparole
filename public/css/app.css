@@ -35,15 +35,27 @@
   font-family: BPPBold, arial;
 }
 
+.primary-font-regular, * {
+  font-family: PrimaryFont, arial;
+}
+
+.primary-font-bold, #images .portait .plate {
+  font-family: PrimaryFontBold, arial;
+}
+
+.primary-font-light {
+  font-family: PrimaryFontLight, arial;
+}
+
+.spacer {
+  padding-top: 100px;
+}
+
 header {
   position: fixed;
   z-index: 3;
   width: 100%;
   margin-left: 40px;
-}
-
-.spacer {
-  height: 60px;
 }
 
 #menu {
@@ -153,7 +165,7 @@ header {
   z-index: 4;
 }
 
-#home .full {
+#home .full-box {
   height: 100vh;
   display: block;
   background-position: center;
@@ -196,6 +208,7 @@ header {
 
 #images .portait .frame:hover {
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 24px 48px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
 }
 
 #images .portait .frame div {
@@ -233,6 +246,46 @@ header {
   top: 10px;
 }
 
+#images .portait .plate {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eab92d+0,c79810+100;Yellow+3D+%232 */
+  background: #eab92d;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #eab92d 0%, #c79810 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eab92d', endColorstr='#c79810',GradientType=0 );
+  /* IE6-9 */
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+  border-radius: 5px;
+  position: relative;
+}
+
+#images .portait .plate:after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  left: 10px;
+  top: 17px;
+  background-color: #B57B19;
+  border-radius: 50%;
+}
+
+#images .portait .plate:before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  right: 10px;
+  top: 17px;
+  background-color: #B57B19;
+  border-radius: 50%;
+}
+
 #images .prova {
   background-color: #ddc;
   border-bottom-color: #fff;
@@ -243,6 +296,16 @@ header {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25) inset, 0 5px 10px 5px rgba(0, 0, 0, 0.25);
   position: relative;
   text-align: center;
+}
+
+#documents .document {
+  padding: 20px;
+  font-size: 10px;
+}
+
+#documents .document .content {
+  min-height: 125px;
+  display: block;
 }
 
 /*# sourceMappingURL=app.css.map */

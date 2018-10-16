@@ -4,33 +4,38 @@
 
 @section('content')
 
+@php
+$first_name = 'Beatrice';
+$last_name = 'Basaldella';
+@endphp
+
 
 <h1 class="home-title" id="home-title-1">
-    Prova
+    {{$first_name}}
 </h1>
 
 <div class="home-title" id="home-title-3">
     <h1>
-        Prova
+        {{$first_name}}
     </h1>
     <h1>
-        Delle Prove
+        {{$last_name}}
     </h1>
     <h4 class="text-center">Pittrice, fotografa, scrittrice</h4>
 </div>
 
 
-<div id="box-1" class="full">
+<div id="box-1" class="full-box">
 
 </div>
 
-<div id="box-2" class="full">
+<div id="box-2" class="full-box">
     <h1 class="home-title" id="home-title-2">
-        Delle Prove
+        {{$last_name}}
     </h1>
 </div>
 
-<div id="box-3" class="full">
+<div id="box-3" class="full-box">
 
 </div>
 
@@ -44,7 +49,7 @@
     //Tempo di attesa prima dell'inizio dell'animazione
     const TIMEOUT_ANIMATION     = 1000;
     //Durata dell'animazione
-    const ANIMATION_DURATION    = 7000;
+    const ANIMATION_DURATION    = 1000;
 
     $(document).ready(function(){
 
@@ -68,6 +73,8 @@
             center($('#home-title-3'));     //Centro nome e cognome
         }
     });
+
+
 
 </script>
 @endsection

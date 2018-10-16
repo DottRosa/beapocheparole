@@ -10,6 +10,10 @@
         <div class="frame">
             <div style="background-image:url({{url('../storage/app/'.$item->content)}})"></div>
         </div>
+        <div class="plate">
+            {{$item->title}}
+        </div>
+
     </a>
 
     @endforeach

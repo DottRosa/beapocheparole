@@ -4,7 +4,7 @@
     @include('_head')
     </head>
 
-    <body>
+    <body class="animated fadeIn">
         @include('_header')
 
         @include('_menu')

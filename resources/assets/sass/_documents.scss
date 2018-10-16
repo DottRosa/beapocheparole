@@ -1,0 +1,11 @@
+#documents{
+    .document{
+        padding:20px;
+        font-size:10px;
+
+        .content{
+            min-height:125px;
+            display:block;
+        }
+    }
+}

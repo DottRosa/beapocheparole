@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="{{ url('css/plugins/bootstrap/bootstrap.min.css') }}" />
 <!-- lightbox-->
 <link rel="stylesheet" type="text/css" href="{{ url('../node_modules/lightbox2/dist/css/lightbox.min.css') }}" />
+<!-- animate-->
+<link rel="stylesheet" type="text/css" href="{{ url('../node_modules/animate.css/animate.min.css') }}" />
 
 <!-- app-->
 <link rel="stylesheet" type="text/css" href="{{ url('css/app.css') }}" />

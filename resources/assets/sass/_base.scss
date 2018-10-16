@@ -1,13 +1,27 @@
 .transition {
     transition:ease all $dur;
 }
-
 .bpp-regular{
     font-family:BPPRegular, arial;
 }
-
 .bpp-bold{
     font-family:BPPBold, arial;
+}
+.primary-font-regular{
+    font-family:PrimaryFont, arial;
+}
+.primary-font-bold{
+    font-family:PrimaryFontBold, arial;
+}
+.primary-font-light{
+    font-family:PrimaryFontLight, arial;
+}
+.spacer{
+    padding-top:100px;
+}
+
+*{
+    @extend .primary-font-regular;
 }
 
 header{
@@ -19,10 +33,6 @@ header{
     h4{
         @extend .bpp-regular;
     }
-}
-
-.spacer{
-    height:60px;
 }
 
 #menu {
