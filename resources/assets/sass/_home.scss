@@ -26,15 +26,23 @@
         font-size:100px;
     }
 
+    h1, h4{
+        @extend .bpp-regular;
+    }
+
+    #home-title-1{
+        z-index:4;
+    }
+
     #home-title-2{
         margin:auto;
         display:block;
         left:0;
         right:0;
+        top:0;
         text-align:center;
         color:white;
         font-size:100px;
-
         z-index:6;
         position:absolute;
     }
@@ -50,14 +58,6 @@
         h1:first-child{
             color:#323232;
         }
-    }
-
-    #home-title-1{
-        z-index:4;
-    }
-
-    h1, h4{
-        @extend .bpp-regular;
     }
 
     .full-box{
@@ -77,6 +77,7 @@
     #box-2{
         background-image:url('../dist/images/box-2.jpg');
         z-index:5;
+        overflow-y:hidden;
     }
 
     #box-3{

@@ -55,5 +55,19 @@ function isInViewport(elem) {
     return elementBottom > viewportTop && elementTop < viewportBottom;
 };
 
+/*
+Verifica se l'elemento esiste nel DOM in base all'id
+@params id l'id dell'elemento
+@return true se l'elemento esiste, false altrimenti
+*/
+function existsById(id){
+    return document.getElementById(id) !== null;
+}
+
+
+function map(value, istart, istop, ostart, ostop) {
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+}
+
 
 </script>

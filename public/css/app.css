@@ -136,11 +136,16 @@ header {
   font-size: 100px;
 }
 
+#home #home-title-1 {
+  z-index: 4;
+}
+
 #home #home-title-2 {
   margin: auto;
   display: block;
   left: 0;
   right: 0;
+  top: 0;
   text-align: center;
   color: white;
   font-size: 100px;
@@ -161,10 +166,6 @@ header {
   color: #323232;
 }
 
-#home #home-title-1 {
-  z-index: 4;
-}
-
 #home .full-box {
   height: 100vh;
   display: block;
@@ -182,6 +183,7 @@ header {
 #home #box-2 {
   background-image: url("../dist/images/box-2.jpg");
   z-index: 5;
+  overflow-y: hidden;
 }
 
 #home #box-3 {
