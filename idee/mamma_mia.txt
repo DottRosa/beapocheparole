@@ -1,0 +1,46 @@
+https://stackoverflow.com/questions/41516776/adding-depth-to-a-box-css
+
+* {
+  box-sizing: border-box;
+}
+
+.boxes {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  width: 30%;
+  height: 200px;
+  text-align: center;
+}
+
+.box--1,
+.box--3 {
+  border: 20px solid white;
+  background-color: rgb(200, 0, 0);
+}
+
+.box--1 {
+  border-right-color: red;
+}
+
+.box--3 {
+  border-left-color: red;
+}
+
+.box--2 {
+  background-color: darkred;
+}
+<div class="boxes">
+  <div class="box box--1">1</div>
+  <div class="box box--2">2</div>
+  <div class="box box--3">3</div>
+</div>
+
+
+
+
+
+
+https://jsfiddle.net/15k214am/3/
