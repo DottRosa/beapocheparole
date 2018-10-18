@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 use App\Users;
+use App\Media;
 use App\Utils\Logs;
 
 class AdminLogin extends Controller{
@@ -19,7 +20,9 @@ class AdminLogin extends Controller{
             Session::put('admin', json_decode(Cookie::get('bpp_admin')));
             return redirect('admin/dashboard');
         }
-        return view('admin.login');
+
+        $image = Media::inRandomOrder()->where('type', '=', 'IMG')->first();
+        return view('admin.login')->with('image', $image);
     }
 
     public function login(Request $request){

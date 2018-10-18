@@ -12,7 +12,13 @@
   </head>
   <body class="app">
       <div class="peers ai-s fxw-nw h-100vh">
-        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv" style='background-image: url("{{url('dist/images/admin/login_'.rand(1,7).'.jpg')}}")'>
+        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
+        @if($image == null)
+        style='background-image: url("{{url('dist/images/admin/login_'.rand(1,7).'.jpg')}}")'
+        @else
+        style='background-image:url({{url('../storage/app/'.$image->content)}})'
+        @endif
+        >
         </div>
         <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style='min-width: 320px;'>
             <h2 class="lh-1 mB-0 logo-text"><span style="color:#2196f3 ;">Bea</span>ckend</h2>
