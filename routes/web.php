@@ -49,6 +49,8 @@ Route::get('admin/logout', 'AdminLogin@logout');
 
 Route::get('admin/media/search{q?}{offset?}{limit?}{type?}{tags?}', 'AdminMedia@search');
 
+Route::post('errors/report{error?}{url?}{line?}', 'ErrorsTracker@report');
+
 
 /* ADMIN */
 Route::group(['prefix' => 'admin', 'middleware' => ['verify.session']], function(){
@@ -63,8 +65,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['verify.session']], function
     Route::post('/users/edit/{id}', 'AdminUser@update');
     Route::get('/users/delete/{id}', 'AdminUser@delete');
 
-    //Logs
+    //Logs and errors
     Route::get('/logs', 'AdminLogs');
+    Route::get('/errors', 'AdminErrors');
 
     Route::group(['prefix' => 'images'], function(){
         Route::group(['prefix' => 'list'], function(){

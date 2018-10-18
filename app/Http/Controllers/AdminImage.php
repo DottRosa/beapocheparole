@@ -27,9 +27,9 @@ class AdminImage extends Controller{
         if($id !== NULL){
             $item = Media::find($id);
             $tags = DB::select(
-                      DB::raw("SELECT MEDIA_TAGS.id
-                               FROM MEDIA_TAGS
-                               INNER JOIN R_MEDIA_TAGS ON (R_MEDIA_TAGS.tag_id = MEDIA_TAGS.id)
+                      DB::raw("SELECT TAGS.id
+                               FROM TAGS
+                               INNER JOIN R_MEDIA_TAGS ON (R_MEDIA_TAGS.tag_id = TAGS.id)
                                WHERE R_MEDIA_TAGS.media_id = :item_id"), array('item_id' => $item->id));
 
             $tags_ids = [];

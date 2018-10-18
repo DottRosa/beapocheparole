@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
     @include('_head')
+    @include('_tracker')
     </head>
 
     <body class="animated fadeIn">

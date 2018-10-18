@@ -1,4 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=wUTF-8">
+<meta name="_token" content="{{ csrf_token() }}">
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
