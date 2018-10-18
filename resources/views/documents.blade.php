@@ -5,33 +5,29 @@
 @section('content')
 
     @foreach($items as $item)
-    <a href="" class="document col-sm-3">
-        <span class="content">
-            {{str_limit(strip_tags($item->content), $limit = 450, $end = '...')}}
-        </span>
-        <h3>{{$item->title}}</h3>
+    <a href="{{url('testi')}}/{{$item->id}}" class="document col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="book">
+            <div class="pages">
+                {{str_limit(strip_tags($item->content), $limit = 660, $end = '...')}}
+            </div>
+            <div class="cover">
+                <h3>{{$item->title}}</h3>
+            </div>
+
+        </div>
     </a>
 
     @endforeach
 
-    @foreach($items as $item)
-    <a href="" class="document col-sm-3">
-        <span class="content">
-            {{str_limit(strip_tags($item->content), $limit = 450, $end = '...')}}
-        </span>
-        <h3>{{$item->title}}</h3>
-    </a>
+@endsection
 
-    @endforeach
 
-    @foreach($items as $item)
-    <a href="" class="document col-sm-3">
-        <span class="content">
-            {{str_limit(strip_tags($item->content), $limit = 450, $end = '...')}}
-        </span>
-        <h3>{{$item->title}}</h3>
-    </a>
+@section('javascript')
 
-    @endforeach
+<script>
+
+    // {{str_limit(strip_tags($item->content), $limit = 450, $end = '...')}}
+
+</script>
 
 @endsection

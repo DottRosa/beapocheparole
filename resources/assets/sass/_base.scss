@@ -20,6 +20,10 @@
     padding-top:100px;
 }
 
+strong{
+    @extend .primary-font-bold;
+}
+
 *{
     @extend .primary-font-regular;
 }

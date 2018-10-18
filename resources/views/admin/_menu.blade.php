@@ -85,6 +85,9 @@
           <li class="@if(ends_with(Request::path(), 'admin/logs')) active @endif">
             <a href="{{url('admin/logs')}}">Logs</a>
           </li>
+          <li class="@if(ends_with(Request::path(), 'admin/errors')) active @endif">
+            <a href="{{url('admin/errors')}}">Errori</a>
+          </li>
         </ul>
       </li>
       @endif
@@ -101,7 +104,7 @@
 
 
       <li class="nav-item">
-        <a class='sidebar-link' href="{{url('/')}}" target="_blank">
+        <a class='sidebar-link' href="{{url('/immagini')}}" target="_blank">
           <span class="icon-holder">
             <i class="fas fa-external-link-alt"></i>
           </span>

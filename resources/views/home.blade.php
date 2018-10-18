@@ -47,7 +47,7 @@ $last_name = 'Basaldella';
 @section('javascript')
 <script>
     //Costanti per l'animazione
-    const ANIMATION_TIMEOUT         = 1000; //Tempo di attesa prima dell'inizio dell'animazione
+    const ANIMATION_TIMEOUT         = 1500; //Tempo di attesa prima dell'inizio dell'animazione
     const ANIMATION_DURATION        = 5000; //Durata dell'animazione
     const ANIMATION_MUTLIPLICATOR   = 0.6;  //Moltiplicatore per la velocità dell'animazione
     const ANIMATION_STEP            = 1;    //Pixel di avanzata dello scroll
@@ -70,7 +70,7 @@ $last_name = 'Basaldella';
 
         if(ANIMATION_ACTIVATE){
             setTimeout(function(){
-                smoothScroll(BOX_3);
+                smoothScroll(BOX_3);    /* TODO animazione ease */
             }, ANIMATION_TIMEOUT);
         };
 
