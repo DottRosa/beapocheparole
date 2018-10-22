@@ -21,7 +21,12 @@ Route::get('/testi', 'Documents');
 Route::get('/testi/{id}', 'Document');
 Route::get('/gallerie', 'Galleries');
 Route::get('/gallery/{id}', 'Gallery');
-
+Route::get('/cookies', function(){
+    return view('cookies');
+});
+Route::get('/privacy', function(){
+    return view('privacy');
+});
 
 /* START Dev routing */
 

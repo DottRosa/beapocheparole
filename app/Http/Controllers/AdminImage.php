@@ -53,8 +53,6 @@ class AdminImage extends Controller{
             $errs = self::verify($params);
 
             if(count($errs) == 0){
-                $params['type'] = 'IMG';
-
                 $path   = $request->file('content');
                 $resize = Image::make($path)
                                 ->resize(1500, null, function ($constraint) {
@@ -130,7 +128,9 @@ class AdminImage extends Controller{
     private function getParams(Request $request){
         $params = array(
             'title' => $request['title'],
-            'content' => $request['content']
+            'content' => $request['content'],
+            'type' => 'IMG',
+            'status' => $request['status'],
         );
 
         return $params;

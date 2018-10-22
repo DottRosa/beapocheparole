@@ -1,63 +1,4 @@
-#images{
-
-    .polaroid{
-        padding:20px;
-        margin-bottom:50px;
-
-        .frame{
-            background-color:white;
-            border-bottom-color:#fff;
-            border-left-color:#eee;
-            border-radius:2px;
-            border-right-color:#eee;
-            border-top-color:#ddd;
-            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-            padding:20px;
-            position:relative;
-            transition:ease all .3s;
-
-            &:hover{
-                box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.5);
-                transform:scale(1.1);
-            }
-
-            div{
-                height:200px;
-                width:100%;
-                background-position:center;
-                background-size:cover;
-                border:solid 2px;
-                border:solid 5px black;
-            }
-
-            h4{
-                text-align:center;
-                padding-top:10px;
-            }
-
-            .tape,
-            .tape-rotate-1{
-                position:absolute;
-                width:100px;
-                top:-30px;
-                left:0;
-                right:0;
-                text-align:center;
-                margin:auto;
-            }
-
-            .tape-rotate-2{
-                transform:rotateZ(45deg);
-            }
-
-            .tape-rotate-3{
-                transform:rotateZ(20deg);
-            }
-
-        }
-    }
-
+#galleries{
     .portait{
         padding:20px;
 
@@ -150,6 +91,87 @@
                 background-color:#B57B19;
                 border-radius:50%;
             }
+        }
+    }
+}
+
+
+
+.bg-gallery{
+    background-image:url('../dist/images/prova3.jpg');
+    background-position:bottom bottom;
+    background-attachment:fixed;
+    background-size:contain;
+}
+
+.container {
+  position: fixed;
+  top: -30px; // Hide the horizontal scrollbar.
+  left: 0;
+  width: 100vh;
+  height: calc(100vw);
+
+  overflow: scroll;
+  transform: rotate(-90deg);
+  transform-origin: center calc(50vh);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(90deg);
+}
+
+#gallery{
+
+
+    #wall{
+        .box{
+            //float:left;
+            background-color:rgb(180, 180, 180);
+            box-sizing: border-box;
+            height:520px;
+            width:520px;
+            padding:50px;
+            display:block;
+            background-clip: padding-box;
+        }
+
+        .box-back{
+            background-color:rgb(230, 230, 230);
+            border:solid 30px transparent;
+        }
+
+        .front-right{
+            border-right-color:rgb(200, 200, 200);
+        }
+
+        .front-left{
+            border-left-color:rgb(200, 200, 200);
+        }
+
+        .no-front-left{
+            border-left:none;
+        }
+
+        .no-front-right{
+            border-right:none;
+        }
+
+        .image{
+            text-align:center;
+            width:100%;
+            height:80%;
+            background-position:center;
+            background-size:cover;
+            display:block;
+            border:solid gray 10px;
+        }
+
+        .text{
+
         }
     }
 }

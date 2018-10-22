@@ -20,14 +20,3 @@
     @endforeach
 
 @endsection
-
-
-@section('javascript')
-
-<script>
-
-    // {{str_limit(strip_tags($item->content), $limit = 450, $end = '...')}}
-
-</script>
-
-@endsection

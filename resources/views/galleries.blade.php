@@ -1,99 +1,21 @@
 @extends('layouts.layout_base')
-@section('title', 'Home')
-@section('page-id', 'home')
+@section('title', 'Gallerie')
+@section('page-id', 'galleries')
 
 @section('content')
 
-<h1>
-    <span id="beatrice">BEATRICE</span>
-    <span id="basaldella">BASALDELLA</span>
-</h1>
+@foreach($items as $item)
+<a class="portait col-lg-3 col-md-4 col-sm-6 col-xs-12" href="{{url('gallery')}}/{{$item->id}}">
+    <div class="frame">
+        <div style="background-image:url({{url('../storage/app/'.$item->thumb)}})"></div>
+    </div>
+    <div class="plate">
+        {{$item->name}}
+    </div>
+</a>
+
+@endforeach
 
 
 
 @endsection
-
-
-
-<!--
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}" />
-
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Beapocheparole
-                </div>
-
-                <div class="links">
-                    <a href="{{url('admin/')}}">Login</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html> -->

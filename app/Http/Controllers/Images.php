@@ -9,7 +9,10 @@ class Images extends Controller{
     const ITEMS_VIEW = 'images';
 
     public function __invoke(){
-        $items = Media::where('type', 'IMG')->simplePaginate(10);
+        $items = Media::where([
+            ['type' ,'IMG'],
+            ['status', 'PUBLIC']
+        ])->simplePaginate(10);
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
 }

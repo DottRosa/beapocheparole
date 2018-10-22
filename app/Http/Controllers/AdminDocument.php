@@ -101,7 +101,8 @@ class AdminDocument extends Controller{
         $params = array(
             'title' => $request['title'],
             'content' => $request['content'],
-            'type' => 'TXT'
+            'type' => 'TXT',
+            'status' => $request['status'],
         );
 
         return $params;

@@ -25,6 +25,19 @@
 
 $dur : .3s;
 
+$screen_md : 1200px;
+$screen_sm : 992px;
+$screen_xs : 768px;
+
+
 /* COLORS */
 
 $gold: #DAA520;
+
+
+/* HOME Z-INDEX */
+$z_index_box_1      : 4;
+$z_index_box_2      : $z_index_box_1 + 2;
+$z_index_title_1    : $z_index_box_1 + 1;
+$z_index_title_2    : $z_index_box_2 + 1;
+$z_index_title_3    : $z_index_box_1 - 2;

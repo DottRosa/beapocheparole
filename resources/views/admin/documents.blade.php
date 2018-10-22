@@ -15,6 +15,9 @@
     <th class="text-center">
         Tags
     </th>
+    <th class="text-center">
+        Stato
+    </th>
     <th class="text-right">
         Azioni
     </th>
@@ -36,6 +39,13 @@
                 #{{$tag->name}}
             </code>
             @endforeach
+        </td>
+        <td class="text-center">
+            @if($item->status == 'PUBLIC')
+                <span class="badge badge-success">Pubblicato</span>
+            @else
+                <span class="badge badge-danger">Non pubblicato</span>
+            @endif
         </td>
         <td class="text-right">
             <a class="btn btn-primary" href="{{url('admin/documents/list/edit/'.$item->id)}}"><i class="fas fa-pencil-alt"></i> Modifica</a>

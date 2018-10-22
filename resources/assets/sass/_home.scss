@@ -31,7 +31,7 @@
     }
 
     #home-title-1{
-        z-index:4;
+        z-index:$z_index_title_1;
     }
 
     #home-title-2{
@@ -43,17 +43,18 @@
         text-align:center;
         color:white;
         font-size:100px;
-        z-index:6;
+        z-index:$z_index_title_2;
         position:absolute;
     }
 
     #home-title-3{
         display:none;
+        z-index:$z_index_title_3;
 
         h1{
             font-size:100px;
         }
-        z-index:2;
+
 
         h1:first-child{
             color:#323232;
@@ -71,12 +72,12 @@
 
     #box-1{
         background-image:url('../dist/images/box-1.jpg');
-        z-index:3;
+        z-index:$z_index_box_1;
     }
 
     #box-2{
         background-image:url('../dist/images/box-2.jpg');
-        z-index:5;
+        z-index:$z_index_box_2;
         overflow-y:hidden;
     }
 

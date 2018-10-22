@@ -9,7 +9,10 @@ class Documents extends Controller{
     const ITEMS_VIEW = 'documents';
 
     public function __invoke(){
-        $items = Media::where('type', 'TXT')->simplePaginate(10);
+        $items = Media::where([
+            ['type' ,'TXT'],
+            ['status', 'PUBLIC']
+        ])->simplePaginate(10);
         return view(self::ITEMS_VIEW)->with('items', $items);
     }
 }

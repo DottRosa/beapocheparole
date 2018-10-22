@@ -10,7 +10,7 @@
 
         @include('_menu')
 
-        <main id="@yield('page-id')" class="@if(!ends_with(Request::path(), '/')) container spacer @endif">
+        <main id="@yield('page-id')" class="@if(!ends_with(Request::path(), '/')) spacer @endif">
             @section('content')
             @show
         </main>

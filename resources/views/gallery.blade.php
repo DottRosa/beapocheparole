@@ -1,99 +1,124 @@
 @extends('layouts.layout_base')
-@section('title', 'Home')
-@section('page-id', 'home')
+@section('title', $item->name)
+@section('page-id', 'gallery')
 
 @section('content')
 
-<h1>
-    <span id="beatrice">BEATRICE</span>
-    <span id="basaldella">BASALDELLA</span>
-</h1>
+<div class="container">
+    <div id="wall" class="col-xs-12">
 
+        @if($item->media[0]->type == 'IMG')
+        <div class="box box-back front-right"></div>
+        @else
+        <div class="box box-back no-front-right"></div>
+        @endif
+
+        @php($total = count($item->media))
+
+        @for($i=0; $i<$total; $i++)
+
+            @php($m = $item->media[$i])
+
+            @if($i != 0)
+                @php($prev = $item->media[$i-1])
+            @else
+                @php($prev = null)
+            @endif
+
+            @if($i+1 < $total)
+                @php($next = $item->media[$i+1])
+            @else
+                @php($next = null)
+            @endif
+
+            @php($class = 'box ')
+
+            @if($m->type == 'IMG')
+                @php($class .= 'box-front ')
+            @else
+                @php($class .= 'box-back ')
+
+                @if($prev != null && $prev->type == 'IMG')
+                    @php($class .= 'front-left ')
+                @else
+                    @php($class .= 'no-front-left ')
+                @endif
+
+                @if($next != null && $next->type == 'IMG')
+                    @php($class .= 'front-right ')
+                @else
+                    @php($class .= 'no-front-right ')
+                @endif
+            @endif
+
+            <div class="{{$class}}">
+                <h4>{{$m->title}}</h4>
+                @if($m->type == 'IMG')
+                    <a class="image" href="{{url('../storage/app/'.$m->content)}}" data-lightbox="{{$m->id}}" data-title="{{$m->title}}" style="background-image:url({{url('../storage/app/'.$m->content)}})">
+
+                    </a>
+                @else
+                    <div class="text">
+                        {{str_limit(strip_tags($m->content), $limit = 660, $end = '...')}}
+                        <button onclick="openDocument({{$m}});" data-toggle="modal" data-target="#document-modal">Leggi</button>
+                    </div>
+                @endif
+            </div>
+        @endfor
+
+        @if($item->media[$i-1]->type == 'IMG')
+        <div class="box box-back front-left"></div>
+        @else
+        <div class="box box-back no-front-left"></div>
+        @endif
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div id="document-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 @endsection
 
 
+@section('javascript')
+<script>
 
-<!--
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    $(document).ready(function(){
+        $('body').addClass('bg-gallery');
 
-        <title>Laravel</title>
+        var totalSize = 0;
+        $('.box').each(function(){
+            totalSize += $(this).outerWidth();
+        });
+        totalSize += 100;
+        //$('#wall').css('height', totalSize+'px');
+    });
 
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    function openDocument(d){
+        $('.modal-title').html(d.title);
+        $('.modal-body').html(d.content);
+    }
 
-        <link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}" />
-
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Beapocheparole
-                </div>
-
-                <div class="links">
-                    <a href="{{url('admin/')}}">Login</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html> -->
+</script>
+@endsection

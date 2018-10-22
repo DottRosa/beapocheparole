@@ -41,6 +41,35 @@
             </div>
           </div>
 
+          <fieldset class="form-group">
+            <div class="row">
+              <label class="col-sm-2">Stato</label>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="status"
+                           value="PUBLIC"
+                           @if(isset($item) && $item->status == 'PUBLIC')checked="checked"@endif
+                           @if(!isset($item))checked="checked"@endif>
+                    Pubblicato
+                  </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input"
+                             type="radio"
+                             name="status"
+                             value="PRIVATE"
+                             @if(isset($item) && $item->status == 'PRIVATE')checked="checked"@endif>
+                      Non pubblicato
+                    </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
 
           <div class="form-group row">
             <label for="input-image" class="col-sm-2 col-form-label">Tags</label>

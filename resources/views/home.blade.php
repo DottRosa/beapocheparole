@@ -51,7 +51,7 @@ $last_name = 'Basaldella';
     const ANIMATION_DURATION        = 5000; //Durata dell'animazione
     const ANIMATION_MUTLIPLICATOR   = 0.6;  //Moltiplicatore per la velocità dell'animazione
     const ANIMATION_STEP            = 1;    //Pixel di avanzata dello scroll
-    const ANIMATION_ACTIVATE        = true; //Attiva e disattiva lo scroll automatico
+    const ANIMATION_ACTIVATE        = false; //Attiva e disattiva lo scroll automatico
 
     //Elementi
     const BOX_1     = 'box-1';
