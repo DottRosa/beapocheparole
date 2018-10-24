@@ -11,6 +11,14 @@
         @include('_menu')
 
         <main id="@yield('page-id')" class="@if(!ends_with(Request::path(), '/')) spacer @endif">
+
+            @if(ends_with(Request::path(), 'immagini'))
+                @include('_filters', ['page' => 'immagini'])
+            @endif
+            @if(ends_with(Request::path(), 'testi'))
+                @include('_filters', ['page' => 'testi'])
+            @endif
+
             @section('content')
             @show
         </main>

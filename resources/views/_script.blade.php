@@ -7,6 +7,9 @@
 
 <script src="{{ url('js/mouse.js')}}"></script>
 
+<!-- Filters -->
+<script src="{{ url('js/plugins/filters/filters.js')}}"></script>
+
 
 <script>
 

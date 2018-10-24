@@ -143,7 +143,5 @@ $last_name = 'Basaldella';
         }
     });
 
-
-
 </script>
 @endsection

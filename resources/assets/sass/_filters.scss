@@ -1,0 +1,108 @@
+#open-filters-button, #remove-filters-button{
+    padding:10px;
+    cursor:pointer;
+    border:solid #444 1px;
+    margin-right:10px;
+}
+
+#remove-filters-button{
+    border-color:red;
+    color:#d9534f;
+}
+
+#filters{
+    position:fixed;
+    width:20%;
+    height:100%;
+    left:100px;
+    top:0;
+    visibility: hidden;
+    z-index:99;
+    background-color:white;
+    -webkit-box-shadow: 10px 0px 26px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 10px 0px 26px 0px rgba(0,0,0,0.3);
+    box-shadow: 10px 0px 26px 0px rgba(0,0,0,0.3);
+    overflow-y:scroll;
+    transform: perspective(1200px) rotateY(90deg);
+    transform-origin:left;
+    @extend .transition;
+
+    &.open{
+        visibility:visible;
+        transform: perspective(1200px) rotateY(0deg);
+    }
+
+    .filter-header{
+
+        padding:15px;
+
+        .title{
+            font-size:15px;
+        }
+
+        background-color:#333;
+        color:white;
+
+        .close-filters{
+            color:white;
+            text-align:right;
+            cursor:pointer;
+        }
+
+        .title, .close-filters{
+            width:50%;
+            float:left;
+            display:inline-block;
+        }
+    }
+
+    .filter-footer{
+
+
+        button{
+            padding:15px;
+            background-color:#444;
+            width:100%;
+            color:white;
+            border-radius:0;
+            border:none;
+
+            &:hover{
+                background-color:$primary;
+            }
+        }
+    }
+
+    ul{
+        padding-left:0;
+        margin-top:15px;
+
+        .tag{
+            list-style-type:none;
+            display:block;
+            padding:5px;
+            color:#333;
+            margin-bottom:5px;
+            border-radius:5px;
+            @extend .transition;
+            border:solid 1px white;
+            border-bottom:solid #AAA 1px;
+            position:relative;
+
+            .tag-name{
+                vertical-align:middle;
+                font-size:16px;
+                position:absolute;
+                top:25%;
+            }
+
+            &:hover{
+                cursor:pointer;
+            }
+        }
+    }
+}
+
+.applied_filter{
+    color:$primary;
+}
