@@ -20,3 +20,30 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <title>BPP | @yield('title')</title>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#237afc"
+    },
+    "button": {
+      "background": "#fff",
+      "text": "#237afc"
+    }
+  },
+  "theme": "classic",
+  "content": {
+    "message": "Questo sito NON utilizza cookies proprietari per la profilazione degli utenti. Sono utilizzati cookie tecnici per l'analisi del traffico. Chiudendo questo avviso e proseguendo la navigazione acconsenti all'utilizzo dei cookie. ",
+    "dismiss": "Ho capito",
+    "link": "Maggiori informazioni",
+    "href": "http://localhost:8888/beapocheparole/public/cookies"
+  }
+})});
+</script>
