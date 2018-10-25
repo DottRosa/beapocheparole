@@ -68,6 +68,20 @@
   color: #032764;
 }
 
+.btn-primary {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+.bg-primary {
+  background-color: #2196f3;
+}
+
+.bg-dark {
+  background-color: #333;
+  color: white;
+}
+
 header {
   position: fixed !important;
   z-index: 4;
@@ -194,14 +208,16 @@ header h4 a {
   color: white;
 }
 
-main.spacer {
+main.spacer,
+.main.spacer {
   margin-left: 150px;
   margin-right: 100px;
   padding-bottom: 100px;
 }
 
 @media screen and (max-width: 768px) {
-  main.spacer {
+  main.spacer,
+  .main.spacer {
     margin-left: 5%;
     margin-right: 5%;
   }
@@ -293,6 +309,37 @@ main.spacer {
 
 #home #box-3 {
   background-image: url("../dist/images/box-3.jpg");
+}
+
+#home #box-4 {
+  z-index: 2;
+  background-color: white;
+}
+
+#home #box-5 {
+  z-index: 2;
+  background-color: #2196f3;
+}
+
+#home #box-5 #contact-form-container {
+  position: absolute;
+  background-color: white;
+  margin: auto;
+  text-align: center;
+  display: block;
+  left: 0;
+  right: 0;
+  width: 50%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.75);
+}
+
+#home #box-5 #contact-form-container .contact-form-header {
+  margin-bottom: 25px;
+}
+
+#home #box-5 #contact-form-container .fa-envelope {
+  color: #2196f3;
 }
 
 #images .polaroid {

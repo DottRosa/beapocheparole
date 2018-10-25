@@ -41,6 +41,20 @@ strong{
     @extend .primary-font-regular;
 }
 
+.btn-primary{
+    background-color:$primary;
+    border-color:$primary;
+}
+
+.bg-primary{
+    background-color:$primary;
+}
+
+.bg-dark{
+    background-color:$dark;
+    color:white;
+}
+
 header{
     position:fixed !important;
     z-index:4;
@@ -183,7 +197,8 @@ header{
 
 
 
-main.spacer{
+main.spacer,
+.main.spacer{
     margin-left:150px;
     margin-right:100px;
     padding-bottom:100px;

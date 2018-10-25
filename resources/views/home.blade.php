@@ -5,8 +5,17 @@
 @section('content')
 
 @php
-$first_name = 'Beatrice';
-$last_name = 'Basaldella';
+$hide = true;
+
+if($hide){
+    $first_name = 'Prova';
+    $last_name = 'Delle Prove';
+} else {
+    $first_name = 'Beatrice';
+    $last_name = 'Basaldella';
+}
+
+
 @endphp
 
 
@@ -22,6 +31,8 @@ $last_name = 'Basaldella';
         {{$last_name}}
     </h1>
     <h4 class="text-center">Pittrice, fotografa, scrittrice</h4>
+
+    <i class="fas fa-angle-down" id="angle-down"></i>
 </div>
 
 
@@ -37,6 +48,55 @@ $last_name = 'Basaldella';
 
 <div id="box-3" class="full-box">
 
+</div>
+
+<div id="box-4" class="full-box">
+    <div class="main spacer">
+        <div class="col-sm-8">
+            <h1>Chi sono</h1>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper ex sed augue suscipit finibus. Aenean consectetur maximus dui ac faucibus. Nam porta fringilla mattis. Praesent quis ipsum enim. Donec laoreet, massa at rutrum posuere, lacus tortor eleifend velit, in posuere justo ligula vitae odio. Pellentesque commodo est mauris, rutrum consequat velit viverra ac. Mauris vestibulum risus urna, eget finibus turpis posuere non. Nullam at placerat odio. Mauris a pulvinar urna, eget interdum urna. Vestibulum eu elit semper, imperdiet massa ut, rutrum est. Mauris eleifend molestie facilisis. Mauris fermentum interdum lacus, at mattis justo.
+
+                Sed id interdum nunc, ut ornare arcu. Pellentesque a nulla nec magna rhoncus pellentesque. Curabitur cursus ullamcorper blandit. Etiam quis felis vel metus tincidunt faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sagittis, diam eu vulputate rhoncus, ex mauris vulputate ligula, quis semper mauris nulla nec tortor. Suspendisse lacus sapien, vestibulum ac sem eu, pretium tincidunt risus. Vivamus eu ligula id tortor consectetur vulputate. In scelerisque ac lacus eu luctus. Vestibulum non neque aliquet, faucibus urna et, pellentesque libero.
+
+                Nulla aliquet erat sit amet mi tristique maximus. Cras dictum dapibus dolor, posuere egestas nulla blandit id. Suspendisse potenti. Aliquam facilisis eu urna vitae pretium. Fusce blandit arcu sed urna tempus, at tempus neque consectetur. In auctor porttitor ligula et vehicula. Duis aliquam nunc tellus, et pellentesque tortor vestibulum non. In hac habitasse platea dictumst.
+
+                Maecenas in egestas felis. Nam faucibus ut leo sit amet faucibus. Vivamus risus dui, lobortis sed risus mollis, molestie lobortis libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam luctus tempus elit et eleifend. Mauris dapibus et orci ac rhoncus. Phasellus ac risus eros. Praesent pellentesque diam at ipsum venenatis vestibulum.
+
+                Nullam volutpat lacus nisi, ac commodo metus suscipit eu. Pellentesque laoreet condimentum mi. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum dapibus ligula, ut ultrices erat imperdiet ut. Quisque tempor purus vel ante feugiat interdum. Integer ac felis mi. Duis nisl metus, molestie id consectetur nec, egestas ut neque. Suspendisse potenti. Cras finibus dignissim augue, non sodales enim condimentum at. Phasellus et massa euismod, suscipit lectus sit amet, condimentum ex. Nulla facilisi.
+            </p>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+
+<div id="box-5" class="full-box">
+    <div id="contact-form-container">
+        <div class="col-xs-12 bg-primary contact-form-header">
+            <h3>Contattami</h3>
+        </div>
+        <div class="col-sm-4">
+            <i class="far fa-5x fa-envelope"></i>
+        </div>
+        <div class="col-sm-8 text-left">
+            <form>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Messaggio</label>
+                    <textarea class="form-control" rows="7"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-location-arrow"></i> Invia email</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 
@@ -57,6 +117,8 @@ $last_name = 'Basaldella';
     const BOX_1     = 'box-1';
     const BOX_2     = 'box-2';
     const BOX_3     = 'box-3';
+    const BOX_4     = 'box-4';
+    const BOX_5     = 'box-5';
     const TITLE_1   = 'home-title-1';
     const TITLE_2   = 'home-title-2';
     const TITLE_3   = 'home-title-3';
@@ -101,11 +163,16 @@ $last_name = 'Basaldella';
     Esegue uno scroll con animazione fino ad un dato elemento
     @params eID l'id dell'elemento al quale deve arrivare lo scroll
     */
-    function smoothScroll(eID) {
+    function smoothScroll(eID, timing) {
         var startY = currentYPosition();
         var stopY = elmYPosition(eID);
         var distance = stopY > startY ? stopY - startY : startY - stopY;
-        var speed = (ANIMATION_MUTLIPLICATOR * ANIMATION_DURATION)/1000;
+
+        if(timing === undefined){
+            timing = ANIMATION_DURATION;
+        }
+
+        var speed = (ANIMATION_MUTLIPLICATOR * timing)/1000;
         var step = ANIMATION_STEP;
         var leapY = stopY > startY ? startY + step : startY - step;
         var timer = 0;
@@ -142,6 +209,14 @@ $last_name = 'Basaldella';
             $('#'+TITLE_2).css({ top: topValue });
         }
     });
+
+
+    $('#angle-down').click(function(){
+        smoothScroll(BOX_4, 2000);
+    });
+
+
+    /* TODO Quando premo invia email il box si sposta con dissolvenza a destra e sotto rimane un nuovo box vuoto */
 
 </script>
 @endsection

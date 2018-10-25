@@ -21,7 +21,8 @@ const SCREEX_XS = 768;
 const ELEM_TO_CENTER = [
     $('#menu'),
     $('.home-title'),
-    $('#home-title-3')
+    $('#home-title-3'),
+    $('#contact-form-container')
 ];
 
 $(document).ready(function(){
