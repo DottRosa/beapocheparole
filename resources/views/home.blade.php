@@ -32,7 +32,7 @@ if($hide){
     </h1>
     <h4 class="text-center">Pittrice, fotografa, scrittrice</h4>
 
-    <i class="fas fa-angle-down" id="angle-down"></i>
+
 </div>
 
 
@@ -47,7 +47,7 @@ if($hide){
 </div>
 
 <div id="box-3" class="full-box">
-
+    <i class="fas fa-3x fa-angle-down" id="angle-down"></i>
 </div>
 
 <div id="box-4" class="full-box">
@@ -78,21 +78,25 @@ if($hide){
         <div class="col-xs-12 bg-primary contact-form-header">
             <h3>Contattami</h3>
         </div>
-        <div class="col-sm-4">
-            <i class="far fa-5x fa-envelope"></i>
+        <div class="col-xs-12 alert alert-success">
+            Email inviata con successo
+        </div>
+        <div class="col-sm-4" id="mail-image">
+            <img class="svg" src="{{url('dist/images/icons/ic_paperplane.svg')}}" />
+            <img class="svg icon-animate" src="{{url('dist/images/icons/ic_paperplane_notrace_w.svg')}}" />
         </div>
         <div class="col-sm-8 text-left">
             <form>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" />
+                    <input type="email" class="form-control" id="input-email" name="email"/>
                 </div>
                 <div class="form-group">
                     <label>Messaggio</label>
-                    <textarea class="form-control" rows="7"></textarea>
+                    <textarea class="form-control" rows="7" id="input-message" name="message"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-location-arrow"></i> Invia email</button>
+                    <button type="button" class="btn btn-primary" onclick="sendEmail();"><i class="fas fa-location-arrow"></i> Invia email</button>
                 </div>
             </form>
         </div>
@@ -215,8 +219,70 @@ if($hide){
         smoothScroll(BOX_4, 2000);
     });
 
+    function sendEmail(){
+        var data = {
+            email: $('#input-email').val(),
+            message: $('#input-message').val(),
+            _token  : '{{csrf_token()}}'
+        };
 
-    /* TODO Quando premo invia email il box si sposta con dissolvenza a destra e sotto rimane un nuovo box vuoto */
+        $.ajax({
+            type:'POST',
+            url:"{{url('recaptcha')}}",
+            data:data,
+            success:function(data){
+                console.log(data);
+                $.ajax({
+                    type:'POST',
+                    url:"{{url('email')}}",
+                    data:data,
+                    success:function(data){
+
+                    },
+                    error:function(data){
+                        $('#contact-form-container').removeClass('blur');
+                        var tempMail = $('#contact-form-container .icon-animate')[0];
+                        var mail = $('#contact-form-container .icon-animate')[0];
+
+                        var pos = {
+                            x : ($(window).innerWidth() - $(mail).offset().left) - 200,
+                            y : window.innerHeight - ($('body').innerHeight() - $(mail).offset().top)
+                        }
+
+                        $(mail).css({
+                            top: -pos.y,
+                            left: pos.x,
+                            fill: 'black',
+                            transform: 'rotateZ(30deg)',
+                            opacity: 0,
+                        });
+
+                        var mail_delete = new Promise(function(resolve, reject){
+                            setTimeout(function(){
+                                $(mail).remove();
+                                resolve('foo');
+                            }, 2000);
+                        });
+
+                        mail_delete.then(function(){
+                            $(mail).css({
+                                top: 0,
+                                left: '15px',
+                                fill:'#2196f3',
+                                transform: 'rotateZ(0deg)',
+                                opacity: 1,
+                            });
+                            $('#mail-image').append(mail);
+                        });
+                    }
+                });
+            },
+        })
+    }
+
+    $(document).ajaxStart(function(){
+        $('#contact-form-container').addClass('blur');
+    });
 
 </script>
 @endsection

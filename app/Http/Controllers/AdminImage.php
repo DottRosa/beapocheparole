@@ -62,8 +62,18 @@ class AdminImage extends Controller{
 
                 $image_name = md5($resize->__toString()."".time());
                 Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
-                $params['content'] = 'public/assets/images/'.$image_name.'.jpg';
 
+                //Creazione della thumb
+                $resize_thumb = Image::make($path)
+                                ->resize(300, null, function ($constraint) {
+                                    $constraint->aspectRatio();
+                                })
+                                ->encode('jpg');
+
+                $image_thumb_name = $image_name;
+                Storage::put('public/assets/images/thumbs/'.$image_thumb_name.'.jpg', $resize_thumb->__toString());
+
+                $params['content'] = 'public/assets/images/'.$image_name.'.jpg';
                 $data = Media::forceCreate($params);
                 $media_id = $data->id;
 
@@ -99,6 +109,17 @@ class AdminImage extends Controller{
 
                 $image_name = md5($resize->__toString()."".time());
                 Storage::put('public/assets/images/'.$image_name.'.jpg', $resize->__toString());
+
+                //Creazione della thumb
+                $resize_thumb = Image::make($path)
+                                ->resize(300, null, function ($constraint) {
+                                    $constraint->aspectRatio();
+                                })
+                                ->encode('jpg');
+
+                $image_thumb_name = $image_name;
+                Storage::put('public/assets/images/thumbs/'.$image_thumb_name.'.jpg', $resize_thumb->__toString());
+
                 $params['content'] = 'public/assets/images/'.$image_name.'.jpg';
             }
 

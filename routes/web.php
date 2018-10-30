@@ -28,6 +28,8 @@ Route::get('/privacy', function(){
     return view('privacy');
 });
 
+Route::post('/email', 'EmailSender@send');
+
 /* START Dev routing */
 
 Route::get('/bignami', function () {

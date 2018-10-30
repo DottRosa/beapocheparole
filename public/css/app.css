@@ -25,7 +25,7 @@
 
 /* COLORS */
 /* HOME Z-INDEX */
-.transition, #menu-container #menu, #home .home-title, #documents .document .book .cover, #documents .document .book .pages, #filters, #filters ul .tag {
+.transition, #menu-container #menu, #menu-container #menu .svg, #home .home-title, #home #box-5 #contact-form-container, #documents .document .book .cover, #documents .document .book .pages, #filters, #filters ul .tag {
   transition: ease all 0.3s;
 }
 
@@ -80,6 +80,10 @@
 .bg-dark {
   background-color: #333;
   color: white;
+}
+
+.page-title {
+  margin: 50px 0;
 }
 
 header {
@@ -152,6 +156,15 @@ header h4 a {
   }
 }
 
+#menu-container #menu .svg {
+  fill: white;
+  height: 50px;
+}
+
+#menu-container #menu .svg:hover {
+  transform: scale(1.5);
+}
+
 #menu-container #menu ul {
   padding-left: 5px;
 }
@@ -221,15 +234,6 @@ main.spacer,
     margin-left: 5%;
     margin-right: 5%;
   }
-}
-
-.svg {
-  fill: white;
-  height: 50px;
-}
-
-.svg:hover {
-  fill: red;
 }
 
 #home .word {
@@ -311,6 +315,32 @@ main.spacer,
   background-image: url("../dist/images/box-3.jpg");
 }
 
+@keyframes hop {
+  0% {
+    bottom: 70px;
+  }
+  10% {
+    bottom: 100px;
+  }
+  20% {
+    bottom: 70px;
+  }
+  100% {
+    bottom: 70px;
+  }
+}
+
+#home #box-3 #angle-down {
+  position: fixed;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  color: white;
+  text-align: center;
+  animation: hop 8s infinite;
+  cursor: pointer;
+}
+
 #home #box-4 {
   z-index: 2;
   background-color: white;
@@ -332,14 +362,27 @@ main.spacer,
   width: 50%;
   border-radius: 5px;
   box-shadow: 0px 0px 33px 0px rgba(0, 0, 0, 0.75);
+  filter: blur(0px);
+}
+
+#home #box-5 #contact-form-container.blur {
+  filter: blur(2px);
 }
 
 #home #box-5 #contact-form-container .contact-form-header {
   margin-bottom: 25px;
 }
 
-#home #box-5 #contact-form-container .fa-envelope {
-  color: #2196f3;
+#home #box-5 #contact-form-container .svg {
+  fill: #2196f3;
+}
+
+#home #box-5 #contact-form-container .icon-animate {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  transition: ease all 2s;
+  z-index: 2;
 }
 
 #images .polaroid {
@@ -357,6 +400,7 @@ main.spacer,
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   padding: 20px;
+  height: 290px;
   position: relative;
   transition: ease all .3s;
 }
@@ -378,6 +422,10 @@ main.spacer,
 #images .polaroid .frame h4 {
   text-align: center;
   padding-top: 10px;
+}
+
+#images .polaroid .frame h4.little-title {
+  font-size: 15px;
 }
 
 #images .polaroid .frame .tape,
@@ -776,6 +824,11 @@ main.spacer,
   padding: 15px;
   background-color: #333;
   color: white;
+}
+
+#filters .filter-header .svg {
+  fill: white;
+  width: 15px;
 }
 
 #filters .filter-header .title {

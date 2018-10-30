@@ -55,6 +55,10 @@ strong{
     color:white;
 }
 
+.page-title{
+    margin:50px 0;
+}
+
 header{
     position:fixed !important;
     z-index:4;
@@ -122,6 +126,16 @@ header{
         @media screen and (max-width: $screen-xs){
             &{
                 display:none;
+            }
+        }
+
+        .svg{
+            fill:white;
+            height:50px;
+            @extend .transition;
+
+            &:hover{
+                transform:scale(1.5);
             }
         }
 
@@ -208,14 +222,5 @@ main.spacer,
             margin-left:5%;
             margin-right:5%;
         }
-    }
-}
-
-.svg{
-    fill:white;
-    height:50px;
-
-    &:hover{
-        fill:red;
     }
 }

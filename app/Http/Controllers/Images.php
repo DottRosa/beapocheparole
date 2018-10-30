@@ -9,10 +9,17 @@ use App\Tags;
 class Images extends Controller{
     const ITEMS_PATH = 'immagini';
     const ITEMS_VIEW = 'images';
-    const LIMIT = 16;
+    const LIMIT = 12;
 
     public function __invoke(Request $request){
-        $tags = Tags::orderBy('name','ASC')->get();
+        $query_tags = "SELECT DISTINCT T.id, T.name";
+        $query_tags .= " FROM (SELECT MT.media_id, MT.tag_id FROM MEDIA AS M INNER JOIN R_MEDIA_TAGS AS MT ON M.id = MT.media_id WHERE M.type = 'IMG') AS R";
+        $query_tags .= " INNER JOIN TAGS AS T ON R.tag_id=T.id";
+
+        $all_tags = DB::select(DB::raw($query_tags));
+        $all_tags_ids = array_column($all_tags, 'id');
+        $tags = Tags::whereIn('id', $all_tags_ids)->get();
+
         $tags_filter = $request->tags;  //Tag passati come parametro
         $filter_by_tag = $tags_filter !== null; //True se i filtri sono stati applicati frontend
 
@@ -65,7 +72,20 @@ class Images extends Controller{
                 ['status', 'PUBLIC']
             ])->simplePaginate(self::LIMIT);
         }
+        self::setThumb($items);
 
         return view(self::ITEMS_VIEW)->with('items', $items)->with('tags', $tags)->with('filter_by_tag', $filter_by_tag);
+    }
+
+
+    private function setThumb($items){
+        foreach($items as $item){
+            $image_path = $item->content;
+            $image_position = strpos($image_path, 'images');
+            $part_1 = substr($image_path, 0, $image_position+7);
+            $part_2 = substr($image_path, $image_position+7, strlen($image_path));
+
+            $item['thumb'] = $part_1."thumbs/".$part_2;
+        }
     }
 }

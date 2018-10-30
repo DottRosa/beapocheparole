@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-xs-12">
-    <h1>Testi</h1>
+    <h1 class="page-title">Testi</h1>
 </div>
 
 @if($filter_by_tag)

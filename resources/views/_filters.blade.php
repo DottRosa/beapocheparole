@@ -5,17 +5,28 @@
     @if($filter_by_tag)
     <a href="{{url($page)}}" id="remove-filters-button">Rimuovi i filtri</a>
     @endif
+
+    @if($filter_by_tag)
+    <div class="pull-right" id="applied-filters">
+        <p>
+            @foreach($tags as $tag)
+                @if($tag->active)
+                <span class="applied_filter">#{{$tag->name}}</span>
+                @endif
+            @endforeach
+        </p>
+    </div>
+    @endif
 </div>
 
 <div id="filters">
     <div class="filter-header col-xs-12">
         <div class="title">
-            <i class="fas fa-filter"></i> Filtri
+            <img class="svg" src="{{url('dist/images/icons/ic_filter.svg')}}" /> Filtri
         </div>
         <div onclick="$('#filters').toggleClass('open');" class="close-filters">Chiudi</div>
         </h5>
     </div>
-
 
     <form class="form-inline" id="filters-form" action="{{url($page)}}" method="GET">
         <div class="filter-footer">
