@@ -3,7 +3,10 @@
         padding:20px;
 
         .frame{
-            background-color:#DDC;
+            // background-color:#DDC;
+            background-image:url('../dist/images/portait.jpg');
+            background-position:center;
+            background-size:cover;
             border-bottom-color:#fff;
             border-left-color:#eee;
             border-radius:2px;

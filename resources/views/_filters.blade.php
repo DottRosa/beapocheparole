@@ -7,7 +7,7 @@
     @endif
 
     @if($filter_by_tag)
-    <div class="pull-right" id="applied-filters">
+    <div id="applied-filters" class="mt-sm">
         <p>
             @foreach($tags as $tag)
                 @if($tag->active)

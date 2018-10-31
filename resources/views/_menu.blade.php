@@ -1,7 +1,7 @@
 <div id="menu-container">
     <nav id="menu" class="animated fadeInLeft">
         <ul>
-            <li class="hover-red @if(ends_with(Request::path(), '/')) active @endif">
+            <li class="hover-red">
                 <a href="{{url('/')}}">
                     <!-- <i class="fas fa-home"></i> -->
                     <img class="svg" src="{{url('dist/images/icons/ic_BB.svg')}}" />

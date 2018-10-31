@@ -1,17 +1,14 @@
 @extends('layouts.layout_base')
+@section('body-class', 'wall')
 @section('title', 'Home')
 @section('page-id', 'images')
 
-
-@section('filters')
-
-@endsection
-
-
-
 @section('content')
-    <div class="col-xs-12">
-        <h1 class="page-title">Immagini</h1>
+    <div class="col-xs-12 main-title">
+        <h1 class="page-title inverse pull-left">Immagini</h1>
+        <div class="pull-right mt-xlg">
+            @include('_filters', ['page' => 'immagini'])
+        </div>
     </div>
 
     @if(count($items) != 0)

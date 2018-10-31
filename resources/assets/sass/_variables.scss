@@ -45,3 +45,10 @@ $z_index_box_5      : $z_index_box_4;
 $z_index_title_1    : $z_index_box_1 + 1;
 $z_index_title_2    : $z_index_box_2 + 1;
 $z_index_title_3    : $z_index_box_1 - 2;
+
+
+$mt-xs  : 5px;
+$mt-sm  : $mt-xs + $mt-xs;
+$mt-md  : $mt-sm + $mt-xs;
+$mt-lg  : $mt-md + $mt-xs;
+$mt-xlg : $mt-lg + $mt-xs;

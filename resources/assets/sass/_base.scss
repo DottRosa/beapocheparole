@@ -1,3 +1,19 @@
+body{
+    background-position:center;
+    background-size:cover;
+
+    &.wall{
+        // background-image:url('../dist/images/dark_wall.jpg');
+        background-color:rgba(0,0,0,.8);
+    }
+    &.table{
+        background-image:url('../dist/images/table.jpg');
+    }
+    &.galleries{
+        background-image:url('../dist/images/wall.jpg');
+    }
+}
+
 .transition {
     transition:ease all $dur;
 }
@@ -16,9 +32,9 @@
 .primary-font-light{
     font-family:PrimaryFontLight, arial;
 }
-.spacer{
-    padding-top:75px;
-}
+// .spacer{
+//     padding-top:75px;
+// }
 
 strong{
     @extend .primary-font-bold;
@@ -55,8 +71,31 @@ strong{
     color:white;
 }
 
+
+
+.mt-xs{
+    margin-top:$mt-xs;
+}
+.mt-sm{
+    margin-top:$mt-sm;
+}
+.mt-md{
+    margin-top:$mt-md;
+}
+.mt-lg{
+    margin-top:$mt-lg;
+}
+.mt-xlg{
+    margin-top:$mt-xlg;
+}
+
+
+
+
 .page-title{
-    margin:50px 0;
+    &.inverse{
+        color:white;
+    }
 }
 
 header{
@@ -157,10 +196,8 @@ header{
                 text-align:left;
                 color:white;
                 display:block;
-                // background-color:white;
                 border-radius:15px;
                 text-align:center;
-                // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                 padding:2px 5px;
                 white-space: nowrap
             }
@@ -169,29 +206,9 @@ header{
                 color:white;
             }
 
-            &:hover, &.active{
-                &.hover-red{
-                    a{
-                        color:red;
-                    }
-                }
-
-                &.hover-green{
-                    a{
-                        color:green;
-                    }
-                }
-
-                &.hover-blue{
-                    a{
-                        color:blue;
-                    }
-                }
-
-                &.hover-magenta{
-                    a{
-                        color:magenta;
-                    }
+            &.active{
+                .svg{
+                    transform:scale(1.5);
                 }
             }
         }
@@ -209,8 +226,6 @@ header{
     }
 }
 
-
-
 main.spacer,
 .main.spacer{
     margin-left:150px;
@@ -223,4 +238,11 @@ main.spacer,
             margin-right:5%;
         }
     }
+}
+
+.main-title{
+    background-color:transparent;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    padding-top:45px;
+    margin-bottom:50px;
 }

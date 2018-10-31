@@ -72,7 +72,6 @@
         <div class="box box-back no-front-left"></div>
         @endif
     </div>
-
 </div>
 
 
@@ -93,7 +92,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
       </div>
     </div>
-
   </div>
 </div>
 

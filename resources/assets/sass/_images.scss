@@ -3,6 +3,7 @@
     .polaroid{
         padding:20px;
         margin-bottom:50px;
+        text-decoration:none !important;
 
         .frame{
             background-color:white;
@@ -35,6 +36,7 @@
             h4{
                 text-align:center;
                 padding-top:10px;
+                color:black;
 
                 &.little-title{
                     font-size:15px;

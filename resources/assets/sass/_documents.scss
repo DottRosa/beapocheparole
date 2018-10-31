@@ -1,9 +1,12 @@
 $cover_shadow_opacity   : .6;
 $cover_shadow           : 48px 13px 76px -2px rgba(0,0,0,$cover_shadow_opacity);
 $cover_prespective      : 1500px;
+$cover_prespective_pages: 500px;
 $cover_rotation         : -65deg;
+$pages_rotation         : -50deg;
 $cover_background       : #5F021F;
 $cover_corner           : solid 5px $gold;
+$binding                : solid 10px #aaa;
 
 #documents{
     .document{
@@ -13,11 +16,24 @@ $cover_corner           : solid 5px $gold;
         .book{
             position:relative;
 
+            &:after{
+                content:'';
+                position:absolute;
+                width:100%;
+                height:20px;
+                transform-origin:top;
+                border-left:$binding;
+                transform: perspective($cover_prespective_pages) rotateX($pages_rotation);
+                background-color:gray;
+                @extend .transition;
+            }
+
             .cover{
                 height:300px;
                 display:block;
-                background-color:$cover_background;
-                border-left:solid #aaa 10px;
+                // background-color:$cover_background;
+                background-size:cover;
+                border-left:$binding;
                 text-align:center;
                 display: table-cell;
                 width:600px;
@@ -27,6 +43,10 @@ $cover_corner           : solid 5px $gold;
                 @extend .transition;
                 z-index:2;
                 position:relative;
+
+                &.texture{
+                    background-image:url('../dist/images/book_texture_1.jpg');
+                }
 
                 &:before, &:after{
                     content:'';
@@ -56,6 +76,7 @@ $cover_corner           : solid 5px $gold;
 
             .pages{
                 position:absolute;
+                background-color:white;
                 height:100%;
                 top:0px;
                 left:0px;
@@ -82,6 +103,11 @@ $cover_corner           : solid 5px $gold;
                 .pages{
                     box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.5);
                     text-decoration:none;
+                }
+
+                &:after{
+                    border-left-width:5px;
+                    transform: perspective($cover_prespective_pages) rotateX(-90deg);
                 }
             }
         }

@@ -1,11 +1,15 @@
 @extends('layouts.layout_base')
+@section('body-class', 'table')
 @section('title', 'Testi')
 @section('page-id', 'documents')
 
 @section('content')
 
-<div class="col-xs-12">
-    <h1 class="page-title">Testi</h1>
+<div class="col-xs-12 main-title">
+    <h1 class="page-title pull-left">Testi</h1>
+    <div class="pull-right mt-xlg">
+        @include('_filters', ['page' => 'testi'])
+    </div>
 </div>
 
 @if($filter_by_tag)
@@ -28,7 +32,7 @@
                 <div class="pages">
                     {{str_limit(strip_tags($item->content), $limit = 660, $end = '...')}}
                 </div>
-                <div class="cover">
+                <div class="cover texture">
                     <h3>{{$item->title}}</h3>
                 </div>
             </div>
