@@ -3,9 +3,9 @@
 @section('page-id', 'document')
 
 @section('content')
-<h2>
-    {{ $item->title }}
-</h2>
+<div class="col-xs-12 main-title">
+    <h1 class="page-title text-center">{{ $item->title }}</h1>
+</div>
 <div>
     {!! $item->content !!}
 </div>
