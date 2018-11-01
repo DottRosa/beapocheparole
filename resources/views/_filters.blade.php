@@ -5,18 +5,6 @@
     @if($filter_by_tag)
     <a href="{{url($page)}}" id="remove-filters-button">Rimuovi i filtri</a>
     @endif
-
-    @if($filter_by_tag)
-    <div id="applied-filters" class="mt-sm">
-        <p>
-            @foreach($tags as $tag)
-                @if($tag->active)
-                <span class="applied_filter">#{{$tag->name}}</span>
-                @endif
-            @endforeach
-        </p>
-    </div>
-    @endif
 </div>
 
 <div id="filters">

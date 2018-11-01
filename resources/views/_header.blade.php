@@ -1,9 +1,5 @@
 <header class="col-xs-12">
-    <h4 class="col-sm-4 col-xs-3">
-        <a href="{{url('/')}}">
-            Beatrice<br />Basaldella
-        </a>
-    </h4>
+    
 
     <div class="col-sm-8 col-xs-9 animated fadeInDown">
         <ul id="header-menu">

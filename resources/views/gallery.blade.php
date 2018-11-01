@@ -52,15 +52,18 @@
             @endif
 
             <div class="{{$class}}">
-                <h4>{{$m->title}}</h4>
+
                 @if($m->type == 'IMG')
                     <a class="image" href="{{url('../storage/app/'.$m->content)}}" data-lightbox="{{$m->id}}" data-title="{{$m->title}}" style="background-image:url({{url('../storage/app/'.$m->content)}})">
 
                     </a>
+                    <h4 class="text-center">{{$m->title}}</h4>
                 @else
+                    <h4>{{$m->title}}</h4>
                     <div class="text">
                         {{str_limit(strip_tags($m->content), $limit = 660, $end = '...')}}
-                        <button onclick="openDocument({{$m}});" data-toggle="modal" data-target="#document-modal">Leggi</button>
+                        <br />
+                        <button onclick="openDocument({{$m}});" data-toggle="modal" data-target="#document-modal" class="btn btn-default mt-md">Leggi</button>
                     </div>
                 @endif
             </div>

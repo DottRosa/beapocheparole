@@ -5,11 +5,24 @@
 
 @section('content')
     <div class="col-xs-12 main-title">
-        <h1 class="page-title inverse pull-left">Immagini</h1>
+        <h1 class="page-title pull-left">Immagini</h1>
         <div class="pull-right mt-xlg">
             @include('_filters', ['page' => 'immagini'])
         </div>
     </div>
+
+    @if($filter_by_tag)
+    <div class="col-xs-12" id="applied-filters">
+        <p>
+            Risultati ottenuti in base alle categorie:
+            @foreach($tags as $tag)
+                @if($tag->active)
+                <span class="applied_filter">#{{$tag->name}}</span>
+                @endif
+            @endforeach
+        </p>
+    </div>
+    @endif
 
     @if(count($items) != 0)
         @foreach($items as $item)

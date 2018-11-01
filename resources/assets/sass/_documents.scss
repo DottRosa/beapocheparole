@@ -15,6 +15,8 @@ $binding                : solid 10px #aaa;
 
         .book{
             position:relative;
+            transform: perspective($cover_prespective) rotateX(45deg);
+            @extend .transition;
 
             &:after{
                 content:'';
@@ -93,12 +95,14 @@ $binding                : solid 10px #aaa;
 
             &:hover{
                 cursor:pointer;
+                transform: perspective($cover_prespective) rotateX(0deg);
 
                 .cover{
                     transform           : perspective($cover_prespective) rotateY($cover_rotation);
                     -webkit-box-shadow  : $cover_shadow;
                     -moz-box-shadow     : $cover_shadow;
                     box-shadow          : $cover_shadow;
+                    border-right:solid 6px #5e1922;
                 }
                 .pages{
                     box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.5);
@@ -111,5 +115,11 @@ $binding                : solid 10px #aaa;
                 }
             }
         }
+    }
+}
+
+#document{
+    .content{
+        font-size:18px;
     }
 }

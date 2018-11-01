@@ -1,4 +1,9 @@
 <div id="menu-container">
+    <h4>
+        <a href="{{url('/')}}">
+            Beatrice<br />Basaldella
+        </a>
+    </h4>
     <nav id="menu" class="animated fadeInLeft">
         <ul>
             <li class="hover-red">

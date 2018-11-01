@@ -6,7 +6,7 @@
 <div class="col-xs-12 main-title">
     <h1 class="page-title text-center">{{ $item->title }}</h1>
 </div>
-<div>
+<div class="content">
     {!! $item->content !!}
 </div>
 
