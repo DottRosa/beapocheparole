@@ -88,6 +88,9 @@
           <li class="@if(ends_with(Request::path(), 'admin/errors')) active @endif">
             <a href="{{url('admin/errors')}}">Errori</a>
           </li>
+          <li>
+            <a href="https://mysql.aruba.it/login/index.php?lang=it-iso-8859-1" target="_blank">MySQL</a>
+          </li>
         </ul>
       </li>
       @endif

@@ -1,37 +1,35 @@
 <header class="col-xs-12">
-    
+    <div id="header-menu">
+        <h4 class="pull-left">
+            <a href="{{url('/')}}" class="bpp-regular">
+                Beatrice<br />Basaldella
+            </a>
+        </h4>
 
-    <div class="col-sm-8 col-xs-9 animated fadeInDown">
-        <ul id="header-menu">
+        <ul class="pull-right animated fadeInDown">
             <li class="hover-red @if(ends_with(Request::path(), '/')) active @endif">
                 <a href="{{url('/')}}">
-                    <i class="fas fa-home"></i>
+                    <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_BB.svg')}}" />
                 </a>
                 <span class="link-name">Homepage</span>
             </li>
             <li class="hover-blue @if(ends_with(Request::path(), 'immagini')) active @endif">
                 <a href="{{url('/immagini')}}">
-                    <i class="far fa-image"></i>
+                    <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_tripod.svg')}}" />
                 </a>
                 <span class="link-name">Immagini</span>
             </li>
             <li class="hover-green @if(ends_with(Request::path(), 'testi')) active @endif">
                 <a href="{{url('/testi')}}">
-                    <i class="fas fa-pen"></i>
+                    <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_pen.svg')}}" />
                 </a>
                 <span class="link-name">Testi</span>
             </li>
             <li class="hover-magenta @if(ends_with(Request::path(), 'gallerie')) active @endif">
                 <a href="{{url('/gallerie')}}">
-                    <i class="far fa-clone"></i>
+                    <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_gallery.svg')}}" />
                 </a>
                 <span class="link-name">Gallerie</span>
-            </li>
-            <li class="hover-red @if(ends_with(Request::path(), 'chi-sono')) active @endif">
-                <a href="{{url('/')}}">
-                    <i class="far fa-user"></i>
-                </a>
-                <span class="link-name">Chi sono</span>
             </li>
         </ul>
     </div>

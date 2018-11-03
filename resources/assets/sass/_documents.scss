@@ -15,7 +15,7 @@ $binding                : solid 10px #aaa;
 
         .book{
             position:relative;
-            transform: perspective($cover_prespective) rotateX(45deg);
+            transform: perspective($cover_prespective) rotateX(30deg);
             @extend .transition;
 
             &:after{

@@ -3,10 +3,13 @@
 @section('page-id', 'document')
 
 @section('content')
-<h1>
-    Privacy policy
-</h1>
-<div>
+<div class="col-xs-12 main-title">
+    <h1 class="page-title pull-left">
+        <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_privacy.svg')}}" />
+        Privacy Policy
+    </h1>
+</div>
+<div class="col-xs-12">
     <h2>Premessa</h2>
     <p>
         Beatrice Basaldella (in seguito, “Titolare”), in qualità di titolare del trattamento, la informa ai sensi dell’art. 13 D.Lgs. 30.6.2003 n. 196 (in seguito, “Codice Privacy”) e dell’art. 13 Regolamento UE n. 2016/679 (in seguito, “GDPR”) che i suoi dati saranno trattati con le modalità e per le finalità seguenti:

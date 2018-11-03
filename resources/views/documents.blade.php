@@ -6,7 +6,10 @@
 @section('content')
 
     <div class="col-xs-12 main-title">
-        <h1 class="page-title pull-left">Testi</h1>
+        <h1 class="page-title pull-left">
+            <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_pen.svg')}}" />
+            Testi
+        </h1>
         <div class="pull-right mt-xlg">
             @include('_filters', ['page' => 'testi'])
         </div>
@@ -15,7 +18,7 @@
     @if($filter_by_tag)
     <div class="col-xs-12" id="applied-filters">
         <p>
-            Risultati ottenuti in base alle categorie:
+            Risultati ottenuti per le categorie:
             @foreach($tags as $tag)
                 @if($tag->active)
                 <span class="applied_filter">#{{$tag->name}}</span>
@@ -27,7 +30,7 @@
 
     @if(count($items) != 0)
         @foreach($items as $item)
-        <a href="{{url('testi')}}/{{$item->id}}" class="document col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <a href="{{url('testi')}}/{{$item->id}}" class="document col-lg-3 col-md-4 col-sm-6 col-xs-12 animated zoomIn">
             <div class="book">
                 <div class="pages">
                     {{str_limit(strip_tags($item->content), $limit = 660, $end = '...')}}

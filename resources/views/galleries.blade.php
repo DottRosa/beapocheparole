@@ -6,11 +6,14 @@
 @section('content')
 
 <div class="col-xs-12 main-title">
-    <h1 class="page-title">Gallerie</h1>
+    <h1 class="page-title">
+        <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_gallery.svg')}}" />
+        Gallerie
+    </h1>
 </div>
 
     @foreach($items as $item)
-    <a class="portait col-lg-3 col-md-4 col-sm-6 col-xs-12" href="{{url('gallery')}}/{{$item->id}}">
+    <a class="portait col-lg-3 col-md-4 col-sm-6 col-xs-12 animated zoomIn" href="{{url('gallery')}}/{{$item->id}}">
         <div class="frame">
             <div style="background-image:url({{url('../storage/app/'.$item->thumb)}})"></div>
         </div>

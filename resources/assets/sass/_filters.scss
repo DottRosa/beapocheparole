@@ -13,7 +13,7 @@
 
 #filters{
     position:fixed;
-    width:20%;
+    width:30%;
     height:100%;
     left:100px;
     top:0;
@@ -27,6 +27,11 @@
     transform: perspective(1200px) rotateY(90deg);
     transform-origin:left;
     @extend .transition;
+
+    @media screen and (max-width: $screen-xs){
+        width:50%;
+        left:0;
+    }
 
     &.open{
         visibility:visible;
@@ -106,6 +111,10 @@
     }
 }
 
-.applied_filter{
-    color:$primary;
+#applied-filters{
+    .applied_filter{
+        color:$primary;
+    }
+
+    margin-bottom:15px;
 }

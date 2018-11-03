@@ -3,10 +3,13 @@
 @section('page-id', 'cookies')
 
 @section('content')
-<h1 class="center">Cookies</h1>
-<div>
-
-
+<div class="col-xs-12 main-title">
+    <h1 class="page-title pull-left">
+        <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_cookies.svg')}}" />
+        Cookies
+    </h1>
+</div>
+<div class="col-xs-12">
     <h2>Cosa sono i cookie</h2>
     <p>
         Un cookie è una piccola quantità di dati inviati al tuo browser da un server web e che vengono successivamente memorizzati sul disco fisso del tuo computer.

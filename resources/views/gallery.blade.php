@@ -4,7 +4,12 @@
 
 @section('content')
 
+<div class="col-xs-12 main-title">
+    <h1 class="page-title text-center">{{ $item->name }}</h1>
+</div>
+
 <div class="container">
+
     <div id="wall" class="col-xs-12">
 
         @if($item->media[0]->type == 'IMG')
@@ -97,14 +102,11 @@
     </div>
   </div>
 </div>
-
-
 @endsection
 
 
 @section('javascript')
 <script>
-
     $(document).ready(function(){
         $('body').addClass('bg-gallery');
 
@@ -120,6 +122,5 @@
         $('.modal-title').html(d.title);
         $('.modal-body').html(d.content);
     }
-
 </script>
 @endsection

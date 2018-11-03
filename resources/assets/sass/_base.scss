@@ -1,16 +1,5 @@
 body{
     background-color:rgb(254,254,254);
-
-    &.wall{
-        // background-image:url('../dist/images/dark_wall.jpg');
-        //background-color:rgba(0,0,0,.8);
-    }
-    &.table{
-        //background-image:url('../dist/images/table.jpg');
-    }
-    &.galleries{
-        //background-image:url('../dist/images/wall.jpg');
-    }
 }
 
 .transition {
@@ -31,9 +20,6 @@ body{
 .primary-font-light{
     font-family:PrimaryFontLight, arial;
 }
-// .spacer{
-//     padding-top:75px;
-// }
 
 strong{
     @extend .primary-font-bold;
@@ -41,15 +27,15 @@ strong{
 
 *::-moz-selection {
     background:rgba(255, 255, 125, 0.99);
-    color:#032764;
+    color:$selection;
 }
 *::-webkit-selection {
     background:rgba(255, 255, 125, 0.99);
-    color:#032764;
+    color:$selection;
 }
 *::selection {
     background:rgba(255, 255, 125, 0.99);
-    color:#032764;
+    color:$selection;
 }
 
 *{
@@ -97,6 +83,13 @@ strong{
     }
 }
 
+.svg-baseline{
+    height: 1em;
+    width: 1em;
+    top: .125em;
+    position: relative;
+}
+
 header{
     position:fixed !important;
     z-index:4;
@@ -110,20 +103,26 @@ header{
     }
 
     @media screen and (max-width: $screen-xs){
+        &{
+            background-color:#FFFFFFEE;
+        }
+
         #header-menu{
-            display:inline;
-            float:right;
-            padding-left:0;
+            ul{
+                display:inline;
+                float:right;
+                padding-left:0;
 
-            li{
-                display:inline-block;
-                font-size:25px;
-                margin-left:15px;
-                text-align:center;
+                li{
+                    display:inline-block;
+                    font-size:25px;
+                    margin-left:15px;
+                    text-align:center;
 
-                span{
-                    display:block;
-                    font-size:12px;
+                    span{
+                        display:block;
+                        font-size:12px;
+                    }
                 }
             }
         }
@@ -154,7 +153,6 @@ header{
                 color:$primary;
             }
         }
-
     }
 
     @media screen and (max-width: $screen-xs){
@@ -247,14 +245,25 @@ main.spacer,
 }
 
 .main-title{
-    // background-color:transparent;
     padding-top:45px;
     margin-bottom:20px;
     border-bottom:solid #EEE 2px;
 
     h1{
         text-transform: uppercase;
-        font-size:50px;
+        font-size:45px;
         @extend .primary-font-bold;
+        vertical-align:middle;
+    }
+
+    @media screen and (max-width: $screen-xs){
+        &{
+            margin-top:20px;
+        }
+
+        h1{
+            font-size:35px;
+        }
+
     }
 }

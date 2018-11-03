@@ -14,15 +14,11 @@ if($hide){
     $first_name = 'Beatrice';
     $last_name = 'Basaldella';
 }
-
-
 @endphp
-
 
 <h1 class="home-title" id="home-title-1">
     {{$first_name}}
 </h1>
-
 <div class="home-title" id="home-title-3">
     <h1>
         {{$first_name}}
@@ -31,25 +27,16 @@ if($hide){
         {{$last_name}}
     </h1>
     <h4 class="text-center">Pittrice, fotografa, scrittrice</h4>
-
-
 </div>
-
-
-<div id="box-1" class="full-box">
-
-</div>
-
+<div id="box-1" class="full-box"></div>
 <div id="box-2" class="full-box">
     <h1 class="" id="home-title-2">
         {{$last_name}}
     </h1>
 </div>
-
 <div id="box-3" class="full-box">
     <i class="fas fa-3x fa-angle-down" id="angle-down"></i>
 </div>
-
 <div id="box-4" class="full-box">
     <div class="main spacer">
         <div class="col-sm-8">
@@ -78,11 +65,7 @@ if($hide){
         <div class="col-xs-12 bg-primary contact-form-header">
             <h3>Contattami</h3>
         </div>
-        <div class="col-xs-12 alert alert-success">
-            Email inviata con successo
-        </div>
         <div class="col-sm-4" id="mail-image">
-            <img class="svg" src="{{url('dist/images/icons/ic_paperplane.svg')}}" />
             <img class="svg icon-animate" src="{{url('dist/images/icons/ic_paperplane_notrace_w.svg')}}" />
         </div>
         <div class="col-sm-8 text-left">
@@ -111,11 +94,11 @@ if($hide){
 @section('javascript')
 <script>
     //Costanti per l'animazione
-    const ANIMATION_TIMEOUT         = 1500; //Tempo di attesa prima dell'inizio dell'animazione
-    const ANIMATION_DURATION        = 5000; //Durata dell'animazione
-    const ANIMATION_MUTLIPLICATOR   = 0.6;  //Moltiplicatore per la velocità dell'animazione
-    const ANIMATION_STEP            = 1;    //Pixel di avanzata dello scroll
-    const ANIMATION_ACTIVATE        = false; //Attiva e disattiva lo scroll automatico
+    const ANIMATION_TIMEOUT         = 1500;     //Tempo di attesa prima dell'inizio dell'animazione
+    const ANIMATION_DURATION        = 5000;     //Durata dell'animazione
+    const ANIMATION_MUTLIPLICATOR   = 0.6;      //Moltiplicatore per la velocità dell'animazione
+    const ANIMATION_STEP            = 1;        //Pixel di avanzata dello scroll
+    const ANIMATION_ACTIVATE        = false;    //Attiva e disattiva lo scroll automatico
 
     //Elementi
     const BOX_1     = 'box-1';
@@ -226,62 +209,66 @@ if($hide){
             _token  : '{{csrf_token()}}'
         };
 
+
         $.ajax({
             type:'POST',
-            url:"{{url('recaptcha')}}",
+            url:"{{url('email')}}",
             data:data,
             success:function(data){
-                console.log(data);
-                $.ajax({
-                    type:'POST',
-                    url:"{{url('email')}}",
-                    data:data,
-                    success:function(data){
 
-                    },
-                    error:function(data){
-                        $('#contact-form-container').removeClass('blur');
-                        var tempMail = $('#contact-form-container .icon-animate')[0];
-                        var mail = $('#contact-form-container .icon-animate')[0];
-
-                        var pos = {
-                            x : ($(window).innerWidth() - $(mail).offset().left) - 200,
-                            y : window.innerHeight - ($('body').innerHeight() - $(mail).offset().top)
-                        }
-
-                        $(mail).css({
-                            top: -pos.y,
-                            left: pos.x,
-                            fill: 'black',
-                            transform: 'rotateZ(30deg)',
-                            opacity: 0,
-                        });
-
-                        var mail_delete = new Promise(function(resolve, reject){
-                            setTimeout(function(){
-                                $(mail).remove();
-                                resolve('foo');
-                            }, 2000);
-                        });
-
-                        mail_delete.then(function(){
-                            $(mail).css({
-                                top: 0,
-                                left: '15px',
-                                fill:'#2196f3',
-                                transform: 'rotateZ(0deg)',
-                                opacity: 1,
-                            });
-                            $('#mail-image').append(mail);
-                        });
-                    }
-                });
             },
-        })
+            error:function(data){
+                setTimeout(function(){
+                    $('#contact-form-container').addClass('circle-complete');
+
+                    var tempMail = $('#contact-form-container .icon-animate')[0];
+                    var mail = $('#contact-form-container .icon-animate')[0];
+
+                    var pos = {
+                        x : ($(window).innerWidth() - $(mail).offset().left) - 200,
+                        y : window.innerHeight - ($('body').innerHeight() - $(mail).offset().top)
+                    }
+
+                    $(mail).css({
+                        top: -pos.y,
+                        left: pos.x,
+                        fill: 'black',
+                        transform: 'rotateZ(30deg)',
+                        opacity: 0,
+                    });
+                    // 
+                    // var mail_delete = new Promise(function(resolve, reject){
+                    //     setTimeout(function(){
+                    //         $(mail).remove();
+                    //         resolve('foo');
+                    //     }, 2000);
+                    // });
+                    //
+                    // mail_delete.then(function(){
+                    //     $(mail).css({
+                    //         top: 0,
+                    //         left: '15px',
+                    //         fill:'#2196f3',
+                    //         transform: 'rotateZ(0deg)',
+                    //         opacity: 1,
+                    //     });
+                    //     $('#mail-image').append(mail);
+                    // });
+                }, 2000);
+
+            }
+        });
     }
 
     $(document).ajaxStart(function(){
-        $('#contact-form-container').addClass('blur');
+        $('#contact-form-container').addClass('circle');
+        $('#'+BOX_5).addClass('change-bg');
+        for(var i=0; i<2000; i+=200){
+            setTimeout(function(){
+                centerAll();
+            }, i);
+        }
+
     });
 
 </script>
