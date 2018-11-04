@@ -161,7 +161,7 @@
                 width:100%;
                 height:100%;
                 border-radius:0%;
-                border-top:solid transparent 10px;
+                border:solid transparent 10px;
                 transition:ease all 2s;
             }
 
@@ -216,7 +216,7 @@
                 &:after{
                     visibility:inherit;
                     border-radius:50%;
-                    border-color:$primary;
+                    border-top-color:$primary;
                     animation:rotating 3s linear infinite;
                 }
 

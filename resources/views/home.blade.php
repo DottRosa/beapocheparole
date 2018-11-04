@@ -66,7 +66,7 @@ if($hide){
             <h3>Contattami</h3>
         </div>
         <div class="col-sm-4" id="mail-image">
-            <img class="svg icon-animate" src="{{url('dist/images/icons/ic_paperplane_notrace_w.svg')}}" />
+            <img class="svg icon-animate" src="{{url('public/dist/images/icons/ic_paperplane_notrace_w.svg')}}" />
         </div>
         <div class="col-sm-8 text-left">
             <form>
@@ -236,24 +236,15 @@ if($hide){
                         transform: 'rotateZ(30deg)',
                         opacity: 0,
                     });
-                    // 
-                    // var mail_delete = new Promise(function(resolve, reject){
-                    //     setTimeout(function(){
-                    //         $(mail).remove();
-                    //         resolve('foo');
-                    //     }, 2000);
-                    // });
-                    //
-                    // mail_delete.then(function(){
-                    //     $(mail).css({
-                    //         top: 0,
-                    //         left: '15px',
-                    //         fill:'#2196f3',
-                    //         transform: 'rotateZ(0deg)',
-                    //         opacity: 1,
-                    //     });
-                    //     $('#mail-image').append(mail);
-                    // });
+
+                    setTimeout(function(){
+                        var elem = "<i class='fas fa-5x fa-check animated fadeInDown'></i>"
+
+                        $('#mail-image').append(elem);
+                    }, 2000);
+
+
+
                 }, 2000);
 
             }

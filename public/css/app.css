@@ -102,6 +102,10 @@ body {
   margin-top: 25px;
 }
 
+.white {
+  color: white;
+}
+
 .page-title.inverse {
   color: white;
 }
@@ -425,7 +429,7 @@ main.spacer,
   width: 100%;
   height: 100%;
   border-radius: 0%;
-  border-top: solid transparent 10px;
+  border: solid transparent 10px;
   transition: ease all 2s;
 }
 
@@ -459,7 +463,7 @@ main.spacer,
 #home #box-5 #contact-form-container.circle:after {
   visibility: inherit;
   border-radius: 50%;
-  border-color: #2196f3;
+  border-top-color: #2196f3;
   animation: rotating 3s linear infinite;
 }
 

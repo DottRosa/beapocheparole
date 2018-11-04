@@ -43,7 +43,7 @@
                      @if(isset($item))value="{{url('../storage/app/'.$item->content)}}"@endif>
 
                      @if(isset($item) && isset($item->content))
-                     <img src="{{url('../storage/app/'.$item->content)}}" width="100%;"/>
+                     <img src="{{url('storage/app/'.$item->content)}}" width="50%;"/>
                      @endif
             </div>
           </div>

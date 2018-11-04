@@ -6,14 +6,14 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- bootstap-->
-<link rel="stylesheet" type="text/css" href="{{ url('css/plugins/bootstrap/bootstrap.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('public/css/plugins/bootstrap/bootstrap.min.css') }}" />
 <!-- lightbox-->
-<link rel="stylesheet" type="text/css" href="{{ url('../node_modules/lightbox2/dist/css/lightbox.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('node_modules/lightbox2/dist/css/lightbox.min.css') }}" />
 <!-- animate-->
-<link rel="stylesheet" type="text/css" href="{{ url('../node_modules/animate.css/animate.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('node_modules/animate.css/animate.min.css') }}" />
 
 <!-- app-->
-<link rel="stylesheet" type="text/css" href="{{ url('css/app.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('public/css/app.css') }}" />
 
 
 <!-- Font awesome -->

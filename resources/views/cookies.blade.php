@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-xs-12 main-title">
     <h1 class="page-title pull-left">
-        <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_cookies.svg')}}" />
+        <img class="svg svg-baseline" src="{{url('public/dist/images/icons/ic_cookies.svg')}}" />
         Cookies
     </h1>
 </div>

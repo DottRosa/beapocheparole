@@ -10,7 +10,7 @@
 <div id="filters">
     <div class="filter-header col-xs-12">
         <div class="title">
-            <img class="svg" src="{{url('dist/images/icons/ic_filter.svg')}}" /> Filtri
+            <img class="svg" src="{{url('public/dist/images/icons/ic_filter.svg')}}" /> Filtri
         </div>
         <div onclick="$('#filters').toggleClass('open');" class="close-filters">Chiudi</div>
         </h5>

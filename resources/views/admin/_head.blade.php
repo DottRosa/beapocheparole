@@ -7,14 +7,14 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- bootstap-->
-<link rel="stylesheet" type="text/css" href="{{ url('../node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
 <!-- bootstap select css-->
-<link rel="stylesheet" type="text/css" href="{{ url('/css/plugins/select/bootstrap-select.min.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('public/css/plugins/select/bootstrap-select.min.css') }}" />
 
 <!-- style css-->
-<link rel="stylesheet" type="text/css" href="{{ url('/css/admin/style.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('public/css/admin/style.css') }}" />
 <!-- main css-->
-<link rel="stylesheet" type="text/css" href="{{ url('/css/admin/admin.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('public/css/admin/admin.css') }}" />
 
 
 <!-- Font awesome -->

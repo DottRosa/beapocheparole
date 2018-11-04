@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-xs-12 main-title">
-    <h1 class="page-title text-center">{{ $item->name }}</h1>
+    <h1 class="page-title text-center white">{{ $item->name }}</h1>
 </div>
 
 <div class="container">
@@ -59,7 +59,7 @@
             <div class="{{$class}}">
 
                 @if($m->type == 'IMG')
-                    <a class="image" href="{{url('../storage/app/'.$m->content)}}" data-lightbox="{{$m->id}}" data-title="{{$m->title}}" style="background-image:url({{url('../storage/app/'.$m->content)}})">
+                    <a class="image" href="{{url('storage/app/'.$m->content)}}" data-lightbox="{{$m->id}}" data-title="{{$m->title}}" style="background-image:url({{url('storage/app/'.$m->content)}})">
 
                     </a>
                     <h4 class="text-center">{{$m->title}}</h4>

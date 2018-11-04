@@ -1,14 +1,14 @@
 <!-- jQuery -->
-<script src="{{ url('../node_modules/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{ url('node_modules/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
-<script src="{{ url('js/plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{ url('public/js/plugins/bootstrap/bootstrap.min.js')}}"></script>
 <!-- Lightbox -->
-<script src="{{ url('../node_modules/lightbox2/dist/js/lightbox.min.js')}}"></script>
+<script src="{{ url('node_modules/lightbox2/dist/js/lightbox.min.js')}}"></script>
 
-<script src="{{ url('js/mouse.js')}}"></script>
+<script src="{{ url('public/js/mouse.js')}}"></script>
 
 <!-- Filters -->
-<script src="{{ url('js/plugins/filters/filters.js')}}"></script>
+<script src="{{ url('public/js/plugins/filters/filters.js')}}"></script>
 
 
 <script>

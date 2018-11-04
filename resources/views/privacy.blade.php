@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-xs-12 main-title">
     <h1 class="page-title pull-left">
-        <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_privacy.svg')}}" />
+        <img class="svg svg-baseline" src="{{url('public/dist/images/icons/ic_privacy.svg')}}" />
         Privacy Policy
     </h1>
 </div>

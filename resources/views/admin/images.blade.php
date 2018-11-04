@@ -7,13 +7,12 @@
 @endsection
 
 @section('images')
-
     @foreach($items as $item)
 
-    <div class='col-md-3 image'>
-      <a href="" class="layers bd p-20" style="background-image:url({{url('../storage/app/'.$item->content)}});">
+    <div class='col-md-3 col-sm-6 image'>
+      <a href="{{url('admin/images/list/edit/'.$item->id)}}" class="layers bd p-20" style="background-image:url({{url('storage/app/'.$item->content)}});">
       </a>
-      <div>
+      <div style="height:160px;">
           <h6 class="lh-1">{{$item->title}}</h6>
           <div class="col-xs-12 tags">
               @foreach($item->tags as $tag)

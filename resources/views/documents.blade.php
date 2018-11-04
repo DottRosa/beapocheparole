@@ -7,7 +7,7 @@
 
     <div class="col-xs-12 main-title">
         <h1 class="page-title pull-left">
-            <img class="svg svg-baseline" src="{{url('dist/images/icons/ic_pen.svg')}}" />
+            <img class="svg svg-baseline" src="{{url('public/dist/images/icons/ic_pen.svg')}}" />
             Testi
         </h1>
         <div class="pull-right mt-xlg">
@@ -32,8 +32,8 @@
         @foreach($items as $item)
         <a href="{{url('testi')}}/{{$item->id}}" class="document col-lg-3 col-md-4 col-sm-6 col-xs-12 animated zoomIn">
             <div class="book">
-                <div class="pages">
-                    {{str_limit(strip_tags($item->content), $limit = 660, $end = '...')}}
+                <div class="pages primary-font-regular">
+                    {{str_limit(strip_tags(html_entity_decode($item->content)), $limit = 660, $end = '...')}}
                 </div>
                 <div class="cover texture">
                     <h3>{{$item->title}}</h3>

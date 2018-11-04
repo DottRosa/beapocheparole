@@ -83,6 +83,9 @@
           <table class="table">
               <thead>
                   <th>
+                      Ordine
+                  </th>
+                  <th>
                       Nome
                   </th>
                   <th>
@@ -96,6 +99,9 @@
                   @if(isset($item))
                     @foreach($item->media as $count => $medium)
                     <tr id="{{$medium->type}}-{{$medium->id}}-{{$count}}" data-id="{{$medium->id}}" data-type="{{$medium->type}}">
+                        <td class="order">
+
+                        </td>
                         <td>{{$medium->title}}</td>
                         <td>
                             @if($medium->type == 'IMG')
@@ -105,7 +111,7 @@
                             @endif
                         </td>
                         <td>
-                            <button type='button' onclick='deleteMedium("{{$medium->type}}-{{$medium->id}}-{{$count}}")'>Rimuovi</button>
+                            <button type='button' class="btn btn-danger" onclick='deleteMedium("{{$medium->type}}-{{$medium->id}}-{{$count}}")'>Rimuovi</button>
                             <input type='hidden' value='{{$medium->id}}' name='id[]'>
                         </td>
                     </tr>
@@ -150,7 +156,7 @@
       <div class="modal-body row" id="search-results">
           <div class="col-sm-12">
               <div class="filters form-inline">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-3">
                       <input type="text" id="input-search" class="form-control"/>
                   </div>
                   <div class="form-group col-md-4">
@@ -168,11 +174,13 @@
                       </div>
                   </div>
                   <div class="col-md-4 form-group">
-                      <button type="button" onclick="changeTab('IMG');">Immagini</button>
-                      <button type="button" onclick="changeTab('TXT');">Testi</button>
+                      <button type="button" class="btn btn-default" onclick="changeTab('IMG');">Immagini</button>
+                      <button type="button" class="btn btn-default" onclick="changeTab('TXT');">Testi</button>
                   </div>
 
-                  <button onclick="ajaxCall()">Cerca</button>
+                  <button class="btn btn-primary" onclick="ajaxCall()">
+                      <i class="fas fa-search"></i> Cerca
+                  </button>
               </div>
               <div class="results col-md-12">
                   <h5 id="results-title">Immagini</h5>
@@ -262,36 +270,36 @@
 
 
     $( function() {
-        $(selectedMedia).sortable();
+        $(selectedMedia).sortable({
+            stop: function(event, ui){
+                setOrder(selectedMedia);
+            }
+        });
         $(selectedMedia).disableSelection();
 
-        $(confirmedMedia).sortable();
+        $(confirmedMedia).sortable({
+            stop: function(event, ui){
+                setOrder(confirmedMedia);
+            }
+        });
         $(confirmedMedia).disableSelection();
 
         ajaxCall();   //Prende tutti i media con currentType
+        setOrder(confirmedMedia);
+
     });
+
+    function setOrder(elem){
+        $(elem).find('.order').each(function(counter){
+            $(this).text(counter+1);
+        });
+    }
 
 
     $('#input-name').keyup(function(){
         var s = $(this).val();
         $('#entity-name').text("\""+s+"\"");
     });
-
-
-    /*
-    Ogni volta che viene premuto un tasto nella modale di ricerca viene effettuata
-    una chiamata ajax per trovare i contenuti. C'è un delay per evitare di effettuare
-    troppe richieste al secondo.
-    */
-    // $('#input-search').keydown(function(){
-    //     if (ajaxTimer) {
-    //         clearTimeout(ajaxTimer);
-    //     }
-    //     ajaxTimer = setTimeout(function(){
-    //         ajaxCall();
-    //         //getMedia($('#input-search').val());
-    //     }, ajaxDelay);
-    // });
 
     /*
     Esegue una chiamata ajax per prelevare i media in base alla ricerca, ai tag e
@@ -337,7 +345,7 @@
             elem =  "<section class='result col-md-2 "+typeClass+"' onclick='addMedia("+item.id+", \""+item.title+"\", \""+item.type+"\");' data-id='"+item.id+"' data-type='"+item.type+"'>";
 
             if(item.type == 'IMG'){
-                elem += "   <div style='background-image:url({{url('../storage/app')}}/"+item.content+")'></div>";
+                elem += "   <div style='background-image:url({{url('storage/app')}}/"+item.content+")'></div>";
             } else if(item.type == 'TXT'){
                 elem += "   <div>"+item.content.replace(/(<([^>]+)>)/ig,"").substring(0, 250)+"</div>";
             }
@@ -465,7 +473,7 @@
         elem    += "   <td>"+title+"</td>";
         elem    += "   <td>"+(type == 'IMG' ? 'Immagine' : 'Testo')+"</td>";
         elem    += "   <td>";
-        elem    += "       <button type='button' onclick='deleteMedium(\""+elemId+"\")'>Rimuovi</button>";
+        elem    += "       <button type='button' class='btn btn-danger' onclick='deleteMedium(\""+elemId+"\")'>Rimuovi</button>";
         elem    += "       <input type='hidden' value='"+id+"' name='id[]'>";
         elem    += "   </td>";
         elem    += "</tr>";
@@ -502,6 +510,10 @@
             ajaxCall();
         }
     }
+
+
+
+
 
 
 </script>
