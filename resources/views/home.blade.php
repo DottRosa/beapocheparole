@@ -215,9 +215,6 @@ if($hide){
             url:"{{url('email')}}",
             data:data,
             success:function(data){
-
-            },
-            error:function(data){
                 setTimeout(function(){
                     $('#contact-form-container').addClass('circle-complete');
 
@@ -246,6 +243,8 @@ if($hide){
 
 
                 }, 2000);
+            },
+            error:function(data){
 
             }
         });
